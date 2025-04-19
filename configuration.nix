@@ -30,25 +30,22 @@ in
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.nushell;
+    shell = config.home-manager.users.kiara.programs.nushell.package;
     packages = with pkgs; [
       npins
-      git
-      helix
-      lazygit
       bat
       fd
       ripgrep
       keepassxc
       signal-desktop-bin
       nextcloud-client
-      wezterm
       bluetuith
       vlc
       wl-clipboard
       tree
       jaq
       moreutils
+      nixd
     ];
   };
   programs = {
@@ -66,6 +63,13 @@ in
     };
   };
   home-manager.users.${user} = {
+    imports = [
+      ./git.nix
+      ./helix.nix
+      ./lazygit.nix
+      ./nushell.nix
+      ./wezterm.nix
+    ];
     home = {
       stateVersion = "24.11";
       sessionVariables = {
@@ -86,7 +90,6 @@ in
         package = pkgs.librewolf-bin;
         nativeMessagingHosts = [ pkgs.keepassxc];
       };
-      # does this even work?
       oh-my-posh = {
         enable = true;
         enableNushellIntegration = true;
