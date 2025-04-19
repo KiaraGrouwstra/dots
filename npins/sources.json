@@ -1,0 +1,53 @@
+{
+  "pins": {
+    "disko": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.11.0",
+      "revision": "cdf8deded8813edfa6e65544f69fdd3a59fa2bb4",
+      "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.11.0",
+      "hash": "13brimg7z7k9y36n4jc1pssqyw94nd8qvgfjv53z66lv4xkhin92"
+    },
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "db7738e67a101ad945abbcb447e1310147afaf1b",
+      "url": "https://github.com/nix-community/home-manager/archive/db7738e67a101ad945abbcb447e1310147afaf1b.tar.gz",
+      "hash": "05hmadv0c021mwldw718p962wnwyf3vdgadrfp88cl7apn05zyiq"
+    },
+    "nixos-facter-modules": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nixos-facter-modules"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "58ad9691670d293a15221d4a78818e0088d2e086",
+      "url": "https://github.com/nix-community/nixos-facter-modules/archive/58ad9691670d293a15221d4a78818e0088d2e086.tar.gz",
+      "hash": "09cgh59si6pha8kvfgw4gi84bfm5mknk7yg2n1vv8wli9y1j5ipf"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre782598.18dd725c2960/nixexprs.tar.xz",
+      "hash": "1p7kgyph7xkj57p19nbxpycmbchc6d9gwdznsmxhymrzyzi3if21"
+    }
+  },
+  "version": 5
+}
