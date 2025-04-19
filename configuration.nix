@@ -1,26 +1,28 @@
 { config, lib, pkgs, utils, ... }@args:
 let
-  pkgs = import <nixpkgs> {};
   user = "kiara";
-  pins = let
-    readTree = import ./readTree.nix {};
-    sources = import ./npins;
-    mapper = _: path: readTree { inherit path args; addMarkers = false; };
-  in lib.mapAttrs mapper sources;
-in
-{
+  sources = import ./npins;
+  pins = let readTree = import ./readTree.nix { };
+  in lib.mapAttrs (_: path:
+    readTree {
+      inherit path args;
+      addMarkers = false;
+    }) sources;
+  NIX_PATH =
+    let entries = lib.mapAttrsToList (k: v: k + "=" + v) (import ./npins);
+    in "${lib.concatStringsSep ":" entries}:flake";
+in {
   _module.args = { inherit pins; };
   imports = with pins; [
     nixos-facter-modules.modules.nixos.facter
     <disko/module.nix>
     home-manager.nixos
     ./disks.nix
-    ./pinning.nix
   ];
+  nixpkgs.flake.source = <nixpkgs>;
   nix.package = pkgs.lix;
   system.stateVersion = "24.11";
   hardware.bluetooth.enable = true;
-  nix.settings.experimental-features = "nix-command flakes";
   facter.reportPath = ./facter.json;
   boot.loader.systemd-boot.enable = true;
   security.sudo.wheelNeedsPassword = false;
@@ -46,11 +48,10 @@ in
       jaq
       moreutils
       nixd
+      nixfmt
     ];
   };
-  programs = {
-    direnv.enable = true;
-  };
+  programs = { direnv.enable = true; };
   services = {
     lorri.enable = true;
     displayManager = {
@@ -58,37 +59,33 @@ in
       autoLogin.user = user;
       cosmic-greeter.enable = true;
     };
-    desktopManager = {
-      cosmic.enable = true;
-    };
+    desktopManager = { cosmic.enable = true; };
+  };
+  nix = {
+    settings.experimental-features = "nix-command flakes";
+    nixPath = [ NIX_PATH ];
   };
   home-manager.users.${user} = {
-    imports = [
-      ./git.nix
-      ./helix.nix
-      ./lazygit.nix
-      ./nushell.nix
-      ./wezterm.nix
-    ];
+    imports =
+      [ ./git.nix ./helix.nix ./lazygit.nix ./nushell.nix ./wezterm.nix ];
     home = {
       stateVersion = "24.11";
       sessionVariables = {
+        inherit NIX_PATH;
         EDITOR = "hx";
       };
     };
     xdg.portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-gnome
-      ];
+      extraPortals =
+        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
       config.common.default = [ "*" ];
     };
     programs = {
       librewolf = {
         enable = true;
         package = pkgs.librewolf-bin;
-        nativeMessagingHosts = [ pkgs.keepassxc];
+        nativeMessagingHosts = [ pkgs.keepassxc ];
       };
       oh-my-posh = {
         enable = true;
