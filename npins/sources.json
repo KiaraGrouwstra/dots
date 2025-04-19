@@ -16,6 +16,19 @@
       "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.11.0",
       "hash": "13brimg7z7k9y36n4jc1pssqyw94nd8qvgfjv53z66lv4xkhin92"
     },
+    "helix-gpt": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "silvercoder",
+        "repo": "helix-gpt"
+      },
+      "branch": "nix-flake",
+      "submodules": false,
+      "revision": "66e4d3db37cab08d82e05a7b0d8791f369727665",
+      "url": "https://github.com/silvercoder/helix-gpt/archive/66e4d3db37cab08d82e05a7b0d8791f369727665.tar.gz",
+      "hash": "15r0pwigglgacpc8v2gwrd9v8dfdbzcdkqc3wd3gd3f03xx74k4x"
+    },
     "home-manager": {
       "type": "Git",
       "repository": {

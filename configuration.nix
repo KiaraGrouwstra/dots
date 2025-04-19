@@ -18,6 +18,7 @@ in {
     <disko/module.nix>
     home-manager.nixos
     ./disks.nix
+    ./ollama.nix
   ];
   nixpkgs.flake.source = <nixpkgs>;
   nix.package = pkgs.lix;
@@ -48,6 +49,7 @@ in {
       jaq
       moreutils
       nixd
+      bun
       nixfmt
     ];
   };

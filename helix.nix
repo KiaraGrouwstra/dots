@@ -220,8 +220,46 @@
           "C-h" = "delete_char_backward";
           # "C-d" = "delete_char_forward";
           "C-j" = "insert_newline";
+        };
+      };
+    };
+    # https://docs.helix-editor.com/languages.html
+    languages = {
+      language-server = {
+        gpt = {
+          command = "bun";
+          args = [
+            "--inspect=127.0.0.1:6499"
+            "run"
+            "${<helix-gpt>}/src/app.ts"
+            "--handler"
+            "ollama"
+            "--logFile"
+            "helix-gpt.log"
+          ];
+        };
+        nixd = {
+          command = "nixd";
+          # https://raw.githubusercontent.com/nix-community/nixd/main/nixd/docs/nixd-schema.json
+          config = {
+            nixpkgs.expr = "import <nixpkgs> { }";
+            formatting = { command = [ "nixfmt" ]; };
           };
         };
+      };
+      language = [{
+        name = "nix";
+        scope = "source.nix";
+        injection-regex = "nix";
+        file-types = [ "nix" ];
+        shebangs = [ ];
+        comment-token = "#";
+        language-servers = [ "nixd" "gpt" ];
+        indent = {
+          tab-width = 2;
+          unit = "  ";
+        };
+      }];
     };
   };
 }
