@@ -1,13 +1,19 @@
-{ config, ... }:
+{ config, lib, pkgs, utils, ... }@args:
 let
   pkgs = import <nixpkgs> {};
   user = "kiara";
+  pins = let
+    readTree = import ./readTree.nix {};
+    sources = import ./npins;
+    mapper = _: path: readTree { inherit path args; addMarkers = false; };
+  in lib.mapAttrs mapper sources;
 in
 {
-  imports = [
-    <nixos-facter-modules/modules/nixos/facter.nix>
+  _module.args = { inherit pins; };
+  imports = with pins; [
+    nixos-facter-modules.modules.nixos.facter
     <disko/module.nix>
-    <home-manager/nixos>
+    home-manager.nixos
     ./disks.nix
     ./pinning.nix
   ];
