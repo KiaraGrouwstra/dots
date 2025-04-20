@@ -4,6 +4,7 @@
     host = "127.0.0.1";
     port = 11434;
     acceleration = "rocm";
+    rocmOverrideGfx = "9.0.0";
     # https://ollama.com/library
     #     loadModels = [
     #       "deepscaler" # 1.5b: A fine-tuned version of Deepseek-R1-Distilled-Qwen-1.5B that surpasses the performance of OpenAI’s o1-preview with just 1.5B parameters on popular math evaluations.
