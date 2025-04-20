@@ -86,8 +86,8 @@
           # };
           "n" = "search_next";
           "N" = "search_prev";
-          "y" = ''@"+Y'';
-          "Y" = "yank_to_clipboard";
+          # "y" = ''@"+Y'';
+          # "Y" = "yank_to_clipboard";
           "=" = "paste_clipboard_after";
           "+" = "paste_clipboard_before";
           "p" = ''@"+='';
@@ -158,8 +158,8 @@
             #     "C-v" = "vsplit_new";
             #   };
             # };
-            "y" = ''@"+Y'';
-            "Y" = "yank_to_clipboard";
+            # "y" = ''@"+Y'';
+            # "Y" = "yank_to_clipboard";
             "h" = "select_references_to_symbol_under_cursor";
             "=" = "paste_clipboard_after";
             "+" = "paste_clipboard_before";
@@ -190,8 +190,8 @@
           };
         };
         select = {
-          "y" = ''@"+Y'';
-          "Y" = "yank_to_clipboard";
+          # "y" = ''@"+Y'';
+          # "Y" = "yank_to_clipboard";
           "h" = "extend_char_left";
           "j" = "extend_visual_line_down";
           "k" = "extend_visual_line_up";
@@ -209,10 +209,10 @@
             "h" = "goto_line_start";
             "l" = "goto_line_end";
           };
-          "space" = {
-            "y" = ''@"+Y'';
-            "Y" = "yank_to_clipboard";
-          };
+          # "space" = {
+          #   "y" = ''@"+Y'';
+          #   "Y" = "yank_to_clipboard";
+          # };
         };
         insert = {
           # "C-u" = "kill_to_line_start";

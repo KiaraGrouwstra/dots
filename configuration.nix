@@ -20,8 +20,10 @@ in {
     ./disks.nix
     ./ollama.nix
   ];
-  nixpkgs.flake.source = <nixpkgs>;
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    flake.source = <nixpkgs>;
+    config.allowUnfree = true;
+  };
   nix.package = pkgs.lix;
   system.stateVersion = "24.11";
   hardware.bluetooth.enable = true;
