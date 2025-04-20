@@ -93,9 +93,8 @@ in {
       config.common.default = [ "*" ];
     };
     programs = {
-      librewolf = {
+      firefox = {
         enable = true;
-        package = pkgs.librewolf-bin;
         nativeMessagingHosts = [ pkgs.keepassxc ];
       };
       oh-my-posh = {
