@@ -21,6 +21,7 @@ in {
     ./ollama.nix
   ];
   nixpkgs.flake.source = <nixpkgs>;
+  nixpkgs.config.allowUnfree = true;
   nix.package = pkgs.lix;
   system.stateVersion = "24.11";
   hardware.bluetooth.enable = true;
@@ -51,6 +52,7 @@ in {
       nixd
       bun
       nixfmt
+      stremio
     ];
   };
   programs = { direnv.enable = true; };
