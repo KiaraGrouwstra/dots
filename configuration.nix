@@ -68,8 +68,14 @@ in {
     nixPath = [ NIX_PATH ];
   };
   home-manager.users.${user} = {
-    imports =
-      [ ./git.nix ./helix.nix ./lazygit.nix ./nushell.nix ./wezterm.nix ];
+    imports = [
+      ./dotfiles.nix
+      ./git.nix
+      ./helix.nix
+      ./lazygit.nix
+      ./nushell.nix
+      ./wezterm.nix
+    ];
     home = {
       stateVersion = "24.11";
       sessionVariables = {

@@ -1,0 +1,122 @@
+{
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "z",
+    ): ToggleStacking,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "g",
+    ): Focus(Down),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "f",
+    ): Focus(Right),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "j",
+    ): System(AppLibrary),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "c",
+    ): ToggleWindowFloating,
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+        ],
+        key: "f",
+    ): MoveToOutput(Right),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "g",
+    ): Move(Down),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+        ],
+        key: "g",
+    ): MoveToOutput(Down),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "m",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "a",
+    ): Maximize,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "d",
+    ): Focus(Left),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+        ],
+        key: "d",
+    ): MoveToOutput(Left),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "e",
+    ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+            Alt,
+        ],
+        key: "s",
+    ): MoveToOutput(Up),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "s",
+    ): Focus(Up),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "f",
+    ): Move(Right),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "d",
+    ): Move(Left),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "s",
+    ): Move(Up),
+}
