@@ -226,21 +226,6 @@
     # https://docs.helix-editor.com/languages.html
     languages = {
       language-server = {
-        gpt = {
-          command = "bun";
-          environment = {
-            OLLAMA_MODEL = "codellama:13b-code-q3_K_S";
-          };
-          args = [
-            "--inspect=127.0.0.1:6499"
-            "run"
-            "${<helix-gpt>}/src/app.ts"
-            "--handler"
-            "ollama"
-            "--logFile"
-            "helix-gpt.log"
-          ];
-        };
         nixd = {
           command = "nixd";
           # https://raw.githubusercontent.com/nix-community/nixd/main/nixd/docs/nixd-schema.json
@@ -250,22 +235,6 @@
           };
         };
       };
-      language = [{
-        name = "nix";
-        scope = "source.nix";
-        injection-regex = "nix";
-        file-types = [ "nix" ];
-        shebangs = [ ];
-        comment-token = "#";
-        language-servers = [
-          "nixd"
-          # "gpt"
-        ];
-        indent = {
-          tab-width = 2;
-          unit = "  ";
-        };
-      }];
     };
   };
 }

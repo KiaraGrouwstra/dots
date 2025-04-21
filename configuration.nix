@@ -18,7 +18,6 @@ in {
     <disko/module.nix>
     home-manager.nixos
     ./disks.nix
-    ./ollama.nix
   ];
   nixpkgs = {
     flake.source = <nixpkgs>;
