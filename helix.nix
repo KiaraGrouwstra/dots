@@ -90,10 +90,10 @@
           # "Y" = "yank_to_clipboard";
           "=" = "paste_clipboard_after";
           "+" = "paste_clipboard_before";
-          "p" = ''@"+='';
-          "P" = ''@"++'';
-          "r" = ''@"+R'';
-          "R" = "replace_selections_with_clipboard";
+          # "p" = ''@"+='';
+          # "P" = ''@"++'';
+          # "r" = ''@"+R'';
+          # "R" = "replace_selections_with_clipboard";
           "c" = "change_selection_noyank";
           "d" = ''@"+D'';
           "D" = [ "yank_to_clipboard" "delete_selection_noyank" ];
@@ -163,10 +163,10 @@
             "h" = "select_references_to_symbol_under_cursor";
             "=" = "paste_clipboard_after";
             "+" = "paste_clipboard_before";
-            "p" = ''@"+='';
-            "P" = ''@"++'';
-            "r" = ''@"+R'';
-            "R" = "replace_selections_with_clipboard";
+            # "p" = ''@"+='';
+            # "P" = ''@"++'';
+            # "r" = ''@"+R'';
+            # "R" = "replace_selections_with_clipboard";
           };
           "z" = {
             "k" = "scroll_up";
