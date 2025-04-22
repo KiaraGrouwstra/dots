@@ -55,6 +55,7 @@ in {
       bun
       nixfmt
       stremio
+      mattermost-desktop
     ];
   };
   programs = { direnv.enable = true; };
@@ -103,6 +104,8 @@ in {
         enableNushellIntegration = true;
         useTheme = "catppuccin";
       };
+      yazi.enable = true;
+      chromium.enable = true;
     };
   };
 }
