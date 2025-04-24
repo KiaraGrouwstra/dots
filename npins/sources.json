@@ -60,6 +60,19 @@
       "name": "nixpkgs-unstable",
       "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre782598.18dd725c2960/nixexprs.tar.xz",
       "hash": "1p7kgyph7xkj57p19nbxpycmbchc6d9gwdznsmxhymrzyzi3if21"
+    },
+    "vars": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "lassulus",
+        "repo": "vars"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "066dbc738838b79be6bc80b88559cb88e0fffffd",
+      "url": "https://github.com/lassulus/vars/archive/066dbc738838b79be6bc80b88559cb88e0fffffd.tar.gz",
+      "hash": "0wsmzkw042a2mji6apnqzvf3vhxljiyhad1mcmbgv76slgli6jqa"
     }
   },
   "version": 5

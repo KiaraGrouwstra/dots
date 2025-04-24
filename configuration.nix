@@ -17,8 +17,11 @@ in {
     nixos-facter-modules.modules.nixos.facter
     <disko/module.nix>
     home-manager.nixos
+    vars.options
+    vars.backends.on-machine
     ./disks.nix
   ];
+  vars.settings.on-machine.enable = true;
   nixpkgs = {
     flake.source = <nixpkgs>;
     config.allowUnfree = true;
