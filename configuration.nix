@@ -41,24 +41,24 @@ in {
     extraGroups = [ "networkmanager" "wheel" ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
     packages = with pkgs; [
-      npins
       bat
-      fd
-      ripgrep
-      keepassxc
-      signal-desktop-bin
-      nextcloud-client
       bluetuith
+      bun
+      fd
+      jaq
+      keepassxc
+      mattermost-desktop
+      moreutils
+      nextcloud-client
+      nixd
+      nixfmt-rfc-style
+      npins
+      ripgrep
+      signal-desktop-bin
+      stremio
+      tree
       vlc
       wl-clipboard
-      tree
-      jaq
-      moreutils
-      nixd
-      bun
-      nixfmt
-      stremio
-      mattermost-desktop
     ];
   };
   programs = { direnv.enable = true; };
