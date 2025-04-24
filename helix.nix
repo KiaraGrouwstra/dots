@@ -95,8 +95,8 @@
           # "r" = ''@"+R'';
           # "R" = "replace_selections_with_clipboard";
           "c" = "change_selection_noyank";
-          "d" = ''@"+D'';
-          "D" = [ "yank_to_clipboard" "delete_selection_noyank" ];
+          # "d" = ''@"+D'';
+          # "D" = [ "yank_to_clipboard" "delete_selection_noyank" ];
           # "J" = "join_selections";
           # "A-J" = "join_selections_space";
           # "K" = "keep_selections";
