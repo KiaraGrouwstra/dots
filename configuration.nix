@@ -61,7 +61,10 @@ in {
       wl-clipboard
     ];
   };
-  programs = { direnv.enable = true; };
+  programs = {
+    direnv.enable = true;
+    steam.enable = true;
+  };
   services = {
     lorri.enable = true;
     displayManager = {
