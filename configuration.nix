@@ -59,6 +59,7 @@ in {
       tree
       vlc
       wl-clipboard
+      libreoffice-fresh
     ];
   };
   programs = {
