@@ -65,14 +65,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "lassulus",
+        "owner": "kiaragrouwstra",
         "repo": "vars"
       },
-      "branch": "main",
+      "branch": "generate-vars-identify-generator",
       "submodules": false,
-      "revision": "066dbc738838b79be6bc80b88559cb88e0fffffd",
-      "url": "https://github.com/lassulus/vars/archive/066dbc738838b79be6bc80b88559cb88e0fffffd.tar.gz",
-      "hash": "0wsmzkw042a2mji6apnqzvf3vhxljiyhad1mcmbgv76slgli6jqa"
+      "revision": "cf1624eb1f6d5f1c3f45ffa18e09ee1e08e4e329",
+      "url": "https://github.com/kiaragrouwstra/vars/archive/cf1624eb1f6d5f1c3f45ffa18e09ee1e08e4e329.tar.gz",
+      "hash": "0r6ixvxaskqxcm3jig672bk5lnmdk8r6krdr69vc6gl69ha5v4bw"
     }
   },
   "version": 5
