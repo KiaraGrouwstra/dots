@@ -1,5 +1,18 @@
 {
   "pins": {
+    "cosmic-ext-extra-sessions": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kiaragrouwstra",
+        "repo": "cosmic-ext-extra-sessions"
+      },
+      "branch": "niri-screen-share",
+      "submodules": true,
+      "revision": "5f088d2e51ea62ae60ec64e3adc211a365d8ccc2",
+      "url": null,
+      "hash": "1xpwga2v3g7kl5fi92jci8fsxapgi3gg3fv4nvr1k2pqjxn30cjd"
+    },
     "disko": {
       "type": "GitRelease",
       "repository": {
@@ -57,6 +70,19 @@
       "revision": "4686c9390dab936d8ba144db42491834dd4547bd",
       "url": "https://api.github.com/repos/Cretezy/lazyjj/tarball/v0.5.0",
       "hash": "1761bpgbs9h5irrv12792km4lxxwwwprhfcvwm3bxwmbxkxalg9z"
+    },
+      "niri-flake": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "sodiboo",
+        "repo": "niri-flake"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "6cbc9f7921690a6c00a3640a799d53567741892b",
+      "url": "https://github.com/sodiboo/niri-flake/archive/6cbc9f7921690a6c00a3640a799d53567741892b.tar.gz",
+      "hash": "1gsw2g48w3q39xf0bczxhbai262b39dh27nsahs6r2pjr9gm9d0z"
     },
     "nixos-conf-editor": {
       "type": "Git",

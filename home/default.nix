@@ -21,9 +21,13 @@
     };
     xdg.portal = {
       enable = true;
-      extraPortals =
-        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-cosmic
+      ];
       config.common.default = [ "*" ];
+      configPackages = [ pkgs.niri ];
     };
     dconf.settings = {
       "org/gnome/desktop/interface" = {

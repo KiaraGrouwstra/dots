@@ -30,6 +30,7 @@ in
     ./vars.nix
     ./nix.nix
     ./wireguard.nix
+    ./niri.nix
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
@@ -54,6 +55,7 @@ in
   systemd.network.wait-online.enable = false;
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Amsterdam";
+  fonts.enableDefaultPackages = true;
   hardware.amdgpu.opencl.enable = true;
 
   # wheel
@@ -81,12 +83,10 @@ in
   services = {
     lorri.enable = true;
     displayManager = {
-      autoLogin.enable = true;
+      # autoLogin.enable = true;
       autoLogin.user = user;
       cosmic-greeter.enable = true;
     };
-    desktopManager = {
-      cosmic.enable = true;
-    };
+    # desktopManager = { cosmic.enable = true; };
   };
 }
