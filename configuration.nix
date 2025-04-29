@@ -59,6 +59,7 @@ in
     shell = config.home-manager.users.kiara.programs.nushell.package;
     packages = let
       nix-software-center = import sources.nix-software-center { };
+      nixos-conf-editor = import "${sources.nixos-conf-editor}/packages/nixos-conf-editor" { inherit (pkgs) stdenv lib appstream-glib cargo desktop-file-utils gdk-pixbuf gettext git glib adwaita-icon-theme gtk4 gtksourceview5 libadwaita meson ninja openssl pandoc pkg-config polkit rustc rustPlatform vte-gtk4 wrapGAppsHook4; };
     in with pkgs; [
       bat
       bluetuith
@@ -80,6 +81,7 @@ in
       wl-clipboard
       libreoffice-fresh
       nix-software-center
+      nixos-conf-editor
     ];
   };
   programs = {
