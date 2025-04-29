@@ -118,6 +118,11 @@ in
         [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
       config.common.default = [ "*" ];
     };
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
     programs = {
       firefox = {
         enable = true;
