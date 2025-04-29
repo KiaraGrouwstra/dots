@@ -71,6 +71,7 @@ in
       moreutils
       nextcloud-client
       nixd
+      nix-search
       nixfmt-rfc-style
       npins
       ripgrep
