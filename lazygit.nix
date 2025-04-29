@@ -2,8 +2,7 @@ _: {
   programs.lazygit = {
     enable = true;
     settings = {
-      "$schema" =
-        "https://github.com/jesseduffield/lazygit/raw/refs/heads/master/schema/config.json";
+      "$schema" = "https://github.com/jesseduffield/lazygit/raw/refs/heads/master/schema/config.json";
       "gui" = {
         "screenMode" = "normal";
         "scrollHeight" = 2;
@@ -18,9 +17,15 @@ _: {
         "timeFormat" = "02 Jan 06";
         "shortTimeFormat" = "3:04PM";
         "theme" = {
-          "activeBorderColor" = [ "green" "bold" ];
+          "activeBorderColor" = [
+            "green"
+            "bold"
+          ];
           "inactiveBorderColor" = [ "white" ];
-          "searchingActiveBorderColor" = [ "cyan" "bold" ];
+          "searchingActiveBorderColor" = [
+            "cyan"
+            "bold"
+          ];
           "optionsTextColor" = [ "blue" ];
           "selectedLineBgColor" = [ "blue" ];
           "cherryPickedCommitBgColor" = [ "cyan" ];
@@ -28,7 +33,9 @@ _: {
           "unstagedChangesColor" = [ "red" ];
           "defaultFgColor" = [ "default" ];
         };
-        "commitLength" = { "show" = true; };
+        "commitLength" = {
+          "show" = true;
+        };
         "mouseEvents" = true;
         "skipDiscardChangeWarning" = true;
         "skipStashWarning" = true;
@@ -49,7 +56,12 @@ _: {
         "portraitMode" = "auto";
         "filterMode" = "substring";
         "spinner" = {
-          "frames" = [ "|" "/" "-" "\\\\" ];
+          "frames" = [
+            "|"
+            "/"
+            "-"
+            "\\\\"
+          ];
           "rate" = 50;
         };
         "statusPanelView" = "dashboard";
@@ -74,7 +86,10 @@ _: {
           "showWholeGraph" = false;
         };
         "skipHookPrefix" = "WIP";
-        "mainBranches" = [ "main" "master" ];
+        "mainBranches" = [
+          "main"
+          "master"
+        ];
         "autoFetch" = true;
         "autoRefresh" = true;
         "fetchAll" = true;
@@ -130,7 +145,13 @@ _: {
           "nextBlock" = "<right>";
           "prevBlock-alt" = "h";
           "nextBlock-alt" = "l";
-          "jumpToBlock" = [ "1" "2" "3" "4" "5" ];
+          "jumpToBlock" = [
+            "1"
+            "2"
+            "3"
+            "4"
+            "5"
+          ];
           "nextMatch" = "n";
           "prevMatch" = "N";
           "optionMenu" = "<disabled>";
@@ -237,7 +258,9 @@ _: {
           "popStash" = "g";
           "renameStash" = "r";
         };
-        "commitFiles" = { "checkoutCommitFile" = "c"; };
+        "commitFiles" = {
+          "checkoutCommitFile" = "c";
+        };
         "main" = {
           "toggleSelectHunk" = "a";
           "pickBothHunks" = "b";
@@ -247,7 +270,9 @@ _: {
           "update" = "u";
           "bulkMenu" = "b";
         };
-        "commitMessage" = { "commitMenu" = "<c-o>"; };
+        "commitMessage" = {
+          "commitMenu" = "<c-o>";
+        };
         "amendAttribute" = {
           "addCoAuthor" = "c";
           "resetAuthor" = "a";

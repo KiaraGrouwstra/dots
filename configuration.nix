@@ -1,17 +1,31 @@
-{ config, lib, pkgs, utils, ... }@args:
+{
+  config,
+  lib,
+  pkgs,
+  utils,
+  ...
+}@args:
 let
   user = "kiara";
   sources = import ./npins;
-  pins = let readTree = import ./readTree.nix { };
-  in lib.mapAttrs (_: path:
-    readTree {
-      inherit path args;
-      addMarkers = false;
-    }) sources;
+  pins =
+    let
+      readTree = import ./readTree.nix { };
+    in
+    lib.mapAttrs (
+      _: path:
+      readTree {
+        inherit path args;
+        addMarkers = false;
+      }
+    ) sources;
   NIX_PATH =
-    let entries = lib.mapAttrsToList (k: v: k + "=" + v) (import ./npins);
-    in "${lib.concatStringsSep ":" entries}:flake";
-in {
+    let
+      entries = lib.mapAttrsToList (k: v: k + "=" + v) (import ./npins);
+    in
+    "${lib.concatStringsSep ":" entries}:flake";
+in
+{
   _module.args = { inherit pins; };
   imports = with pins; [
     nixos-facter-modules.modules.nixos.facter
@@ -38,7 +52,10 @@ in {
   hardware.amdgpu.opencl.enable = true;
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
     packages = with pkgs; [
       bat

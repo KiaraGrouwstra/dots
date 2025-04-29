@@ -1,5 +1,7 @@
-{ lib, ... }: {
-    home.file = let
+{ lib, ... }:
+{
+  home.file =
+    let
       inherit (lib) strings lists attrsets;
       # recursively symlink any files in a directory from $HOME
       homeFolder =
@@ -29,5 +31,5 @@
         in
         attrsets.mergeAttrsList (lists.flatten (iterDir [ ]));
     in
-      homeFolder ./dotfiles;
+    homeFolder ./dotfiles;
 }

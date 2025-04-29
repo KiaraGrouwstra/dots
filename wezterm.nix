@@ -1,4 +1,10 @@
-{ config, inputs, system, ... }: {
+{
+  config,
+  inputs,
+  system,
+  ...
+}:
+{
   programs.wezterm = {
     enable = true;
     # package = inputs.wezterm.packages.${system}.default;

@@ -26,65 +26,98 @@
 
 let
   inherit (builtins)
-    attrNames concatMap concatStringsSep elem elemAt filter hasAttr head isAttrs
-    listToAttrs map match readDir substring;
+    attrNames
+    concatMap
+    concatStringsSep
+    elem
+    elemAt
+    filter
+    hasAttr
+    head
+    isAttrs
+    listToAttrs
+    map
+    match
+    readDir
+    substring
+    ;
 
-  argsWithPath = args: parts:
-    let meta.locatedAt = parts;
-    in meta // (if isAttrs args then args else args meta);
+  argsWithPath =
+    args: parts:
+    let
+      meta.locatedAt = parts;
+    in
+    meta // (if isAttrs args then args else args meta);
 
-  readDirVisible = path:
+  readDirVisible =
+    path:
     let
       children = readDir path;
       # skip hidden files, except for those that contain special instructions to readTree
-      isVisible = f:
-        f == ".skip-subtree" || f == ".skip-tree" || (substring 0 1 f) != ".";
+      isVisible = f: f == ".skip-subtree" || f == ".skip-tree" || (substring 0 1 f) != ".";
       names = filter isVisible (attrNames children);
-    in listToAttrs (map (name: {
-      inherit name;
-      value = children.${name};
-    }) names);
+    in
+    listToAttrs (
+      map (name: {
+        inherit name;
+        value = children.${name};
+      }) names
+    );
 
   # Create a mark containing the location of this attribute and
   # a list of all child attribute names added by readTree.
-  marker = addMarkers: parts: children:
-    if addMarkers then {
-      __readTree = parts;
-      __readTreeChildren = builtins.attrNames children;
-    } else
+  marker =
+    addMarkers: parts: children:
+    if addMarkers then
+      {
+        __readTree = parts;
+        __readTreeChildren = builtins.attrNames children;
+      }
+    else
       { };
   # Create a label from a target's tree location.
-  mkLabel = target:
-    let label = concatStringsSep "/" target.__readTree;
-    in if target ? __subtarget then "${label}:${target.__subtarget}" else label;
+  mkLabel =
+    target:
+    let
+      label = concatStringsSep "/" target.__readTree;
+    in
+    if target ? __subtarget then "${label}:${target.__subtarget}" else label;
 
   # Merge two attribute sets, but place attributes in `passthru` via
   # `overrideAttrs` for derivation targets that support it.
-  merge = a: b:
+  merge =
+    a: b:
     if a ? overrideAttrs then
-      a.overrideAttrs (prev: { passthru = (prev.passthru or { }) // b; })
+      a.overrideAttrs (prev: {
+        passthru = (prev.passthru or { }) // b;
+      })
     else
       a // b;
 
   # Import a file and enforce our calling convention
-  importFile = args: scopedArgs: path: parts: filter:
+  importFile =
+    args: scopedArgs: path: parts: filter:
     let
-      importedFile = if scopedArgs != { } && builtins ? scopedImport # For snix
-      then
-        builtins.scopedImport scopedArgs path
-      else
-        import path;
+      importedFile =
+        if
+          scopedArgs != { } && builtins ? scopedImport # For snix
+        then
+          builtins.scopedImport scopedArgs path
+        else
+          import path;
       pathType = builtins.typeOf importedFile;
-    in if pathType != "lambda" then
-      throw "readTree: trying to import ${
-        toString path
-      }, but it’s a ${pathType}, you need to make it a function like { depot, pkgs, ... }"
+    in
+    if pathType != "lambda" then
+      throw "readTree: trying to import ${toString path}, but it’s a ${pathType}, you need to make it a function like { depot, pkgs, ... }"
     else
       importedFile (filter parts (argsWithPath args parts));
 
-  nixFileName = file:
-    let res = match "(.*)\\.nix" file;
-    in if res == null then null else head res;
+  nixFileName =
+    file:
+    let
+      res = match "(.*)\\.nix" file;
+    in
+    if res == null then null else head res;
 
   # Internal implementation of readTree, which handles things like the
   # skipping of trees and subtrees.
@@ -98,7 +131,15 @@ let
   # set out of these results at the top-level, and the internal
   # `children` implementation unwraps and processes nested trees.
   readTreeImpl =
-    { args, initPath, rootDir, parts, argsFilter, scopedArgs, addMarkers }:
+    {
+      args,
+      initPath,
+      rootDir,
+      parts,
+      argsFilter,
+      scopedArgs,
+      addMarkers,
+    }:
     let
       dir = readDirVisible initPath;
 
@@ -115,11 +156,13 @@ let
 
       joinChild = c: initPath + ("/" + c);
 
-      self = if rootDir then {
-        __readTree = [ ];
-      } else
-        importFile (args // { here = result; }) scopedArgs initPath parts
-        argsFilter;
+      self =
+        if rootDir then
+          {
+            __readTree = [ ];
+          }
+        else
+          importFile (args // { here = result; }) scopedArgs initPath parts argsFilter;
 
       # Import subdirectories of the current one, unless any skip
       # instructions exist.
@@ -141,61 +184,66 @@ let
 
       # Remove skipped children from the final set, and unwrap the
       # result set.
-      children = if skipSubtree then
-        [ ]
-      else
-        map ({ name, value }: {
-          inherit name;
-          value = value.ok;
-        }) (filter (child: child.value ? ok) filteredChildren);
+      children =
+        if skipSubtree then
+          [ ]
+        else
+          map (
+            { name, value }:
+            {
+              inherit name;
+              value = value.ok;
+            }
+          ) (filter (child: child.value ? ok) filteredChildren);
 
       # Import Nix files
-      nixFiles = if skipSubtree then
-        [ ]
-      else
-        filter (f: f != null) (map nixFileName (attrNames dir));
-      nixChildren = map (c:
+      nixFiles = if skipSubtree then [ ] else filter (f: f != null) (map nixFileName (attrNames dir));
+      nixChildren = map (
+        c:
         let
           p = joinChild (c + ".nix");
           childParts = parts ++ [ c ];
-          imported =
-            importFile (args // { here = result; }) scopedArgs p childParts
-            argsFilter;
-        in {
+          imported = importFile (args // { here = result; }) scopedArgs p childParts argsFilter;
+        in
+        {
           name = c;
-          value = if isAttrs imported then
-            merge imported (marker addMarkers childParts { })
-          else
-            imported;
-        }) nixFiles;
+          value = if isAttrs imported then merge imported (marker addMarkers childParts { }) else imported;
+        }
+      ) nixFiles;
 
       nodeValue = if dir ? "default.nix" then self else { };
 
-      allChildren = listToAttrs
-        (if dir ? "default.nix" then children else nixChildren ++ children);
+      allChildren = listToAttrs (if dir ? "default.nix" then children else nixChildren ++ children);
 
-      result = if isAttrs nodeValue then
-        merge nodeValue (allChildren // (marker addMarkers parts allChildren))
-      else
-        nodeValue;
+      result =
+        if isAttrs nodeValue then
+          merge nodeValue (allChildren // (marker addMarkers parts allChildren))
+        else
+          nodeValue;
 
-    in if skipTree then { skip = true; } else { ok = result; };
+    in
+    if skipTree then { skip = true; } else { ok = result; };
 
   # Top-level implementation of readTree itself.
-  readTree = args:
-    let tree = readTreeImpl args;
-    in if tree ? skip then
-      throw
-      "Top-level folder has a .skip-tree marker and could not be read by readTree!"
+  readTree =
+    args:
+    let
+      tree = readTreeImpl args;
+    in
+    if tree ? skip then
+      throw "Top-level folder has a .skip-tree marker and could not be read by readTree!"
     else
       tree.ok;
 
   # Helper function to fetch subtargets from a target. This is a
   # temporary helper to warn on the use of the `meta.targets`
   # attribute, which is deprecated in favour of `meta.ci.targets`.
-  subtargets = node:
-    let targets = (node.meta.targets or [ ]) ++ (node.meta.ci.targets or [ ]);
-    in if node ? meta.targets then
+  subtargets =
+    node:
+    let
+      targets = (node.meta.targets or [ ]) ++ (node.meta.ci.targets or [ ]);
+    in
+    if node ? meta.targets then
       builtins.trace ''
         [1;31mWarning: The meta.targets attribute is deprecated.
 
@@ -220,36 +268,54 @@ let
   #
   #   eligible: Function to determine whether the given derivation
   #             should be included in the build.
-  gather = eligible: node:
+  gather =
+    eligible: node:
     if node ? __readTree then
-    # Include the node itself if it is eligible.
+      # Include the node itself if it is eligible.
       (if eligible node then [ node ] else [ ])
       # Include eligible children of the node
-      ++ concatMap (gather eligible)
-      (map (attr: node."${attr}") node.__readTreeChildren)
+      ++ concatMap (gather eligible) (map (attr: node."${attr}") node.__readTreeChildren)
       # Include specified sub-targets of the node
-      ++ filter eligible (map (k:
-        (node."${k}" or { }) // {
-          # Keep the same tree location, but explicitly mark this
-          # node as a subtarget.
-          __readTree = node.__readTree;
-          __readTreeChildren = [ ];
-          __subtarget = k;
-        }) (subtargets node))
+      ++ filter eligible (
+        map (
+          k:
+          (node."${k}" or { })
+          // {
+            # Keep the same tree location, but explicitly mark this
+            # node as a subtarget.
+            __readTree = node.__readTree;
+            __readTreeChildren = [ ];
+            __subtarget = k;
+          }
+        ) (subtargets node)
+      )
     else
       [ ];
 
   # Determine whether a given value is a derivation.
   # Copied from nixpkgs/lib for cases where lib is not available yet.
   isDerivation = x: isAttrs x && x ? type && x.type == "derivation";
-in {
+in
+{
   inherit gather mkLabel;
 
-  __functor = _:
-    { path, args, filter ? (_parts: x: x), scopedArgs ? { }, rootDir ? true
-    , addMarkers ? true }:
+  __functor =
+    _:
+    {
+      path,
+      args,
+      filter ? (_parts: x: x),
+      scopedArgs ? { },
+      rootDir ? true,
+      addMarkers ? true,
+    }:
     readTree {
-      inherit args scopedArgs rootDir addMarkers;
+      inherit
+        args
+        scopedArgs
+        rootDir
+        addMarkers
+        ;
       argsFilter = filter;
       initPath = path;
       parts = [ ];
@@ -270,12 +336,18 @@ in {
   #               which should be able to access the restricted folder.
   #
   #   reason: Textual explanation for the restriction (included in errors)
-  restrictFolder = { folder, exceptions ? [ ], reason }:
+  restrictFolder =
+    {
+      folder,
+      exceptions ? [ ],
+      reason,
+    }:
     parts: args:
     if (elemAt parts 0) == folder || elem parts exceptions then
       args
     else
-      args // {
+      args
+      // {
         depot = args.depot // {
           "${folder}" = throw ''
             Access to targets under //${folder} is not permitted from
@@ -293,21 +365,27 @@ in {
   # be imported.
   #
   # It is often required to create the args attribute set.
-  fix = f: let x = f x; in x;
+  fix =
+    f:
+    let
+      x = f x;
+    in
+    x;
 
   # Takes an attribute set and adds a meta.ci.targets attribute to it
   # which contains all direct children of the attribute set which are
   # derivations.
   #
   # Type: attrs -> attrs
-  drvTargets = attrs:
-    attrs // {
+  drvTargets =
+    attrs:
+    attrs
+    // {
       # preserve .meta from original attrs
       meta = (attrs.meta or { }) // {
         # preserve .meta.ci (except .targets) from original attrs
         ci = (attrs.meta.ci or { }) // {
-          targets = builtins.filter (x: isDerivation attrs."${x}")
-            (builtins.attrNames attrs);
+          targets = builtins.filter (x: isDerivation attrs."${x}") (builtins.attrNames attrs);
         };
       };
     };

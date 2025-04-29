@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   programs.nushell = {
     enable = true;
     environmentVariables = config.home.sessionVariables;
@@ -10,8 +16,17 @@
       '';
     plugins = lib.attrValues {
       inherit (pkgs.nushellPlugins)
-        formats gstat highlight polars query skim units;
+        formats
+        gstat
+        highlight
+        polars
+        query
+        skim
+        units
+        ;
     };
-    shellAliases = { jq = "jaq"; };
+    shellAliases = {
+      jq = "jaq";
+    };
   };
 }
