@@ -57,7 +57,9 @@ in
       "wheel"
     ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
-    packages = with pkgs; [
+    packages = let
+      nix-software-center = import sources.nix-software-center { };
+    in with pkgs; [
       bat
       bluetuith
       bun
@@ -77,6 +79,7 @@ in
       vlc
       wl-clipboard
       libreoffice-fresh
+      nix-software-center
     ];
   };
   programs = {
