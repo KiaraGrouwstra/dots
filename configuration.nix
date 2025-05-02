@@ -83,6 +83,7 @@ in
       libreoffice-fresh
       nix-software-center
       nixos-conf-editor
+      nixpkgs-review
     ];
   };
   programs = {
