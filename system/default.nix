@@ -30,7 +30,7 @@ in
     ./vars.nix
     ./nix.nix
     ./wireguard.nix
-    ./niri.nix
+    ./niri
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
