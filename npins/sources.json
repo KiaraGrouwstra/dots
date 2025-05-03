@@ -94,11 +94,11 @@
         "owner": "kiaragrouwstra",
         "repo": "vars"
       },
-      "branch": "generate-vars-identify-generator",
+      "branch": "templates",
       "submodules": false,
-      "revision": "cf1624eb1f6d5f1c3f45ffa18e09ee1e08e4e329",
-      "url": "https://github.com/kiaragrouwstra/vars/archive/cf1624eb1f6d5f1c3f45ffa18e09ee1e08e4e329.tar.gz",
-      "hash": "0r6ixvxaskqxcm3jig672bk5lnmdk8r6krdr69vc6gl69ha5v4bw"
+      "revision": "d047a3f372031f20ed7536c139ff01cc76b344d0",
+      "url": "https://github.com/kiaragrouwstra/vars/archive/d047a3f372031f20ed7536c139ff01cc76b344d0.tar.gz",
+      "hash": "0p63rp7awvr9in4bx03v42lrizkxghavnla76qxmpz17dm6iasjb"
     }
   },
   "version": 5

@@ -32,6 +32,8 @@ in
     <disko/module.nix>
     ./disks.nix
     ./user.nix
+    ./vars.nix
+    ./nix.nix
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
