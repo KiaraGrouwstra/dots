@@ -26,7 +26,7 @@ let
     "${lib.concatStringsSep ":" entries}:flake";
 in
 {
-  _module.args = { inherit pins; };
+  _module.args = { inherit pins user; };
   imports = with pins; [
     nixos-facter-modules.modules.nixos.facter
     <disko/module.nix>
@@ -103,6 +103,7 @@ in
     settings.experimental-features = "nix-command flakes";
     nixPath = [ NIX_PATH ];
   };
+  home-manager.extraSpecialArgs = { inherit user; };
   home-manager.users.${user} = {
     imports = [
       ./dotfiles.nix
