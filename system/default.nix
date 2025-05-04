@@ -84,7 +84,7 @@ in
     lorri.enable = true;
     displayManager = {
       # autoLogin.enable = true;
-      autoLogin.user = user;
+      # autoLogin.user = user;
       cosmic-greeter.enable = true;
     };
     # desktopManager = { cosmic.enable = true; };

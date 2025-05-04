@@ -229,18 +229,19 @@
     # Note that running niri as a session supports xdg-desktop-autostart,
     # which may be more convenient to use.
     # (leaf "spawn-at-startup" [ "alacritty" "-e" "fish" ])
-
-    # { command = sh (lib.getExe pkgs.cosmic-panel); }
-    # { command = sh (lib.getExe cosmic-ext-alternative-startup); }
     # screen sharing
-    # {
-    #   command = sh "${dbus-update-activation-environment} --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
-    # }
+    # (leaf "spawn-at-startup" [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" ])
+    (leaf "spawn-at-startup" [ "cosmic-ext-alternative-startup" ])
+    (leaf "spawn-at-startup" [ "cosmic-bg" ])
+    # FIXME buttons do not work
+    (leaf "spawn-at-startup" [ "cosmic-panel" ])
 
     # You can override environment variables for processes spawned by niri.
     (plain "environment" [
       (leaf "QT_QPA_PLATFORM" "wayland")
-      (leaf "DISPLAY" ":0") # xwayland-satellite
+      # FIXME signal-desktop does not work, maybe i lacked xwayland-satellite service still
+      # (leaf "DISPLAY" ":0") # xwayland-satellite
+      (leaf "DISPLAY" ":1") # xwayland-satellite
     ])
 
     (plain "cursor" [
@@ -444,10 +445,13 @@
 
       (plain "Mod+W"         [(leaf "spawn" ["firefox" "--new-window" "about:newtab"])])
       (plain "Mod+T"         [(leaf "spawn" ["wezterm"])])
-      (plain "Mod+Space"     [(leaf "spawn" ["cosmic-app-library"])])
-      (plain "Mod+J"         [(leaf "spawn" ["cosmic-app-library"])])
-      (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-launcher"])])
-      (plain "Mod+L"         [(leaf "spawn" ["cosmic-greeter"])])
+      (plain "Mod+E"         [(leaf "spawn" ["cosmic-files"])])
+      (plain "Mod+Space"     [(leaf "spawn" ["cosmic-launcher"])])
+      (plain "Mod+J"         [(leaf "spawn" ["cosmic-launcher"])])
+      # FIXME currently does not work
+      (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-app-library"])])
+      # FIXME does not work
+      # (plain "Mod+L"         [(leaf "spawn" ["cosmic-greeter"])])
 
       # You can also use a shell:
       # (plain "Mod+T" [(leaf "spawn" [ "bash" "-c" "notify-send hello && exec alacritty" ])])
