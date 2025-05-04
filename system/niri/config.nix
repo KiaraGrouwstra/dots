@@ -239,8 +239,6 @@
     # You can override environment variables for processes spawned by niri.
     (plain "environment" [
       (leaf "QT_QPA_PLATFORM" "wayland")
-      # FIXME signal-desktop does not work, maybe i lacked xwayland-satellite service still
-      # (leaf "DISPLAY" ":0") # xwayland-satellite
       (leaf "DISPLAY" ":1") # xwayland-satellite
     ])
 

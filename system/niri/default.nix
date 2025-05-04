@@ -272,9 +272,6 @@ in
   security.rtkit.enable = true;
   services.accounts-daemon.enable = true;
   services.displayManager.sessionPackages = lib.mkForce [
-    # pkgs.cosmic-session
-    # pkgs.niri
-    # cosmicExtNiriSession
     customStartup
   ];
   services.libinput.enable = true;
