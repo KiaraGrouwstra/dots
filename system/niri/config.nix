@@ -230,7 +230,7 @@
     # which may be more convenient to use.
     # (leaf "spawn-at-startup" [ "alacritty" "-e" "fish" ])
     # screen sharing
-    # (leaf "spawn-at-startup" [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" ])
+    (leaf "spawn-at-startup" [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" ])
     (leaf "spawn-at-startup" [ "cosmic-ext-alternative-startup" ])
     (leaf "spawn-at-startup" [ "cosmic-bg" ])
     # FIXME buttons do not work
@@ -444,10 +444,9 @@
       (plain "Mod+W"         [(leaf "spawn" ["firefox" "--new-window" "about:newtab"])])
       (plain "Mod+T"         [(leaf "spawn" ["wezterm"])])
       (plain "Mod+E"         [(leaf "spawn" ["cosmic-files"])])
-      (plain "Mod+Space"     [(leaf "spawn" ["cosmic-launcher"])])
-      (plain "Mod+J"         [(leaf "spawn" ["cosmic-launcher"])])
-      # FIXME currently does not work
-      (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-app-library"])])
+      (plain "Mod+Space"     [(leaf "spawn" ["cosmic-app-library"])])
+      (plain "Mod+J"         [(leaf "spawn" ["cosmic-app-library"])])
+      (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-launcher"])])
       # FIXME does not work
       # (plain "Mod+L"         [(leaf "spawn" ["cosmic-greeter"])])
 
