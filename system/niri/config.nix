@@ -434,9 +434,9 @@
     (plain "Mod+W"         [(leaf "spawn" ["firefox" "--new-window" "about:newtab"])])
     (plain "Mod+T"         [(leaf "spawn" ["wezterm"])])
     (plain "Mod+E"         [(leaf "spawn" ["cosmic-files"])])
-    (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-launcher"])])
-    (plain "Mod+J"         [(leaf "spawn" ["cosmic-app-library"])])
-    (plain "Mod+Space"     [(leaf "spawn" ["cosmic-app-library"])])
+    (plain "Mod+J"         [(leaf "spawn" ["cosmic-launcher"])])
+    (plain "Mod+Space"     [(leaf "spawn" ["cosmic-launcher"])])
+    (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-app-library"])])
     # FIXME cosmic-app-library tends to break:
     # Error trying to flush the wayland display: Invalid argument (os error 22)
     # ERROR iced_winit::platform_specific::wayland::event_loop > SCTK dispatch error: underlying IO error
