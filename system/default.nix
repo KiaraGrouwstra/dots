@@ -87,6 +87,6 @@ in
       # autoLogin.user = user;
       cosmic-greeter.enable = true;
     };
-    # desktopManager = { cosmic.enable = true; };
+    desktopManager.cosmic.enable = true;
   };
 }

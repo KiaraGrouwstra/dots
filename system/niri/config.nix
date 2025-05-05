@@ -445,10 +445,21 @@
       (plain "Mod+W"         [(leaf "spawn" ["firefox" "--new-window" "about:newtab"])])
       (plain "Mod+T"         [(leaf "spawn" ["wezterm"])])
       (plain "Mod+E"         [(leaf "spawn" ["cosmic-files"])])
-      (plain "Mod+Space"     [(leaf "spawn" ["cosmic-app-library"])])
-      (plain "Mod+J"         [(leaf "spawn" ["cosmic-app-library"])])
       (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-launcher"])])
-      # FIXME cosmic-idle fails
+      (plain "Mod+J"         [(leaf "spawn" ["cosmic-app-library"])])
+      (plain "Mod+Space"     [(leaf "spawn" ["cosmic-app-library"])])
+      # FIXME cosmic-app-library tends to break:
+      # Error trying to flush the wayland display: Invalid argument (os error 22)
+      # ERROR iced_winit::platform_specific::wayland::event_loop > SCTK dispatch error: underlying IO error
+
+      # FIXME notification daemon resets:
+      # Failed to connect to the notifications daemon Ok(Err(I/O error: Broken pipe (os error 32)
+      # Failed to bind to overlap notify NotPresent
+      # wl_display#1: error 1: invalid arguments for wp_security_context_manager_v1#5.create_listener
+      # Io error: Invalid argument (os error 22)
+      # Failed to setup panel dbus server deadline has elapsed
+
+      # FIXME cosmic-idle fails: Failed to spawn scope for cosmic-idle. Creating transient unit failed with org.freedesktop.systemd1.UnitExists: Unit cosmic-idle.scope was already loaded or has a fragment file.
       # FIXME does not work
       # (plain "Mod+L"         [(leaf "spawn" ["cosmic-greeter"])])
 

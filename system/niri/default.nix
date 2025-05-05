@@ -8,7 +8,6 @@ let
   user = "kiara";
   cosmic-ext-alternative-startup = pkgs.rustPlatform.buildRustPackage {
     pname = "cosmic-ext-alternative-startup";
-    # name = "cosmic-ext-alternative-startup";
     version = "0.1.0";
     src = <cosmic-ext-extra-sessions/cosmic-ext-alternative-startup>;
     cargoLock.lockFile = <cosmic-ext-extra-sessions/cosmic-ext-alternative-startup/Cargo.lock>;
@@ -116,12 +115,10 @@ in
 {
   # approach from https://github.com/linuxmobile/kaku/compare/niri...niri_cosmic, if fails try `exec cosmic-session niri`
   services = {
+    displayManager.defaultSession = "niri";
     geoclue2 = {
       enable = true;
       enableWifi = true;
-    };
-    displayManager = {
-      defaultSession = "niri";
     };
   };
 
