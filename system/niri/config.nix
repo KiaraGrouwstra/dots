@@ -230,6 +230,7 @@
     # which may be more convenient to use.
     # (leaf "spawn-at-startup" [ "alacritty" "-e" "fish" ])
     # screen sharing
+    # FIXME screenshare does not work
     (leaf "spawn-at-startup" [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" ])
     (leaf "spawn-at-startup" [ "cosmic-ext-alternative-startup" ])
     (leaf "spawn-at-startup" [ "cosmic-bg" ])
@@ -447,6 +448,7 @@
       (plain "Mod+Space"     [(leaf "spawn" ["cosmic-app-library"])])
       (plain "Mod+J"         [(leaf "spawn" ["cosmic-app-library"])])
       (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-launcher"])])
+      # FIXME cosmic-idle fails
       # FIXME does not work
       # (plain "Mod+L"         [(leaf "spawn" ["cosmic-greeter"])])
 
