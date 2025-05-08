@@ -34,6 +34,7 @@ in
     ./user.nix
     ./vars.nix
     ./nix.nix
+    ./wireguard.nix
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
