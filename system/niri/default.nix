@@ -22,7 +22,7 @@ let
         runtimeInputs = [pkgs.systemd pkgs.dbus pkgs.cosmic-session pkgs.bash pkgs.coreutils];
         text = ''
         set -e
-        export XDG_CURRENT_DESKTOP="''${XDG_CURRENT_DESKTOP:=niri}"
+        export XDG_CURRENT_DESKTOP="''${XDG_CURRENT_DESKTOP:=cosmic}"
         export XDG_SESSION_TYPE="''${XDG_SESSION_TYPE:=wayland}"
         export XCURSOR_THEME="''${XCURSOR_THEME:=Cosmic}"
         export _JAVA_AWT_WM_NONREPARENTING=1
@@ -66,13 +66,21 @@ in
   };
 
   hardware.graphics.enable = true;
-  environment.systemPackages = with pkgs; [
-    libnotify
-    xwayland-satellite
-    cosmic-ext-alternative-startup
-    xdg-utils
-    niri
-  ];
+  environment = {
+    variables = {
+      NIXOS_OZONE_WL = "1";
+    };
+    sessionVariables = {
+      COSMIC_DATA_CONTROL_ENABLED = 1;
+    };
+    systemPackages = with pkgs; [
+      libnotify
+      xwayland-satellite
+      cosmic-ext-alternative-startup
+      xdg-utils
+      niri
+    ];
+  };
   systemd.user = {
     targets = {
       graphical-session.wants = [ "xwayland-satellite.service" ];
