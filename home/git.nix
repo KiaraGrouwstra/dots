@@ -4,6 +4,7 @@
 }: {
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "cinereal";
     userEmail = "cinereal@riseup.net";
     delta = {
