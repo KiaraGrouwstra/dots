@@ -42,8 +42,9 @@
                  TERM = "wezterm"
              },
              font_size = 10.0,
-             color_scheme_dirs = {"/home/kiara/.config/wezterm"},
-             color_scheme = "theme",
+             -- color_scheme_dirs = {"/home/kiara/.config/wezterm"},
+             -- color_scheme = "theme",
+             color_scheme = 'Earthsong',
              keys = {
                  {
                      key = "0",
