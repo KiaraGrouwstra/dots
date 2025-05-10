@@ -42,19 +42,6 @@
       "url": "https://github.com/nix-community/home-manager/archive/db7738e67a101ad945abbcb447e1310147afaf1b.tar.gz",
       "hash": "05hmadv0c021mwldw718p962wnwyf3vdgadrfp88cl7apn05zyiq"
     },
-    "nix-software-center": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "batonac",
-        "repo": "nix-software-center"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "0c73b1a05dc2d42b96c5003c74b1f4d3acde127e",
-      "url": "https://github.com/batonac/nix-software-center/archive/0c73b1a05dc2d42b96c5003c74b1f4d3acde127e.tar.gz",
-      "hash": "0jbhfdvj53a97170by2l4mcikcxwz8fn4ljivy65k9lhyqn45j26"
-    },
     "nixos-conf-editor": {
       "type": "Git",
       "repository": {

@@ -14,7 +14,6 @@
     ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
     packages = let
-      nix-software-center = import sources.nix-software-center { };
       nixos-conf-editor = import "${sources.nixos-conf-editor}/packages/nixos-conf-editor" pkgs;
     in with pkgs; [
       bat
@@ -37,7 +36,6 @@
       vlc
       wl-clipboard
       libreoffice-fresh
-      nix-software-center
       nixos-conf-editor
       nixpkgs-review
     ];
