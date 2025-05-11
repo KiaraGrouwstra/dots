@@ -40,6 +40,7 @@
         enableNushellIntegration = true;
         useTheme = "catppuccin";
       };
+      tealdeer.enable = true;
       pay-respects.enable = true;
       yazi.enable = true;
       chromium.enable = true;
