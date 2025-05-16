@@ -53,11 +53,28 @@ in
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
   boot.loader.systemd-boot.enable = true;
-  security.sudo.wheelNeedsPassword = false;
   networking.networkmanager.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Amsterdam";
   hardware.amdgpu.opencl.enable = true;
+
+  # wheel
+  security = {
+    doas = {
+      enable = true;
+      wheelNeedsPassword = false;
+      extraRules = [{
+        groups = [ "wheel" ];
+        persist = true;
+        keepEnv = true;
+      }];
+    };
+    sudo = {
+      enable = false;
+      execWheelOnly = true;
+    };
+  };
+
   programs = {
     direnv.enable = true;
     steam.enable = true;
