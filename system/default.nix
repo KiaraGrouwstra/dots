@@ -54,6 +54,7 @@ in
   facter.reportPath = ./facter.json;
   boot.loader.systemd-boot.enable = true;
   networking.networkmanager.enable = true;
+  systemd.network.wait-online.enable = false;
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Amsterdam";
   hardware.amdgpu.opencl.enable = true;
