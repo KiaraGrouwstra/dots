@@ -62,11 +62,10 @@ in
   security = {
     doas = {
       enable = true;
-      wheelNeedsPassword = false;
       extraRules = [{
         groups = [ "wheel" ];
-        persist = true;
         keepEnv = true;
+        noPass = true;
       }];
     };
     sudo = {
