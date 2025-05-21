@@ -13,32 +13,35 @@
       "wheel"
     ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
-    packages = let
-      nixos-conf-editor = pkgs.callPackage "${sources.nixos-conf-editor}/packages/nixos-conf-editor" {};
-    in with pkgs; [
-      bat
-      bluetuith
-      bun
-      fd
-      jaq
-      keepassxc
-      mattermost-desktop
-      moreutils
-      nextcloud-client
-      nixd
-      nix-search
-      nixfmt-rfc-style
-      npins
-      ripgrep
-      signal-desktop-bin
-      stremio
-      tree
-      vlc
-      wl-clipboard
-      libreoffice-fresh
-      nixos-conf-editor
-      nixpkgs-review
-      tor-browser
-    ];
+    packages =
+      let
+        nixos-conf-editor = pkgs.callPackage "${sources.nixos-conf-editor}/packages/nixos-conf-editor" { };
+      in
+      with pkgs;
+      [
+        bat
+        bluetuith
+        bun
+        fd
+        jaq
+        keepassxc
+        mattermost-desktop
+        moreutils
+        nextcloud-client
+        nixd
+        nix-search
+        nixfmt-rfc-style
+        npins
+        ripgrep
+        signal-desktop-bin
+        stremio
+        tree
+        vlc
+        wl-clipboard
+        libreoffice-fresh
+        nixos-conf-editor
+        nixpkgs-review
+        tor-browser
+      ];
   };
 }

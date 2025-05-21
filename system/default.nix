@@ -21,7 +21,14 @@ let
       entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
     in
     "${lib.concatStringsSep ":" entries}:flake";
-  specialArgs = { inherit sources pins lib' user; };
+  specialArgs = {
+    inherit
+      sources
+      pins
+      lib'
+      user
+      ;
+  };
 in
 {
   imports = with pins; [
@@ -64,11 +71,13 @@ in
   security = {
     doas = {
       enable = true;
-      extraRules = [{
-        groups = [ "wheel" ];
-        keepEnv = true;
-        noPass = true;
-      }];
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          keepEnv = true;
+          noPass = true;
+        }
+      ];
     };
     sudo = {
       enable = false;
@@ -87,6 +96,8 @@ in
       autoLogin.user = user;
       cosmic-greeter.enable = true;
     };
-    desktopManager = { cosmic.enable = true; };
+    desktopManager = {
+      cosmic.enable = true;
+    };
   };
 }
