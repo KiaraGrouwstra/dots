@@ -49,11 +49,11 @@
         "owner": "kiaragrouwstra",
         "repo": "nixos-conf-editor"
       },
-      "branch": "main",
+      "branch": "adwaita-root",
       "submodules": false,
-      "revision": "d202242a659c0d0caf44ecf11f7e860d76f247e1",
-      "url": "https://github.com/kiaragrouwstra/nixos-conf-editor/archive/d202242a659c0d0caf44ecf11f7e860d76f247e1.tar.gz",
-      "hash": "0y4jk8clxgys0859jh9y2bww95sswlh8zahwc8r4y0h6dql6qpqa"
+      "revision": "e90ce4c42d2bc06b871f8297361657aceb3cd79a",
+      "url": "https://github.com/kiaragrouwstra/nixos-conf-editor/archive/e90ce4c42d2bc06b871f8297361657aceb3cd79a.tar.gz",
+      "hash": "0grxyncwzmi7zxb7rljz7808flcd3yw8l4j647ray4gf748ca165"
     },
     "nixos-facter-modules": {
       "type": "Git",

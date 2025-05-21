@@ -14,7 +14,7 @@
     ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
     packages = let
-      nixos-conf-editor = import "${sources.nixos-conf-editor}/packages/nixos-conf-editor" pkgs;
+      nixos-conf-editor = pkgs.callPackage "${sources.nixos-conf-editor}/packages/nixos-conf-editor" {};
     in with pkgs; [
       bat
       bluetuith
