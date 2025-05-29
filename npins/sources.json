@@ -71,7 +71,7 @@
       "url": "https://api.github.com/repos/Cretezy/lazyjj/tarball/v0.5.0",
       "hash": "1761bpgbs9h5irrv12792km4lxxwwwprhfcvwm3bxwmbxkxalg9z"
     },
-      "niri-flake": {
+    "niri-flake": {
       "type": "Git",
       "repository": {
         "type": "GitHub",
