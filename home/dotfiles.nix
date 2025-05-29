@@ -31,9 +31,5 @@
         in
         attrsets.mergeAttrsList (lists.flatten (iterDir [ ]));
     in
-    {
-      # https://github.com/NixOS/nixpkgs/pull/412167
-      "${config.xdg.configHome}/nushell/nix-your-shell.nu".source = pkgs.runCommand "nix-your-shell-config" {} ''${lib.getExe pkgs.nix-your-shell} nu >> "$out"'';
-    } //
     homeFolder ./dotfiles;
 }
