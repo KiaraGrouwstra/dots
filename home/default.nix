@@ -41,7 +41,10 @@
         useTheme = "catppuccin";
       };
       tealdeer.enable = true;
-      pay-respects.enable = true;
+      pay-respects = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
       yazi.enable = true;
       chromium.enable = true;
     };
