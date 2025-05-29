@@ -41,6 +41,7 @@
         libreoffice-fresh
         nixos-conf-editor
         nixpkgs-review
+        gh
         tor-browser
       ];
   };
