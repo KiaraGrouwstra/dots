@@ -13,6 +13,7 @@
       ''
         $env.config.show_banner = false
         $env.config.buffer_editor = "hx"
+        source ./nix-your-shell.nu
       '';
     plugins = lib.attrValues {
       inherit (pkgs.nushellPlugins)
