@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   user,
   sources,
@@ -16,8 +17,12 @@
     packages =
       let
         nixos-conf-editor = pkgs.callPackage "${sources.nixos-conf-editor}/packages/nixos-conf-editor" { };
+        upstream = lib.lists.map (k: pkgs.${k}.overrideAttrs (_: { src = sources.${k}; })) [
+          "lazyjj"
+        ];
       in
       with pkgs;
+      upstream ++
       [
         bat
         bluetuith

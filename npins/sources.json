@@ -42,6 +42,22 @@
       "url": "https://github.com/nix-community/home-manager/archive/d23d20f55d49d8818ac1f1b2783671e8a6725022.tar.gz",
       "hash": "1h32x8cyhjnz8jhnijs2xh98xmg1q2rrl9gmlj1l3sd8bjr9v929"
     },
+    "lazyjj": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Cretezy",
+        "repo": "lazyjj"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.5.0",
+      "revision": "4686c9390dab936d8ba144db42491834dd4547bd",
+      "url": "https://api.github.com/repos/Cretezy/lazyjj/tarball/v0.5.0",
+      "hash": "1761bpgbs9h5irrv12792km4lxxwwwprhfcvwm3bxwmbxkxalg9z"
+    },
     "nixos-conf-editor": {
       "type": "Git",
       "repository": {
