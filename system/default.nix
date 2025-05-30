@@ -10,7 +10,7 @@ let
     let
       entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
     in
-    "${lib.concatStringsSep ":" entries}:flake";
+    "${lib.concatStringsSep ":" entries}:flake=${sources.nixpkgs}:flake";
   specialArgs = {
     inherit
       sources
