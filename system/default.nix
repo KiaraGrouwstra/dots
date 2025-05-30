@@ -1,21 +1,11 @@
 {
-  config,
   lib,
   pkgs,
-  utils,
   ...
-}@args:
+}:
 let
   user = "kiara";
-  lib' = import ../lib { inherit lib; };
   sources = import ../npins;
-  pins = lib.mapAttrs (
-    _: path:
-    lib'.readTree {
-      inherit path args;
-      addMarkers = false;
-    }
-  ) sources;
   NIX_PATH =
     let
       entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
@@ -24,19 +14,17 @@ let
   specialArgs = {
     inherit
       sources
-      pins
-      lib'
       user
       ;
   };
 in
 {
-  imports = with pins; [
-    nixos-facter-modules.modules.nixos.facter
-    home-manager.nixos
-    vars.options
-    vars.backends.on-machine
-    <disko/module.nix>
+  imports = with sources; [
+    "${nixos-facter-modules}/modules/nixos/facter.nix"
+    "${home-manager}/nixos"
+    "${vars}/options.nix"
+    "${vars}/backends/on-machine.nix"
+    "${disko}/module.nix"
     ./disks.nix
     ./user.nix
     ./vars.nix
