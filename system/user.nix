@@ -47,6 +47,7 @@
         nixos-conf-editor
         nixpkgs-review
         gh # dep of nixpkgs-review
+        nix-init
         tor-browser
       ];
   };
