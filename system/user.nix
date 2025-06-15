@@ -41,6 +41,7 @@
         signal-desktop-bin
         stremio
         tree
+        transmission
         vlc
         wl-clipboard
         libreoffice-fresh
