@@ -29,6 +29,7 @@
         bun
         fd
         jaq
+        forgejo-cli
         keepassxc
         mattermost-desktop
         moreutils
