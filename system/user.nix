@@ -29,7 +29,7 @@
         bun
         fd
         jaq
-        forgejo-cli
+        tea
         gurk-rs
         keepassxc
         mattermost-desktop
