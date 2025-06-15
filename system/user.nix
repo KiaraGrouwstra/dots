@@ -30,6 +30,7 @@
         fd
         jaq
         forgejo-cli
+        gurk-rs
         keepassxc
         mattermost-desktop
         moreutils
