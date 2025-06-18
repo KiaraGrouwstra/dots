@@ -33,6 +33,7 @@ in
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
+  nix.channel.enable = false;
   home-manager = {
     extraSpecialArgs = specialArgs;
     users.${user}.home.sessionVariables = {
