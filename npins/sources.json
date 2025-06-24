@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v1.11.0",
-      "revision": "cdf8deded8813edfa6e65544f69fdd3a59fa2bb4",
-      "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.11.0",
-      "hash": "13brimg7z7k9y36n4jc1pssqyw94nd8qvgfjv53z66lv4xkhin92"
+      "version": "v1.12.0",
+      "revision": "7121f74b976481bc36877abaf52adab2a178fcbe",
+      "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.12.0",
+      "hash": "0wbx518d2x54yn4xh98cgm65wvj0gpy6nia6ra7ns4j63hx14fkq"
     },
     "helix-gpt": {
       "type": "Git",
@@ -25,9 +25,9 @@
       },
       "branch": "nix-flake",
       "submodules": false,
-      "revision": "66e4d3db37cab08d82e05a7b0d8791f369727665",
-      "url": "https://github.com/silvercoder/helix-gpt/archive/66e4d3db37cab08d82e05a7b0d8791f369727665.tar.gz",
-      "hash": "15r0pwigglgacpc8v2gwrd9v8dfdbzcdkqc3wd3gd3f03xx74k4x"
+      "revision": "0b6ce17639dbbeb4d412e1146ee8951f7719f321",
+      "url": "https://github.com/silvercoder/helix-gpt/archive/0b6ce17639dbbeb4d412e1146ee8951f7719f321.tar.gz",
+      "hash": "012ld8baxzcdi17dla067x13rlhckhmhlzvdp5w0n9gfkvxxsbdk"
     },
     "home-manager": {
       "type": "Git",
@@ -38,9 +38,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d23d20f55d49d8818ac1f1b2783671e8a6725022",
-      "url": "https://github.com/nix-community/home-manager/archive/d23d20f55d49d8818ac1f1b2783671e8a6725022.tar.gz",
-      "hash": "1h32x8cyhjnz8jhnijs2xh98xmg1q2rrl9gmlj1l3sd8bjr9v929"
+      "revision": "d07e9cceb4994ed64a22b9b36f8b76923e87ac38",
+      "url": "https://github.com/nix-community/home-manager/archive/d07e9cceb4994ed64a22b9b36f8b76923e87ac38.tar.gz",
+      "hash": "179b5paq5dwi57lapn2w0f5d3rskrbxb0yyb4cpwpvlm32bjp4dd"
     },
     "lazyjj": {
       "type": "GitRelease",
@@ -80,9 +80,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "58ad9691670d293a15221d4a78818e0088d2e086",
-      "url": "https://github.com/nix-community/nixos-facter-modules/archive/58ad9691670d293a15221d4a78818e0088d2e086.tar.gz",
-      "hash": "09cgh59si6pha8kvfgw4gi84bfm5mknk7yg2n1vv8wli9y1j5ipf"
+      "revision": "14df13c84552a7d1f33c1cd18336128fbc43f920",
+      "url": "https://github.com/nix-community/nixos-facter-modules/archive/14df13c84552a7d1f33c1cd18336128fbc43f920.tar.gz",
+      "hash": "15yww1rrxjcvpgcpf15mhwhagcy9d62a2kfrbwimqw2p1v3mgzxq"
     },
     "nixpkgs": {
       "type": "Channel",
@@ -99,9 +99,9 @@
       },
       "branch": "templates",
       "submodules": false,
-      "revision": "d047a3f372031f20ed7536c139ff01cc76b344d0",
-      "url": "https://github.com/kiaragrouwstra/vars/archive/d047a3f372031f20ed7536c139ff01cc76b344d0.tar.gz",
-      "hash": "0p63rp7awvr9in4bx03v42lrizkxghavnla76qxmpz17dm6iasjb"
+      "revision": "efcd90c91e466be7980ac27a5c74bc035bf6bd01",
+      "url": "https://github.com/kiaragrouwstra/vars/archive/efcd90c91e466be7980ac27a5c74bc035bf6bd01.tar.gz",
+      "hash": "1mxvy35daqbwlz5w43swkdb9ndj3f4nia9n2qbnwnmc7q9dclpla"
     }
   },
   "version": 5
