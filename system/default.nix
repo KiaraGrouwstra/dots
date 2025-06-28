@@ -51,6 +51,14 @@ in
           src = sources.${k};
         } // (overrides k oldAttrs))) {
           lazyjj = _: _: {};
+          niri = k: oldAttrs: {
+            # https://wiki.nixos.org/wiki/Overlays#Rust_packages
+            cargoDeps = prev.rustPlatform.fetchCargoVendor {
+              src = sources.${k};
+              inherit (oldAttrs) pname version;
+              hash = "sha256-fT0L/OTlQ9BnKHnckKsLi+tN+oevEU+eJWrh1INqQhA=";
+            };
+          };
         }
       )
     ];
