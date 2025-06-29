@@ -58,19 +58,6 @@
       "url": "https://api.github.com/repos/Cretezy/lazyjj/tarball/v0.5.0",
       "hash": "1761bpgbs9h5irrv12792km4lxxwwwprhfcvwm3bxwmbxkxalg9z"
     },
-    "niri": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "KiaraGrouwstra",
-        "repo": "niri"
-      },
-      "branch": "ext-foreign-toplevel-list",
-      "submodules": false,
-      "revision": "61df5b40740220fc764d49329bbc5015c0e837f5",
-      "url": "https://github.com/KiaraGrouwstra/niri/archive/61df5b40740220fc764d49329bbc5015c0e837f5.tar.gz",
-      "hash": "0yadjx9cbwzhjyfx7af94kp28rrnhri290yw42x00ixqp4jxd2qk"
-    },
     "nixos-conf-editor": {
       "type": "Git",
       "repository": {
