@@ -19,16 +19,6 @@
         EDITOR = "hx";
       };
     };
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-cosmic
-      ];
-      config.common.default = [ "*" ];
-      configPackages = [ pkgs.niri ];
-    };
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
