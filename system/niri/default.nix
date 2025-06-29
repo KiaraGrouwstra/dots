@@ -5,58 +5,8 @@
 }:
 let
   user = "kiara";
-  cosmic-ext-alternative-startup = pkgs.rustPlatform.buildRustPackage {
-    pname = "cosmic-ext-alternative-startup";
-    version = "0.1.0";
-    src = <cosmic-ext-extra-sessions/cosmic-ext-alternative-startup>;
-    cargoLock.lockFile = <cosmic-ext-extra-sessions/cosmic-ext-alternative-startup/Cargo.lock>;
-    nativeBuildInputs = [ pkgs.pkg-config ];
-    buildInputs = [ pkgs.libxkbcommon ];
-    meta.mainProgram = "cosmic-ext-alternative-startup";
-  };
-  customStartup = (
-  (
-    let
-      scriptPackage = pkgs.writeShellApplication {
-        name = "start-cosmic-ext-niri";
-        runtimeInputs = [pkgs.systemd pkgs.dbus pkgs.cosmic-session pkgs.bash pkgs.coreutils];
-        text = ''
-        set -e
-        export XDG_CURRENT_DESKTOP="''${XDG_CURRENT_DESKTOP:=cosmic}"
-        export XDG_SESSION_TYPE="''${XDG_SESSION_TYPE:=wayland}"
-        export XCURSOR_THEME="''${XCURSOR_THEME:=Cosmic}"
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        export GDK_BACKEND=wayland,x11
-        export MOZ_ENABLE_WAYLAND=1
-        export QT_QPA_PLATFORM="wayland;xcb"
-        export QT_AUTO_SCREEN_SCALE_FACTOR=1
-        export QT_ENABLE_HIGHDPI_SCALING=1
-        systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
-        exec dbus-run-session -- cosmic-session niri --session
-      '';
-    };
-  in
-    pkgs.writeTextFile {
-      name = "cosmic-on-niri";
-      destination = "/share/wayland-sessions/COSMIC-on-niri.desktop";
-      text = ''
-        [Desktop Entry]
-        Name=COSMIC-on-niri
-        Comment=This session logs you into the COSMIC desktop on niri
-        Type=Application
-        DesktopNames=niri
-        Exec=${scriptPackage}/bin/start-cosmic-ext-niri
-      '';
-    }
-  )
-  .overrideAttrs
-  (old: {
-    passthru.providedSessions = ["COSMIC-on-niri"];
-  }));
-
 in
 {
-  # approach from https://github.com/linuxmobile/kaku/compare/niri...niri_cosmic, if fails try `exec cosmic-session niri`
   services = {
     displayManager.defaultSession = "niri";
     gnome.gnome-keyring.enable = true;
@@ -71,12 +21,11 @@ in
     variables = {
       NIXOS_OZONE_WL = "1";
     };
-    sessionVariables = {
-      COSMIC_DATA_CONTROL_ENABLED = 1;
-    };
+    # sessionVariables = {
+    #   COSMIC_DATA_CONTROL_ENABLED = 1;
+    # };
     systemPackages = with pkgs; [
       libnotify
-      cosmic-ext-alternative-startup
       xdg-utils
       niri
     ];
@@ -166,6 +115,6 @@ in
   };
 
   services.displayManager.sessionPackages = lib.mkForce [
-    customStartup
+    pkgs.niri
   ];
 }

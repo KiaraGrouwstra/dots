@@ -1,18 +1,5 @@
 {
   "pins": {
-    "cosmic-ext-extra-sessions": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "kiaragrouwstra",
-        "repo": "cosmic-ext-extra-sessions"
-      },
-      "branch": "niri-screen-share",
-      "submodules": true,
-      "revision": "5f088d2e51ea62ae60ec64e3adc211a365d8ccc2",
-      "url": null,
-      "hash": "1xpwga2v3g7kl5fi92jci8fsxapgi3gg3fv4nvr1k2pqjxn30cjd"
-    },
     "disko": {
       "type": "GitRelease",
       "repository": {
@@ -83,19 +70,6 @@
       "revision": "61df5b40740220fc764d49329bbc5015c0e837f5",
       "url": "https://github.com/KiaraGrouwstra/niri/archive/61df5b40740220fc764d49329bbc5015c0e837f5.tar.gz",
       "hash": "0yadjx9cbwzhjyfx7af94kp28rrnhri290yw42x00ixqp4jxd2qk"
-    },
-    "niri-flake": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "sodiboo",
-        "repo": "niri-flake"
-      },
-      "branch": "main",
-      "submodules": false,
-      "revision": "6cbc9f7921690a6c00a3640a799d53567741892b",
-      "url": "https://github.com/sodiboo/niri-flake/archive/6cbc9f7921690a6c00a3640a799d53567741892b.tar.gz",
-      "hash": "1gsw2g48w3q39xf0bczxhbai262b39dh27nsahs6r2pjr9gm9d0z"
     },
     "nixos-conf-editor": {
       "type": "Git",

@@ -100,9 +100,9 @@ in
   services = {
     lorri.enable = true;
     displayManager = {
-      # autoLogin.enable = true;
-      # autoLogin.user = user;
-      cosmic-greeter.enable = true;
+      autoLogin.enable = true;
+      autoLogin.user = user;
+      # cosmic-greeter.enable = true;
     };
     desktopManager.cosmic.enable = true;
   };
