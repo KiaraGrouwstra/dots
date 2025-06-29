@@ -429,6 +429,7 @@
     # shows a list of important hotkeys.
     (plain "Mod+Slash" [(flag "show-hotkey-overlay")])
 
+    (plain "Mod+L"         [(leaf "spawn" ["swaylock"])])
     (plain "Mod+W"         [(leaf "spawn" ["firefox" "--new-window" "about:newtab"])])
     (plain "Mod+T"         [(leaf "spawn" ["wezterm"])])
     (plain "Mod+E"         [(leaf "spawn" ["cosmic-files"])])

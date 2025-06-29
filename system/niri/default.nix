@@ -7,6 +7,8 @@ let
   user = "kiara";
 in
 {
+  security.pam.services.swaylock = {};
+
   services = {
     displayManager.defaultSession = "niri";
     gnome.gnome-keyring.enable = true;
@@ -111,6 +113,10 @@ in
             '';
       };
       programs.niri.enable = true;
+      programs.swaylock = {
+        enable = true;
+        package = pkgs.swaylock-effects;
+      };
     };
   };
 
