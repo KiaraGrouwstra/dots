@@ -26,6 +26,7 @@ in
     "${vars}/backends/on-machine.nix"
     "${disko}/module.nix"
     ./disks.nix
+    ./greetd.nix
     ./user.nix
     ./vars.nix
     ./nix.nix
