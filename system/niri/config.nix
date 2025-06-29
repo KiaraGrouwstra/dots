@@ -219,7 +219,6 @@
   # which may be more convenient to use.
   # (leaf "spawn-at-startup" [ "alacritty" "-e" "fish" ])
   # screen sharing
-  # FIXME screenshare does not work
   (leaf "spawn-at-startup" [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" ])
   (leaf "spawn-at-startup" [ "cosmic-bg" ])
   (leaf "spawn-at-startup" [ "cosmic-panel" ])
@@ -436,13 +435,6 @@
     (plain "Mod+J"         [(leaf "spawn" ["cosmic-launcher"])])
     (plain "Mod+Space"     [(leaf "spawn" ["cosmic-launcher"])])
     (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-app-library"])])
-
-    # FIXME notification daemon fails over missing env var `PANEL_NOTIFICATIONS_FD`
-    # Failed to connect to the notifications daemon Ok(Err(I/O error: Broken pipe (os error 32)
-    # Failed to bind to overlap notify NotPresent
-    # wl_display#1: error 1: invalid arguments for wp_security_context_manager_v1#5.create_listener
-    # Io error: Invalid argument (os error 22)
-    # Failed to setup panel dbus server deadline has elapsed
 
     (plain "Mod+Escape"    [(leaf "spawn" ["swaync-client" "--close-all"])])
     (plain "Mod+Grave"     [(leaf "spawn" ["swaync-client" "--toggle-panel"])])

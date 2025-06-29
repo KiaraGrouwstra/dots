@@ -23,9 +23,6 @@ in
     variables = {
       NIXOS_OZONE_WL = "1";
     };
-    # sessionVariables = {
-    #   COSMIC_DATA_CONTROL_ENABLED = 1;
-    # };
     systemPackages = with pkgs; [
       libnotify
       xdg-utils
