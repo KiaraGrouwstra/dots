@@ -75,7 +75,6 @@ in
     };
     systemPackages = with pkgs; [
       libnotify
-      xwayland-satellite
       cosmic-ext-alternative-startup
       xdg-utils
       niri
@@ -83,7 +82,6 @@ in
   };
   systemd.user = {
     targets = {
-      graphical-session.wants = [ "xwayland-satellite.service" ];
       # boot with niri rather than the default cosmic-session
       cosmic-session.enable = false;
     };
