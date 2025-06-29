@@ -69,51 +69,45 @@ in
     };
     configPackages = [ pkgs.niri ];
   };
-  home-manager.users.${user} = {
-    options.programs.niri = {
-      enable = lib.mkEnableOption "niri";
+  home-manager.users.${user}.config = {
+    xdg.configFile.niri-config = {
+      enable = true;
+      target = "niri/config.kdl";
+      source =
+      let
+        kdl = pkgs.callPackage ./kdl.nix { };
+        typed = kdl.lib.node;
+        # use json2kdl's performance with niri-specific syntax sugar:
+        # https://github.com/sodiboo/niri-flake/blob/main/kdl.nix
+        node = name: arguments: children: let
+          inherit (lib.foldl (
+            self: this:
+              if lib.isAttrs this
+              then self // {props = self.props // this;}
+              else self // {args = self.args ++ [this];}
+          ) {
+            args = [];
+            props = {};
+          } (lib.toList arguments)) args props;
+        in typed name null args props children;
+        plain = name: children: node name [] children;
+        leaf = name: arguments: node name arguments [];
+        flag = name: node name [] [];
+        niri-config = kdl.generate "niri.kdl" (import ./config.nix { inherit node plain leaf flag; });
+      in
+        pkgs.runCommand "config.kdl"
+          {
+            config = niri-config;
+            buildInputs = [ pkgs.niri ];
+          }
+          ''
+            niri validate -c $config
+            cp $config $out
+          '';
     };
-    config = {
-      xdg.configFile.niri-config = {
-        enable = true;
-        target = "niri/config.kdl";
-        source =
-        let
-          kdl = pkgs.callPackage ./kdl.nix { };
-          typed = kdl.lib.node;
-          # use json2kdl's performance with niri-specific syntax sugar:
-          # https://github.com/sodiboo/niri-flake/blob/main/kdl.nix
-          node = name: arguments: children: let
-            inherit (lib.foldl (
-              self: this:
-                if lib.isAttrs this
-                then self // {props = self.props // this;}
-                else self // {args = self.args ++ [this];}
-            ) {
-              args = [];
-              props = {};
-            } (lib.toList arguments)) args props;
-          in typed name null args props children;
-          plain = name: children: node name [] children;
-          leaf = name: arguments: node name arguments [];
-          flag = name: node name [] [];
-          niri-config = kdl.generate "niri.kdl" (import ./config.nix { inherit node plain leaf flag; });
-        in
-          pkgs.runCommand "config.kdl"
-            {
-              config = niri-config;
-              buildInputs = [ pkgs.niri ];
-            }
-            ''
-              niri validate -c $config
-              cp $config $out
-            '';
-      };
-      programs.niri.enable = true;
-      programs.swaylock = {
-        enable = true;
-        package = pkgs.swaylock-effects;
-      };
+    programs.swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
     };
   };
 
