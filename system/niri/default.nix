@@ -59,6 +59,7 @@ in
   # approach from https://github.com/linuxmobile/kaku/compare/niri...niri_cosmic, if fails try `exec cosmic-session niri`
   services = {
     displayManager.defaultSession = "niri";
+    gnome.gnome-keyring.enable = true;
     geoclue2 = {
       enable = true;
       enableWifi = true;
@@ -99,21 +100,32 @@ in
       };
     };
   };
+  # system-level portal is needed for secrets
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+    ];
+    config = let
+      common = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+      };
+    in {
+      inherit common;
+      niri = common;
+    };
+    configPackages = [ pkgs.niri ];
+  };
   home-manager.users.${user} = {
     options.programs.niri = {
       enable = lib.mkEnableOption "niri";
     };
     config = {
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-gnome
-          xdg-desktop-portal-cosmic
-        ];
-        config.common.default = [ "*" ];
-        configPackages = [ pkgs.niri ];
-      };
       xdg.configFile.niri-config = {
         enable = true;
         target = "niri/config.kdl";
