@@ -437,7 +437,7 @@
     (plain "Mod+Space"     [(leaf "spawn" ["cosmic-launcher"])])
     (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-app-library"])])
 
-    # FIXME notification daemon resets:
+    # FIXME notification daemon fails over missing env var `PANEL_NOTIFICATIONS_FD`
     # Failed to connect to the notifications daemon Ok(Err(I/O error: Broken pipe (os error 32)
     # Failed to bind to overlap notify NotPresent
     # wl_display#1: error 1: invalid arguments for wp_security_context_manager_v1#5.create_listener
