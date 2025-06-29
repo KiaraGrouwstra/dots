@@ -444,8 +444,8 @@
     # Io error: Invalid argument (os error 22)
     # Failed to setup panel dbus server deadline has elapsed
 
-    (plain "Mod+Escape"    [(leaf "spawn" ["swaync-client --close-all"])])
-    (plain "Mod+Grave"     [(leaf "spawn" ["swaync-client --toggle-panel"])])
+    (plain "Mod+Escape"    [(leaf "spawn" ["swaync-client" "--close-all"])])
+    (plain "Mod+Grave"     [(leaf "spawn" ["swaync-client" "--toggle-panel"])])
 
     # You can also use a shell:
     # (plain "Mod+T" [(leaf "spawn" [ "bash" "-c" "notify-send hello && exec alacritty" ])])
