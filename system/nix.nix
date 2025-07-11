@@ -63,6 +63,11 @@
         github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
       '';
     };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
   # make the final file use our substituted var
   environment.etc."nix/nix.conf".source =
