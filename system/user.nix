@@ -41,7 +41,7 @@
         stremio
         swaynotificationcenter
         tree
-        transmission
+        transmission_4
         vlc
         wl-clipboard
         libreoffice-fresh
