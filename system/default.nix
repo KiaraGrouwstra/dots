@@ -47,12 +47,22 @@ in
     flake.source = <nixpkgs>;
     config.allowUnfree = true;
     overlays = [
-      (final: prev:
-        lib.mapAttrs (k: overrides: prev.${k}.overrideAttrs (oldAttrs: {
-          src = sources.${k};
-        } // (overrides k oldAttrs))) {
-          lazyjj = _: _: {};
-        }
+      (
+        final: prev:
+        lib.mapAttrs
+          (
+            k: overrides:
+            prev.${k}.overrideAttrs (
+              oldAttrs:
+              {
+                src = sources.${k};
+              }
+              // (overrides k oldAttrs)
+            )
+          )
+          {
+            lazyjj = _: _: { };
+          }
       )
     ];
   };

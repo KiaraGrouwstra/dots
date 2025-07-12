@@ -1,13 +1,14 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 let
   user = "kiara";
 in
 {
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   services = {
     displayManager.defaultSession = "niri";
@@ -55,18 +56,20 @@ in
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ];
-    config = let
-      common = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+    config =
+      let
+        common = {
+          default = [
+            "gnome"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        };
+      in
+      {
+        inherit common;
+        niri = common;
       };
-    in {
-      inherit common;
-      niri = common;
-    };
     configPackages = [ pkgs.niri ];
   };
   home-manager.users.${user}.config = {
@@ -74,27 +77,48 @@ in
       enable = true;
       target = "niri/config.kdl";
       source =
-      let
-        kdl = pkgs.callPackage ./kdl.nix { };
-        typed = kdl.lib.node;
-        # use json2kdl's performance with niri-specific syntax sugar:
-        # https://github.com/sodiboo/niri-flake/blob/main/kdl.nix
-        node = name: arguments: children: let
-          inherit (lib.foldl (
-            self: this:
-              if lib.isAttrs this
-              then self // {props = self.props // this;}
-              else self // {args = self.args ++ [this];}
-          ) {
-            args = [];
-            props = {};
-          } (lib.toList arguments)) args props;
-        in typed name null args props children;
-        plain = name: children: node name [] children;
-        leaf = name: arguments: node name arguments [];
-        flag = name: node name [] [];
-        niri-config = kdl.generate "niri.kdl" (import ./config.nix { inherit node plain leaf flag; });
-      in
+        let
+          kdl = pkgs.callPackage ./kdl.nix { };
+          typed = kdl.lib.node;
+          # use json2kdl's performance with niri-specific syntax sugar:
+          # https://github.com/sodiboo/niri-flake/blob/main/kdl.nix
+          node =
+            name: arguments: children:
+            let
+              inherit
+                (lib.foldl
+                  (
+                    self: this:
+                    if lib.isAttrs this then
+                      self // { props = self.props // this; }
+                    else
+                      self // { args = self.args ++ [ this ]; }
+                  )
+                  {
+                    args = [ ];
+                    props = { };
+                  }
+                  (lib.toList arguments)
+                )
+                args
+                props
+                ;
+            in
+            typed name null args props children;
+          plain = name: children: node name [ ] children;
+          leaf = name: arguments: node name arguments [ ];
+          flag = name: node name [ ] [ ];
+          niri-config = kdl.generate "niri.kdl" (
+            import ./config.nix {
+              inherit
+                node
+                plain
+                leaf
+                flag
+                ;
+            }
+          );
+        in
         pkgs.runCommand "config.kdl"
           {
             config = niri-config;
