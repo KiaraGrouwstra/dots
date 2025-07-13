@@ -50,6 +50,7 @@
         gh # dep of nixpkgs-review
         nix-init
         tor-browser
+        nix-index
       ];
   };
 }

@@ -14,6 +14,7 @@
         ''
           $env.config.show_banner = false
           $env.config.buffer_editor = "hx"
+          $env.config.hooks.command_not_found = source ${./command-not-found.nu}
         '';
       plugins = lib.attrValues {
         inherit (pkgs.nushellPlugins)
