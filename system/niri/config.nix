@@ -219,7 +219,11 @@
   # which may be more convenient to use.
   # (leaf "spawn-at-startup" [ "alacritty" "-e" "fish" ])
   # screen sharing
-  (leaf "spawn-at-startup" [ "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" ])
+  (leaf "spawn-at-startup" [
+    "dbus-update-activation-environment"
+    "--systemd"
+    "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+  ])
   (leaf "spawn-at-startup" [ "cosmic-bg" ])
   (leaf "spawn-at-startup" [ "cosmic-panel" ])
 
@@ -408,10 +412,12 @@
   ])
 
   (plain "window-rule" [
-    (leaf "match" { is-active = false; app-id = "wezterm"; })
+    (leaf "match" {
+      is-active = false;
+      app-id = "wezterm";
+    })
     (leaf "opacity" 0.8)
   ])
-
 
   (plain "binds" [
     # Keys consist of modifiers separated by + signs, followed by an XKB key name
@@ -426,45 +432,75 @@
 
     # Mod-/, which is usually the same as Mod-?,
     # shows a list of important hotkeys.
-    (plain "Mod+Slash" [(flag "show-hotkey-overlay")])
+    (plain "Mod+Slash" [ (flag "show-hotkey-overlay") ])
 
-    (plain "Mod+L"         [(leaf "spawn" ["swaylock"])])
-    (plain "Mod+W"         [(leaf "spawn" ["firefox" "--new-window" "about:newtab"])])
-    (plain "Mod+T"         [(leaf "spawn" ["wezterm"])])
-    (plain "Mod+E"         [(leaf "spawn" ["cosmic-files"])])
-    (plain "Mod+J"         [(leaf "spawn" ["cosmic-launcher"])])
-    (plain "Mod+Space"     [(leaf "spawn" ["cosmic-launcher"])])
-    (plain "Mod+Shift+J"   [(leaf "spawn" ["cosmic-app-library"])])
+    (plain "Mod+L" [ (leaf "spawn" [ "swaylock" ]) ])
+    (plain "Mod+W" [
+      (leaf "spawn" [
+        "firefox"
+        "--new-window"
+        "about:newtab"
+      ])
+    ])
+    (plain "Mod+T" [ (leaf "spawn" [ "wezterm" ]) ])
+    (plain "Mod+E" [ (leaf "spawn" [ "cosmic-files" ]) ])
+    (plain "Mod+J" [ (leaf "spawn" [ "cosmic-launcher" ]) ])
+    (plain "Mod+Space" [ (leaf "spawn" [ "cosmic-launcher" ]) ])
+    (plain "Mod+Shift+J" [ (leaf "spawn" [ "cosmic-app-library" ]) ])
 
-    (plain "Mod+Escape"    [(leaf "spawn" ["swaync-client" "--close-all"])])
-    (plain "Mod+Grave"     [(leaf "spawn" ["swaync-client" "--toggle-panel"])])
+    (plain "Mod+Escape" [
+      (leaf "spawn" [
+        "swaync-client"
+        "--close-all"
+      ])
+    ])
+    (plain "Mod+Grave" [
+      (leaf "spawn" [
+        "swaync-client"
+        "--toggle-panel"
+      ])
+    ])
 
     # You can also use a shell:
     # (plain "Mod+T" [(leaf "spawn" [ "bash" "-c" "notify-send hello && exec alacritty" ])])
 
     # Example volume keys mappings for PipeWire & WirePlumber.
-    (plain "XF86AudioRaiseVolume" [(leaf "spawn" ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"])])
-    (plain "XF86AudioLowerVolume" [(leaf "spawn" ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"])])
+    (plain "XF86AudioRaiseVolume" [
+      (leaf "spawn" [
+        "wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.1+"
+      ])
+    ])
+    (plain "XF86AudioLowerVolume" [
+      (leaf "spawn" [
+        "wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.1-"
+      ])
+    ])
 
-    (plain "Mod+Q" [(flag "close-window")])
+    (plain "Mod+Q" [ (flag "close-window") ])
 
-    (plain "Mod+Left"   [(flag "focus-column-left-or-last")])
-    (plain "Mod+Down"   [(flag "focus-window-down")])
-    (plain "Mod+Up"     [(flag "focus-window-up")])
-    (plain "Mod+Right"  [(flag "focus-column-right-or-first")])
-    (plain "Mod+D"      [(flag "focus-column-left-or-last")])
+    (plain "Mod+Left" [ (flag "focus-column-left-or-last") ])
+    (plain "Mod+Down" [ (flag "focus-window-down") ])
+    (plain "Mod+Up" [ (flag "focus-window-up") ])
+    (plain "Mod+Right" [ (flag "focus-column-right-or-first") ])
+    (plain "Mod+D" [ (flag "focus-column-left-or-last") ])
     # (plain "Mod+G"      [(flag "focus-window-down")])
     # (plain "Mod+S"      [(flag "focus-window-up")])
-    (plain "Mod+F"      [(flag "focus-column-right-or-first")])
+    (plain "Mod+F" [ (flag "focus-column-right-or-first") ])
 
-    (plain "Mod+Shift+Left"  [(flag "move-column-left")])
-    (plain "Mod+Shift+Down"  [(flag "move-window-down")])
-    (plain "Mod+Shift+Up"    [(flag "move-window-up")])
-    (plain "Mod+Shift+Right" [(flag "move-column-right")])
-    (plain "Mod+Shift+D"     [(flag "move-column-left")])
+    (plain "Mod+Shift+Left" [ (flag "move-column-left") ])
+    (plain "Mod+Shift+Down" [ (flag "move-window-down") ])
+    (plain "Mod+Shift+Up" [ (flag "move-window-up") ])
+    (plain "Mod+Shift+Right" [ (flag "move-column-right") ])
+    (plain "Mod+Shift+D" [ (flag "move-column-left") ])
     # (plain "Mod+Shift+G"     [(flag "move-window-down")])
     # (plain "Mod+Shift+S"     [(flag "move-window-up")])
-    (plain "Mod+Shift+F"     [(flag "move-column-right")])
+    (plain "Mod+Shift+F" [ (flag "move-column-right") ])
 
     # Alternative commands that move across workspaces when reaching
     # the first or last window in a column.
@@ -473,28 +509,28 @@
     # (plain "Mod+Ctrl+J" [(flag "move-window-down-or-to-workspace-down")])
     # (plain "Mod+Ctrl+K" [(flag "move-window-up-or-to-workspace-up")])
 
-    (plain "Mod+Home"       [(flag "focus-column-first")])
-    (plain "Mod+End"        [(flag "focus-column-last")])
-    (plain "Mod+Shift+Home"  [(flag "move-column-to-first")])
-    (plain "Mod+Shift+End"   [(flag "move-column-to-last")])
+    (plain "Mod+Home" [ (flag "focus-column-first") ])
+    (plain "Mod+End" [ (flag "focus-column-last") ])
+    (plain "Mod+Shift+Home" [ (flag "move-column-to-first") ])
+    (plain "Mod+Shift+End" [ (flag "move-column-to-last") ])
 
-    (plain "Mod+Alt+Left"   [(flag "focus-monitor-left")])
-    (plain "Mod+Alt+Down"   [(flag "focus-monitor-down")])
-    (plain "Mod+Alt+Up"     [(flag "focus-monitor-up")])
-    (plain "Mod+Alt+Right"  [(flag "focus-monitor-right")])
-    (plain "Mod+Alt+D"      [(flag "focus-monitor-left")])
-    (plain "Mod+Alt+G"      [(flag "focus-monitor-down")])
-    (plain "Mod+Alt+S"      [(flag "focus-monitor-up")])
-    (plain "Mod+Alt+F"      [(flag "focus-monitor-right")])
+    (plain "Mod+Alt+Left" [ (flag "focus-monitor-left") ])
+    (plain "Mod+Alt+Down" [ (flag "focus-monitor-down") ])
+    (plain "Mod+Alt+Up" [ (flag "focus-monitor-up") ])
+    (plain "Mod+Alt+Right" [ (flag "focus-monitor-right") ])
+    (plain "Mod+Alt+D" [ (flag "focus-monitor-left") ])
+    (plain "Mod+Alt+G" [ (flag "focus-monitor-down") ])
+    (plain "Mod+Alt+S" [ (flag "focus-monitor-up") ])
+    (plain "Mod+Alt+F" [ (flag "focus-monitor-right") ])
 
-    (plain "Mod+Shift+Alt+Left"  [(flag "move-column-to-monitor-left")])
-    (plain "Mod+Shift+Alt+Down"  [(flag "move-column-to-monitor-down")])
-    (plain "Mod+Shift+Alt+Up"    [(flag "move-column-to-monitor-up")])
-    (plain "Mod+Shift+Alt+Right" [(flag "move-column-to-monitor-right")])
-    (plain "Mod+Shift+Alt+D"     [(flag "move-column-to-monitor-left")])
+    (plain "Mod+Shift+Alt+Left" [ (flag "move-column-to-monitor-left") ])
+    (plain "Mod+Shift+Alt+Down" [ (flag "move-column-to-monitor-down") ])
+    (plain "Mod+Shift+Alt+Up" [ (flag "move-column-to-monitor-up") ])
+    (plain "Mod+Shift+Alt+Right" [ (flag "move-column-to-monitor-right") ])
+    (plain "Mod+Shift+Alt+D" [ (flag "move-column-to-monitor-left") ])
     # (plain "Mod+Shift+Alt+G"     [(flag "move-column-to-monitor-down")])
     # (plain "Mod+Shift+Alt+S"     [(flag "move-column-to-monitor-up")])
-    (plain "Mod+Shift+Alt+F"     [(flag "move-column-to-monitor-right")])
+    (plain "Mod+Shift+Alt+F" [ (flag "move-column-to-monitor-right") ])
 
     # Alternatively, there are commands to move just a single window:
     # (plain "Mod+Shift+Ctrl+Left" [(flag "move-window-to-monitor-left")])
@@ -504,23 +540,23 @@
     # (plain "Mod+Shift+Ctrl+Left" [(flag "move-workspace-to-monitor-left")])
     # ...
 
-    (plain "Mod+Page_Down"      [(flag "focus-workspace-down")])
-    (plain "Mod+Page_Up"        [(flag "focus-workspace-up")])
-    (plain "Mod+G"              [(flag "focus-workspace-down")])
-    (plain "Mod+S"              [(flag "focus-workspace-up")])
-    (plain "Mod+Shift+Page_Down" [(flag "move-column-to-workspace-down")])
-    (plain "Mod+Shift+Page_Up"   [(flag "move-column-to-workspace-up")])
-    (plain "Mod+Shift+G"         [(flag "move-column-to-workspace-down")])
-    (plain "Mod+Shift+S"         [(flag "move-column-to-workspace-up")])
+    (plain "Mod+Page_Down" [ (flag "focus-workspace-down") ])
+    (plain "Mod+Page_Up" [ (flag "focus-workspace-up") ])
+    (plain "Mod+G" [ (flag "focus-workspace-down") ])
+    (plain "Mod+S" [ (flag "focus-workspace-up") ])
+    (plain "Mod+Shift+Page_Down" [ (flag "move-column-to-workspace-down") ])
+    (plain "Mod+Shift+Page_Up" [ (flag "move-column-to-workspace-up") ])
+    (plain "Mod+Shift+G" [ (flag "move-column-to-workspace-down") ])
+    (plain "Mod+Shift+S" [ (flag "move-column-to-workspace-up") ])
 
     # Alternatively, there are commands to move just a single window:
     # (plain "Mod+Ctrl+Page_Down" [(flag "move-window-to-workspace-down")])
     # ...
 
-    (plain "Mod+Shift+Alt+Page_Down"  [(flag "move-workspace-down")])
-    (plain "Mod+Shift+Alt+Page_Up"    [(flag "move-workspace-up")])
-    (plain "Mod+Shift+Alt+G"          [(flag "move-workspace-down")])
-    (plain "Mod+Shift+Alt+S"          [(flag "move-workspace-up")])
+    (plain "Mod+Shift+Alt+Page_Down" [ (flag "move-workspace-down") ])
+    (plain "Mod+Shift+Alt+Page_Up" [ (flag "move-workspace-up") ])
+    (plain "Mod+Shift+Alt+G" [ (flag "move-workspace-down") ])
+    (plain "Mod+Shift+Alt+S" [ (flag "move-workspace-up") ])
 
     # You can refer to workspaces by index. However, keep in mind that
     # niri is a dynamic workspace system, so these commands are kind of
@@ -530,41 +566,41 @@
     #
     # For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
     # will all refer to the 3rd workspace.
-    (plain "Mod+0" [(leaf "focus-workspace" 1)])
-    (plain "Mod+1" [(leaf "focus-workspace" 2)])
-    (plain "Mod+2" [(leaf "focus-workspace" 3)])
-    (plain "Mod+3" [(leaf "focus-workspace" 4)])
-    (plain "Mod+4" [(leaf "focus-workspace" 5)])
-    (plain "Mod+5" [(leaf "focus-workspace" 6)])
-    (plain "Mod+6" [(leaf "focus-workspace" 7)])
-    (plain "Mod+7" [(leaf "focus-workspace" 8)])
-    (plain "Mod+8" [(leaf "focus-workspace" 9)])
-    (plain "Mod+9" [(leaf "focus-workspace" 10)])
-    (plain "Mod+Shift+0" [(leaf "move-column-to-workspace" 1)])
-    (plain "Mod+Shift+1" [(leaf "move-column-to-workspace" 2)])
-    (plain "Mod+Shift+2" [(leaf "move-column-to-workspace" 3)])
-    (plain "Mod+Shift+3" [(leaf "move-column-to-workspace" 4)])
-    (plain "Mod+Shift+4" [(leaf "move-column-to-workspace" 5)])
-    (plain "Mod+Shift+5" [(leaf "move-column-to-workspace" 6)])
-    (plain "Mod+Shift+6" [(leaf "move-column-to-workspace" 7)])
-    (plain "Mod+Shift+7" [(leaf "move-column-to-workspace" 8)])
-    (plain "Mod+Shift+8" [(leaf "move-column-to-workspace" 9)])
-    (plain "Mod+Shift+9" [(leaf "move-column-to-workspace" 10)])
+    (plain "Mod+0" [ (leaf "focus-workspace" 1) ])
+    (plain "Mod+1" [ (leaf "focus-workspace" 2) ])
+    (plain "Mod+2" [ (leaf "focus-workspace" 3) ])
+    (plain "Mod+3" [ (leaf "focus-workspace" 4) ])
+    (plain "Mod+4" [ (leaf "focus-workspace" 5) ])
+    (plain "Mod+5" [ (leaf "focus-workspace" 6) ])
+    (plain "Mod+6" [ (leaf "focus-workspace" 7) ])
+    (plain "Mod+7" [ (leaf "focus-workspace" 8) ])
+    (plain "Mod+8" [ (leaf "focus-workspace" 9) ])
+    (plain "Mod+9" [ (leaf "focus-workspace" 10) ])
+    (plain "Mod+Shift+0" [ (leaf "move-column-to-workspace" 1) ])
+    (plain "Mod+Shift+1" [ (leaf "move-column-to-workspace" 2) ])
+    (plain "Mod+Shift+2" [ (leaf "move-column-to-workspace" 3) ])
+    (plain "Mod+Shift+3" [ (leaf "move-column-to-workspace" 4) ])
+    (plain "Mod+Shift+4" [ (leaf "move-column-to-workspace" 5) ])
+    (plain "Mod+Shift+5" [ (leaf "move-column-to-workspace" 6) ])
+    (plain "Mod+Shift+6" [ (leaf "move-column-to-workspace" 7) ])
+    (plain "Mod+Shift+7" [ (leaf "move-column-to-workspace" 8) ])
+    (plain "Mod+Shift+8" [ (leaf "move-column-to-workspace" 9) ])
+    (plain "Mod+Shift+9" [ (leaf "move-column-to-workspace" 10) ])
 
     # Alternatively, there are commands to move just a single window:
     # (plain "Mod+Ctrl+1" [(leaf "move-window-to-workspace" 1)])
 
-    (plain "Mod+Comma"  [(flag "consume-window-into-column")])
-    (plain "Mod+Period" [(flag "expel-window-from-column")])
+    (plain "Mod+Comma" [ (flag "consume-window-into-column") ])
+    (plain "Mod+Period" [ (flag "expel-window-from-column") ])
 
     # There are also commands that consume or expel a single window to the side.
     # (plain "Mod+BracketLeft"  [(flag "consume-or-expel-window-left")])
     # (plain "Mod+BracketRight" [(flag "consume-or-expel-window-right")])
 
-    (plain "Mod+R" [(flag "switch-preset-column-width")])
-    (plain "Mod+A" [(flag "maximize-column")])
-    (plain "Mod+Shift+A" [(flag "fullscreen-window")])
-    (plain "Mod+C" [(flag "center-column")])
+    (plain "Mod+R" [ (flag "switch-preset-column-width") ])
+    (plain "Mod+A" [ (flag "maximize-column") ])
+    (plain "Mod+Shift+A" [ (flag "fullscreen-window") ])
+    (plain "Mod+C" [ (flag "center-column") ])
 
     # Finer width adjustments.
     # This command can also:
@@ -574,12 +610,12 @@
     # * adjust width as a percentage of screen width: "-10%" or "+10%"
     # Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     # (leaf "set-column-width" "100") will make the column occupy 200 physical screen pixels.
-    (plain "Mod+Minus" [(leaf "set-column-width" "-10%")])
-    (plain "Mod+Equal" [(leaf "set-column-width" "+10%")])
+    (plain "Mod+Minus" [ (leaf "set-column-width" "-10%") ])
+    (plain "Mod+Equal" [ (leaf "set-column-width" "+10%") ])
 
     # Finer height adjustments when in column with other windows.
-    (plain "Mod+Shift+Minus" [(leaf "set-window-height" "-10%")])
-    (plain "Mod+Shift+Equal" [(leaf "set-window-height" "+10%")])
+    (plain "Mod+Shift+Minus" [ (leaf "set-window-height" "-10%") ])
+    (plain "Mod+Shift+Equal" [ (leaf "set-window-height" "+10%") ])
 
     # Actions to switch layouts.
     # Note: if you uncomment these, make sure you do NOT have
@@ -589,9 +625,9 @@
     # (plain "Mod+Space"       [(leaf "switch-layout" "next")])
     # (plain "Mod+Shift+Space" [(leaf "switch-layout" "prev")])
 
-    (plain "Print" [(flag "screenshot")])
-    (plain "Ctrl+Print" [(flag "screenshot-screen")])
-    (plain "Alt+Print" [(flag "screenshot-window")])
+    (plain "Print" [ (flag "screenshot") ])
+    (plain "Ctrl+Print" [ (flag "screenshot-screen") ])
+    (plain "Alt+Print" [ (flag "screenshot-window") ])
 
     # The quit action will show a confirmation dialog to avoid accidental exits.
     # If you want to skip the confirmation dialog, set the flag like so:
@@ -608,10 +644,10 @@
     # (leaf "Mod+Apostrophe" { switch-layout = "next"; })
     # (leaf "Mod+Shift+Apostrophe" { switch-layout = "prev"; })
 
-    (node "Mod+WheelScrollDown" { cooldown-ms = 150; } [(flag "focus-workspace-down")])
-    (node "Mod+WheelScrollUp" { cooldown-ms = 150; } [(flag "focus-workspace-up")])
-    (node "Mod+Shift+WheelScrollDown" { cooldown-ms = 150; } [(flag "move-column-to-workspace-down")])
-    (node "Mod+Shift+WheelScrollUp" { cooldown-ms = 150; } [(flag "move-column-to-workspace-up")])
+    (node "Mod+WheelScrollDown" { cooldown-ms = 150; } [ (flag "focus-workspace-down") ])
+    (node "Mod+WheelScrollUp" { cooldown-ms = 150; } [ (flag "focus-workspace-up") ])
+    (node "Mod+Shift+WheelScrollDown" { cooldown-ms = 150; } [ (flag "move-column-to-workspace-down") ])
+    (node "Mod+Shift+WheelScrollUp" { cooldown-ms = 150; } [ (flag "move-column-to-workspace-up") ])
 
   ])
 ]
