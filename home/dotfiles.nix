@@ -1,7 +1,5 @@
 {
   lib,
-  pkgs,
-  config,
   ...
 }:
 {
@@ -14,6 +12,8 @@
         let
           makePath = breadcrumbs: baseDir + "/${strings.concatStringsSep "/" breadcrumbs}";
           fileImport = breadcrumbs: _type: {
+            # TODO: speed up using HM's `lib.file.mkOutOfStoreSymlink`
+            # https://github.com/nix-community/home-manager/blob/460f1e9af95b081fb7e2022485b6c22b92085936/modules/files.nix#L84
             "${strings.concatStringsSep "/" breadcrumbs}".source = makePath breadcrumbs;
           };
           iterDir =
