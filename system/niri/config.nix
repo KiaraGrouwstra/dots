@@ -600,6 +600,7 @@
     (plain "Mod+R" [ (flag "switch-preset-column-width") ])
     (plain "Mod+A" [ (flag "maximize-column") ])
     (plain "Mod+Shift+A" [ (flag "fullscreen-window") ])
+    (plain "F11" [ (flag "fullscreen-window") ])
     (plain "Mod+C" [ (flag "center-column") ])
 
     # Finer width adjustments.
