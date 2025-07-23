@@ -232,6 +232,26 @@
     };
     # https://docs.helix-editor.com/languages.html
     languages = {
+      language = [
+        {
+          name = "nix";
+          scope = "source.nix";
+          injection-regex = "nix";
+          file-types = [ "nix" ];
+          shebangs = [ ];
+          comment-token = "#";
+          language-servers = [
+            "nil"
+            "nixd"
+          ];
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+          # custom part: https://github.com/helix-editor/helix/pull/14046
+          formatter.command = "nixfmt";
+        }
+      ];
       language-server = {
         nixd = {
           command = "nixd";
