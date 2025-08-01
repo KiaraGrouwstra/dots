@@ -23,19 +23,24 @@ in
   hardware.graphics.enable = true;
   environment = {
     variables = {
+      DISPLAY = ":0"; # xwayland-satellite
       NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
       libnotify
+      xwayland-satellite
       xdg-utils
       niri
     ];
   };
+  systemd.packages = [ pkgs.xwayland-satellite ];
   systemd.user = {
     targets = {
+      graphical-session.wants = [ "xwayland-satellite.service" ];
       # boot with niri rather than the default cosmic-session
       cosmic-session.enable = false;
     };
+    services.xwayland-satellite.wantedBy = [ "graphical-session.target" ];
     services.niri-flake-polkit = {
       description = "PolicyKit Authentication Agent provided by niri-flake";
       wantedBy = [ "niri.service" ];

@@ -230,7 +230,7 @@
   # You can override environment variables for processes spawned by niri.
   (plain "environment" [
     (leaf "QT_QPA_PLATFORM" "wayland")
-    (leaf "DISPLAY" ":1") # xwayland-satellite
+    (leaf "DISPLAY" ":0") # xwayland-satellite
   ])
 
   (plain "cursor" [
