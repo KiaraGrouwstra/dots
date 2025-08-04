@@ -1,4 +1,5 @@
 {
+  sysConfig,
   config,
   lib,
   pkgs,
@@ -8,7 +9,10 @@
   programs = {
     nushell = {
       enable = true;
-      environmentVariables = config.home.sessionVariables;
+      environmentVariables = lib.mkMerge [
+        sysConfig.environment.variables
+        config.home.sessionVariables
+      ];
       extraConfig =
         # nu
         ''

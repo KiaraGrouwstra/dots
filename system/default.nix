@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -16,6 +17,7 @@ let
       sources
       user
       ;
+      sysConfig = config;
   };
 in
 {
