@@ -25,6 +25,7 @@ in
     variables = {
       DISPLAY = ":0"; # xwayland-satellite
       NIXOS_OZONE_WL = "1";
+      EDITOR = "hx";
     };
     systemPackages = with pkgs; [
       libnotify

@@ -15,9 +15,6 @@
     ];
     home = {
       stateVersion = "24.11";
-      sessionVariables = {
-        EDITOR = "hx";
-      };
     };
     dconf.settings = {
       "org/gnome/desktop/interface" = {
