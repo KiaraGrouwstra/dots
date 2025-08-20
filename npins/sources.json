@@ -42,6 +42,19 @@
       "url": "https://github.com/nix-community/home-manager/archive/d07e9cceb4994ed64a22b9b36f8b76923e87ac38.tar.gz",
       "hash": "179b5paq5dwi57lapn2w0f5d3rskrbxb0yyb4cpwpvlm32bjp4dd"
     },
+    "hydrasect": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kiaragrouwstra",
+        "repo": "nixpkgs"
+      },
+      "branch": "hydrasect",
+      "submodules": false,
+      "revision": "7fabe6e713039ffa8179f95f0959386930f8576a",
+      "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/7fabe6e713039ffa8179f95f0959386930f8576a.tar.gz",
+      "hash": "1ha88xc9iv4v4dzasmipcdxq1v608pl87iv1nl6r693kan3iq1fc"
+    },
     "kdl": {
       "type": "Git",
       "repository": {
@@ -70,6 +83,19 @@
       "revision": "4686c9390dab936d8ba144db42491834dd4547bd",
       "url": "https://api.github.com/repos/Cretezy/lazyjj/tarball/v0.5.0",
       "hash": "1761bpgbs9h5irrv12792km4lxxwwwprhfcvwm3bxwmbxkxalg9z"
+    },
+    "nix-bisect": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kiaragrouwstra",
+        "repo": "nix-bisect"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "03455ee8f91b2eeaab15bd45e24c688cfeed65e0",
+      "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/03455ee8f91b2eeaab15bd45e24c688cfeed65e0.tar.gz",
+      "hash": "1w9c0i906haff37xb6ar9iccqjmlg7dbqpj5wsm9dbb2h4v9vsci"
     },
     "nixos-conf-editor": {
       "type": "Git",
@@ -102,6 +128,19 @@
       "name": "nixpkgs-unstable",
       "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre844295.a595dde4d0d3/nixexprs.tar.xz",
       "hash": "05jnq5m5lpjpmnysnv2n2vqv0b77grw9r5kncqr67am0dfswk0nq"
+    },
+    "nixpkgs-staging-bisecter": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kiaragrouwstra",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixpkgs-staging-bisecter",
+      "submodules": false,
+      "revision": "bb836747fead032c43f52b45888007d5ce1a430a",
+      "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/bb836747fead032c43f52b45888007d5ce1a430a.tar.gz",
+      "hash": "0km7yz6iaac9li2rr1y95rgj8ascqjpshhqfjlhldph613dlqswn"
     },
     "vars": {
       "type": "Git",
