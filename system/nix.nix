@@ -58,7 +58,7 @@
   nix = {
     settings = {
       experimental-features = "nix-command flakes";
-      trusted-users = [ "@wheel" ];
+      trusted-users = [ "root" "@wheel" "kiara" ];
       # use a placeholder where we want our secret substituted in
       access-tokens = ''
         github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
