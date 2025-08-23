@@ -481,6 +481,38 @@
         "0.1-"
       ])
     ])
+    (plain "XF86AudioMute" [
+      (leaf "spawn" [
+        "wpctl"
+        "set-mute"
+        "@DEFAULT_AUDIO_SINK@"
+        "toggle"
+      ])
+    ])
+    (plain "XF86AudioPlay" [
+      (leaf "spawn" [
+        "playerctl"
+        "play-pause"
+      ])
+    ])
+    (plain "XF86AudioStop" [
+      (leaf "spawn" [
+        "playerctl"
+        "stop"
+      ])
+    ])
+    (plain "XF86AudioPrev" [
+      (leaf "spawn" [
+        "playerctl"
+        "previous"
+      ])
+    ])
+    (plain "XF86AudioNext" [
+      (leaf "spawn" [
+        "playerctl"
+        "next"
+      ])
+    ])
 
     (plain "Mod+Q" [ (flag "close-window") ])
 
