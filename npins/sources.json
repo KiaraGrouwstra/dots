@@ -142,6 +142,19 @@
       "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/bb836747fead032c43f52b45888007d5ce1a430a.tar.gz",
       "hash": "0km7yz6iaac9li2rr1y95rgj8ascqjpshhqfjlhldph613dlqswn"
     },
+    "nushell-notifications": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "timon-schelling",
+        "repo": "nixpkgs"
+      },
+      "branch": "init-nushellPlugins-desktop-notifications",
+      "submodules": false,
+      "revision": "78ced76b003a19719a35f67f4359151ec2e11a09",
+      "url": "https://github.com/timon-schelling/nixpkgs/archive/78ced76b003a19719a35f67f4359151ec2e11a09.tar.gz",
+      "hash": "0ra7548zza2lfjybc59rgg6lhi6vaharzikc8f9w6b7yfyzvb0ln"
+    },
     "vars": {
       "type": "Git",
       "repository": {
