@@ -3,7 +3,6 @@
   config,
   lib,
   pkgs,
-  sources,
   ...
 }:
 {
@@ -32,8 +31,8 @@
         inherit (pkgs.nushellPlugins)
           gstat
           polars
+          desktop_notifications
           ;
-        desktop_notifications = (pkgs.callPackage "${sources.nushell-notifications}/pkgs/shells/nushell/plugins/desktop_notifications.nix" { });
       };
       shellAliases = {
         jq = "jaq";
