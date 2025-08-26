@@ -43,7 +43,6 @@
         npins
         ripgrep
         signal-desktop-bin
-        stremio
         swaynotificationcenter
         tree
         transmission_4
