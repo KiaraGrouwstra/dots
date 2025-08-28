@@ -11,7 +11,7 @@ let
     let
       entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
     in
-    "${lib.concatStringsSep ":" entries}:flake=${sources.nixpkgs}:flake";
+    "${lib.concatStringsSep ":" entries}:nixos-config=/home/${user}/nixos/configuration.nix:flake=${sources.nixpkgs}:flake";
   specialArgs = {
     inherit
       sources
