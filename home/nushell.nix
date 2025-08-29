@@ -6,6 +6,8 @@
   ...
 }:
 {
+  _class = "homeManager";
+
   programs = {
     nushell = {
       enable = true;

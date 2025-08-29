@@ -3,6 +3,8 @@
   ...
 }:
 {
+  _class = "homeManager";
+
   programs.git = {
     enable = true;
     lfs.enable = true;

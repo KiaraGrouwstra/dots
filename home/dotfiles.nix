@@ -3,6 +3,8 @@
   ...
 }:
 {
+  _class = "homeManager";
+
   home.file =
     let
       inherit (lib) strings lists attrsets;

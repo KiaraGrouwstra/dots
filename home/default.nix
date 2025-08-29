@@ -4,7 +4,11 @@
   ...
 }:
 {
+  _class = "nixos";
+
   home-manager.users.${user} = {
+    _class = "homeManager";
+
     imports = [
       ./dotfiles.nix
       ./git.nix

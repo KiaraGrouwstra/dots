@@ -1,4 +1,6 @@
 _: {
+  _class = "homeManager";
+
   programs.lazygit = {
     enable = true;
     settings = {

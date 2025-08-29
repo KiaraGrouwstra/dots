@@ -1,5 +1,7 @@
 { lib, ... }:
 {
+  _class = "homeManager";
+
   home.sessionVariables.COLORTERM = "truecolor";
 
   programs.helix = {

@@ -5,6 +5,8 @@
   ...
 }:
 {
+  _class = "homeManager";
+
   programs.wezterm = {
     enable = true;
     # package = inputs.wezterm.packages.${system}.default;
