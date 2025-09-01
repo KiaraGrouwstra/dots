@@ -74,7 +74,7 @@ _: {
           "useConfig" = false;
         };
         "commit" = {
-          "signOff" = false;
+          "signOff" = true;
           "autoWrapCommitMessage" = true;
           "autoWrapWidth" = 72;
         };
