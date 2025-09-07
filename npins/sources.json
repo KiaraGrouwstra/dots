@@ -97,6 +97,19 @@
       "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/03455ee8f91b2eeaab15bd45e24c688cfeed65e0.tar.gz",
       "hash": "1w9c0i906haff37xb6ar9iccqjmlg7dbqpj5wsm9dbb2h4v9vsci"
     },
+    "nix-conf": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kiaragrouwstra",
+        "repo": "nixpkgs"
+      },
+      "branch": "formats-nix-conf",
+      "submodules": false,
+      "revision": "c30b9ec953dde0e30745630760df08e83dce7bd2",
+      "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/c30b9ec953dde0e30745630760df08e83dce7bd2.tar.gz",
+      "hash": "0d80hrij75qi22ic1kl13knhw2fjjmzvmaysidzg9qql32dy4d3z"
+    },
     "nixos-conf-editor": {
       "type": "Git",
       "repository": {

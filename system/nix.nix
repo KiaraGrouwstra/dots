@@ -2,8 +2,12 @@
   config,
   lib,
   pkgs,
+  sources,
   ...
 }:
+let
+  formats-nix-conf = pkgs.callPackage "${sources.nix-conf}/pkgs/pkgs-lib/formats.nix" { };
+in
 {
   vars.generators = {
     # specify base secrets to prompt by `generate-vars`
@@ -19,55 +23,44 @@
         secret = true;
         # map `config.nix.settings` to `nix.conf`, stolen from <nixpkgs/nixos/modules/config/nix.nix>
         template =
-          let
-            cfg = config.nix;
-            mkValueString =
-              v:
-              if v == null then
-                ""
-              else if lib.isBool v then
-                lib.boolToString v
-              else if lib.isFloat v then
-                lib.floatToString v
-              else if
-                (
-                  lib.isInt v
-                  || lib.isList v
-                  || lib.isDerivation v
-                  || builtins.isPath v
-                  || lib.strings.isConvertibleWithToString v
-                )
-              then
-                toString v
-              else if lib.isString v then
-                v
-              else
-                abort "The nix conf value: ${lib.toPretty { } v} can not be encoded";
-            mkKeyValue = k: v: "${lib.escape [ "=" ] k} = ${mkValueString v}";
-            mkKeyValuePairs = attrs: lib.concatStringsSep "\n" (lib.mapAttrsToList mkKeyValue attrs);
-            isExtra = key: lib.hasPrefix "extra-" key;
-          in
-          pkgs.writeText "nix.conf" ''
-            ${mkKeyValuePairs (lib.filterAttrs (key: value: !(isExtra key)) cfg.settings)}
-            ${mkKeyValuePairs (lib.filterAttrs (key: value: isExtra key) cfg.settings)}
-            ${cfg.extraOptions}
-          '';
+          (formats-nix-conf.nixConf {
+            package = config.nix.package;
+            version = config.nix.package.version;
+          }).generate
+            "nix.conf"
+            {
+              allowed-users = "*";
+              auto-optimise-store = false;
+              builders = null;
+              cores = 0;
+              max-jobs = "auto";
+              require-sigs = true;
+              sandbox = true;
+              sandbox-fallback = false;
+              substituters = "https://cache.nixos.org/";
+              system-features = "nixos-test benchmark big-parallel kvm";
+              trusted-public-keys = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
+              trusted-substituters = null;
+              extra-sandbox-paths = null;
+              experimental-features = "nix-command flakes";
+              trusted-users = lib.concatStringsSep " " [
+                "root"
+                "@wheel"
+                "kiara"
+              ];
+              # use a placeholder where we want our secret substituted in
+              access-tokens = ''
+                github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
+              '';
+              # allow offline builds
+              flake-registry = "";
+              fallback = true;
+              connect-timeout = 1;
+            };
       };
     };
   };
   nix = {
-    settings = {
-      experimental-features = "nix-command flakes";
-      trusted-users = [ "root" "@wheel" "kiara" ];
-      # use a placeholder where we want our secret substituted in
-      access-tokens = ''
-        github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
-      '';
-      # allow offline builds
-      flake-registry = "";
-      fallback = true;
-      connect-timeout = 1;
-    };
     gc = {
       automatic = true;
       dates = "weekly";
