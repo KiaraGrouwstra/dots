@@ -63,6 +63,10 @@
       access-tokens = ''
         github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
       '';
+      # allow offline builds
+      flake-registry = "";
+      fallback = true;
+      connect-timeout = 1;
     };
     gc = {
       automatic = true;
