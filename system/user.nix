@@ -55,6 +55,7 @@
         nix-init
         tor-browser
         nix-index
+        zathura
       ];
   };
 }
