@@ -68,22 +68,6 @@
       "url": "https://github.com/sodiboo/nixpkgs/archive/8da1c40e305346f5aa5b714096f9b8e59626e5bb.tar.gz",
       "hash": "1g6n34rr3bbyvfnd4jd27a38zyxfl4k9z4sy28xp52a8hk6fq29v"
     },
-    "lazyjj": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "GitHub",
-        "owner": "Cretezy",
-        "repo": "lazyjj"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "v0.5.0",
-      "revision": "4686c9390dab936d8ba144db42491834dd4547bd",
-      "url": "https://api.github.com/repos/Cretezy/lazyjj/tarball/v0.5.0",
-      "hash": "1761bpgbs9h5irrv12792km4lxxwwwprhfcvwm3bxwmbxkxalg9z"
-    },
     "nix-bisect": {
       "type": "Git",
       "repository": {
