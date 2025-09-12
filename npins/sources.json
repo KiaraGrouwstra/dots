@@ -38,9 +38,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d07e9cceb4994ed64a22b9b36f8b76923e87ac38",
-      "url": "https://github.com/nix-community/home-manager/archive/d07e9cceb4994ed64a22b9b36f8b76923e87ac38.tar.gz",
-      "hash": "179b5paq5dwi57lapn2w0f5d3rskrbxb0yyb4cpwpvlm32bjp4dd"
+      "revision": "9eab59f3e71ea3a725e4817d8dcf0da0824ad19d",
+      "url": "https://github.com/nix-community/home-manager/archive/9eab59f3e71ea3a725e4817d8dcf0da0824ad19d.tar.gz",
+      "hash": "1iccydl3rp82kccvx3fbim13ggxfp8yrlx2vp6nz4w4wpa3avg1s"
     },
     "hydrasect": {
       "type": "Git",
@@ -139,8 +139,8 @@
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre851662.84c256e42600/nixexprs.tar.xz",
-      "hash": "0raxfvfnndnh0dk7qs11pdbmjpxslkpqg9ic87lyx3qw7jq8w5wl"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre860591.ad4e6dd68c30/nixexprs.tar.xz",
+      "hash": "0cpwip18r8y2n8vxkchr5bq7464dywxmlbipx08a8fciq6kwigbr"
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",

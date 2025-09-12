@@ -68,7 +68,7 @@ in
       )
     ];
   };
-  nix.package = pkgs.lix;
+  # nix.package = pkgs.lix;
   system.stateVersion = "24.11";
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
