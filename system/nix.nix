@@ -2,12 +2,8 @@
   config,
   lib,
   pkgs,
-  sources,
   ...
 }:
-let
-  formats-nix-conf = pkgs.callPackage "${sources.nix-conf}/pkgs/pkgs-lib/formats.nix" { };
-in
 {
   vars.generators = {
     # specify base secrets to prompt by `generate-vars`
@@ -23,7 +19,7 @@ in
         secret = true;
         # map `config.nix.settings` to `nix.conf`, stolen from <nixpkgs/nixos/modules/config/nix.nix>
         template =
-          (formats-nix-conf.nixConf {
+          (pkgs.formats.nixConf {
             package = config.nix.package;
             version = config.nix.package.version;
           }).generate
