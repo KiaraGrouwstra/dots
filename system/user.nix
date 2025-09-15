@@ -24,7 +24,6 @@
       [
         bat
         bluetuith
-        bun
         btop
         fd
         jaq
