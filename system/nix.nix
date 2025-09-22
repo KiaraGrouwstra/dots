@@ -52,6 +52,7 @@
               flake-registry = "";
               fallback = true;
               connect-timeout = 1;
+              download-attempts = 2;
             };
       };
     };
