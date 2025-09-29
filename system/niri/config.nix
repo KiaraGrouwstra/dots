@@ -406,10 +406,10 @@
     (leaf "opacity" 0.9)
   ])
 
-  (plain "window-rule" [
-    (leaf "match" { app-id = "wezterm"; })
-    (leaf "opacity" 0.9)
-  ])
+  # (plain "window-rule" [
+  #   (leaf "match" { app-id = "wezterm"; })
+  #   (leaf "opacity" 0.9)
+  # ])
 
   (plain "window-rule" [
     (leaf "match" {
