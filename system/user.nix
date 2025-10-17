@@ -30,6 +30,7 @@
         tea
         gurk-rs
         hydrasect
+        iamb
         keepassxc
         lazyjj
         mattermost-desktop
