@@ -100,7 +100,7 @@ _: {
         "allBranchesLogCmds" = [
           "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
         ];
-        "overrideGpg" = false;
+        "overrideGpg" = true;
         "disableForcePushing" = false;
         "parseEmoji" = false;
         "truncateCopiedCommitHashesTo" = 12;
