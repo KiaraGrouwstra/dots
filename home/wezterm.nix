@@ -49,6 +49,11 @@
              color_scheme = 'Earthsong',
              keys = {
                  {
+                     key = "Enter",
+                     mods = "ALT",
+                     action = act.DisableDefaultAssignment,
+                 },
+                 {
                      key = "0",
                      mods = "ALT",
                      action = act.ResetFontSize
