@@ -69,7 +69,7 @@ in
     ];
   };
   # nix.package = pkgs.lix;
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.11";
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
   boot.loader.systemd-boot.enable = true;
