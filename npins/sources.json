@@ -108,10 +108,17 @@
       "hash": "15yww1rrxjcvpgcpf15mhwhagcy9d62a2kfrbwimqw2p1v3mgzxq"
     },
     "nixpkgs": {
-      "type": "Channel",
-      "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre860591.ad4e6dd68c30/nixexprs.tar.xz",
-      "hash": "0cpwip18r8y2n8vxkchr5bq7464dywxmlbipx08a8fciq6kwigbr"
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixpkgs-unstable",
+      "submodules": false,
+      "revision": "de69d2ba6c70e747320df9c096523b623d3a4c35",
+      "url": "https://github.com/nixos/nixpkgs/archive/de69d2ba6c70e747320df9c096523b623d3a4c35.tar.gz",
+      "hash": "1qfb74cp5b7kn97svsfg65f5xgzq2v3wn0hgv90hc8hhfz1jiays"
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
