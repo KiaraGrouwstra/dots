@@ -126,6 +126,19 @@
       "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/bb836747fead032c43f52b45888007d5ce1a430a.tar.gz",
       "hash": "0km7yz6iaac9li2rr1y95rgj8ascqjpshhqfjlhldph613dlqswn"
     },
+    "nixpkgs-unstable": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixpkgs-unstable",
+      "submodules": false,
+      "revision": "ffcdcf99d65c61956d882df249a9be53e5902ea5",
+      "url": "https://github.com/nixos/nixpkgs/archive/ffcdcf99d65c61956d882df249a9be53e5902ea5.tar.gz",
+      "hash": "09ifrgxin9may5kll1g2fdxixb0k3ipzhfw90mckl17mpbrgaglp"
+    },
     "vars": {
       "type": "Git",
       "repository": {
