@@ -17,14 +17,8 @@
       ./nushell.nix
       ./wezterm.nix
     ];
-    home = {
-      stateVersion = "24.11";
-    };
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
+    home.stateVersion = "24.11";
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
     programs = {
       firefox = {
         enable = true;

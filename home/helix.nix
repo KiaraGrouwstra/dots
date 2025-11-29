@@ -260,9 +260,6 @@
           # https://raw.githubusercontent.com/nix-community/nixd/main/nixd/docs/nixd-schema.json
           config = {
             nixpkgs.expr = "import <nixpkgs> { }";
-            formatting = {
-              command = [ "nixfmt" ];
-            };
           };
         };
       };
