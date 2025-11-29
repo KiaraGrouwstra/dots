@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, sources, ... }:
 {
   _class = "homeManager";
 
@@ -259,7 +259,8 @@
           command = "nixd";
           # https://raw.githubusercontent.com/nix-community/nixd/main/nixd/docs/nixd-schema.json
           config = {
-            nixpkgs.expr = "import <nixpkgs> { }";
+            formatting.command = [ "nixfmt" ];
+            options = lib.mapAttrs (k: _: { expr = "import <${k}> { }"; }) sources;
           };
         };
       };
