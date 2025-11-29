@@ -551,26 +551,26 @@
     (plain "Mod+Alt+Up" [ (flag "focus-monitor-up") ])
     (plain "Mod+Alt+Right" [ (flag "focus-monitor-right") ])
     (plain "Mod+Alt+D" [ (flag "focus-monitor-left") ])
-    (plain "Mod+Alt+G" [ (flag "focus-monitor-down") ])
-    (plain "Mod+Alt+S" [ (flag "focus-monitor-up") ])
     (plain "Mod+Alt+F" [ (flag "focus-monitor-right") ])
+    # (plain "Mod+Alt+S" [ (flag "focus-monitor-up") ])
+    # (plain "Mod+Alt+G" [ (flag "focus-monitor-right") ])
 
     (plain "Mod+Shift+Alt+Left" [ (flag "move-column-to-monitor-left") ])
     (plain "Mod+Shift+Alt+Down" [ (flag "move-column-to-monitor-down") ])
     (plain "Mod+Shift+Alt+Up" [ (flag "move-column-to-monitor-up") ])
     (plain "Mod+Shift+Alt+Right" [ (flag "move-column-to-monitor-right") ])
-    (plain "Mod+Shift+Alt+D" [ (flag "move-column-to-monitor-left") ])
     # (plain "Mod+Shift+Alt+G"     [(flag "move-column-to-monitor-down")])
     # (plain "Mod+Shift+Alt+S"     [(flag "move-column-to-monitor-up")])
-    (plain "Mod+Shift+Alt+F" [ (flag "move-column-to-monitor-right") ])
+    (plain "Mod+Alt+S" [ (flag "move-column-to-monitor-left") ])
+    (plain "Mod+Alt+G" [ (flag "move-column-to-monitor-right") ])
 
     # Alternatively, there are commands to move just a single window:
     # (plain "Mod+Shift+Ctrl+Left" [(flag "move-window-to-monitor-left")])
     # ...
 
     # And you can also move a whole workspace to another monitor:
-    # (plain "Mod+Shift+Ctrl+Left" [(flag "move-workspace-to-monitor-left")])
-    # ...
+    (plain "Mod+Shift+Alt+D" [ (flag "move-workspace-to-monitor-left") ])
+    (plain "Mod+Shift+Alt+F" [ (flag "move-workspace-to-monitor-right") ])
 
     (plain "Mod+Page_Down" [ (flag "focus-workspace-down") ])
     (plain "Mod+Page_Up" [ (flag "focus-workspace-up") ])
