@@ -69,10 +69,12 @@ _: {
         "statusPanelView" = "dashboard";
       };
       "git" = {
-        "paging" = {
-          "colorArg" = "always";
-          "useConfig" = false;
-        };
+        "pagers" = [
+          {
+            "colorArg" = "always";
+            "useConfig" = false;
+          }
+        ];
         "commit" = {
           "signOff" = true;
           "autoWrapCommitMessage" = true;
@@ -216,7 +218,7 @@ _: {
           "viewResetOptions" = "D";
           "fetch" = "f";
           "toggleTreeView" = "`";
-          "openMergeTool" = "M";
+          "openMergeOptions" = "M";
           "openStatusFilter" = "<c-b>";
         };
         "branches" = {
