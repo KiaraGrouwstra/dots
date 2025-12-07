@@ -16,6 +16,19 @@
       "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.12.0",
       "hash": "0wbx518d2x54yn4xh98cgm65wvj0gpy6nia6ra7ns4j63hx14fkq"
     },
+    "flake-inputs": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "fricklerhandwerk",
+        "repo": "flake-inputs"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "5c1279c5b5dc81dfd245fc4d072446fc56f341c7",
+      "url": "https://github.com/fricklerhandwerk/flake-inputs/archive/5c1279c5b5dc81dfd245fc4d072446fc56f341c7.tar.gz",
+      "hash": "0lksk23l0wqlgf5gkhykl6466jsdqx26f7whzk4aach5zranbzy5"
+    },
     "home-manager": {
       "type": "Git",
       "repository": {
@@ -67,6 +80,22 @@
       "revision": "03455ee8f91b2eeaab15bd45e24c688cfeed65e0",
       "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/03455ee8f91b2eeaab15bd45e24c688cfeed65e0.tar.gz",
       "hash": "1w9c0i906haff37xb6ar9iccqjmlg7dbqpj5wsm9dbb2h4v9vsci"
+    },
+    "nix-src": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "DeterminateSystems",
+        "repo": "nix-src"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v3.13.2",
+      "revision": "be871f9baf5366a220b5f25634eebab6f452a017",
+      "url": "https://api.github.com/repos/DeterminateSystems/nix-src/tarball/v3.13.2",
+      "hash": "06d2gzsjcjlxrpxfnh4r2qyfkkvjj8x3a14wkn5a0j2xl3d82fw1"
     },
     "nixos-conf-editor": {
       "type": "Git",
