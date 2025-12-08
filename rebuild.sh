@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+# https://jade.fyi/blog/pinning-nixos-with-npins/
 
 cd $(dirname $0)
 cmd=${1:-switch}
 shift
 
-exec doas nixos-rebuild "$cmd" --no-reexec "$@"
+nixpkgs_pin=$(nix eval --raw -f npins/default.nix nixpkgs)
+nix_path="nixpkgs=${nixpkgs_pin}:nixos-config=${PWD}/configuration.nix"
+exec doas env NIX_PATH="${nix_path}" nixos-rebuild "$cmd" --no-reexec "$@"
