@@ -71,7 +71,6 @@ in
       )
     ];
   };
-  # nix.package = pkgs.lix;
   nix.package = (load-flake sources.nix-src).packages.${system}.nix-cli;
   system.stateVersion = "25.11";
   hardware.bluetooth.enable = true;
