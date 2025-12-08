@@ -40,7 +40,7 @@
         nixd
         nix-bisect
         nixpkgs-staging-bisecter
-        nix-search
+        nps
         nixfmt-rfc-style
         npins
         ripgrep
