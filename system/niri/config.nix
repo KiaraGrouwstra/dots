@@ -390,12 +390,6 @@
     (leaf "geometry-corner-radius" 50)
   ])
 
-  # # Work around WezTerm's initial configure bug by setting an empty default-column-width.
-  # (plain "window-rule" [
-  #   (leaf "match" { app-id="wezterm"; })
-  #   (plain "default-column-width" [])
-  # ])
-
   (plain "window-rule" [
     (leaf "match" { is-active = true; })
     (leaf "opacity" 1.0)
@@ -404,19 +398,6 @@
   (plain "window-rule" [
     (leaf "match" { is-active = false; })
     (leaf "opacity" 0.9)
-  ])
-
-  # (plain "window-rule" [
-  #   (leaf "match" { app-id = "wezterm"; })
-  #   (leaf "opacity" 0.9)
-  # ])
-
-  (plain "window-rule" [
-    (leaf "match" {
-      is-active = false;
-      app-id = "wezterm";
-    })
-    (leaf "opacity" 0.8)
   ])
 
   (plain "binds" [
