@@ -1,19 +1,22 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
   user = "kiara";
   sources = import ../npins;
+  inherit (pkgs) system;
   NIX_PATH =
     let
       entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
     in
-    "${lib.concatStringsSep ":" entries}:nixos-config=/home/${user}/nixos/configuration.nix:flake=${sources.nixpkgs}:flake";
+    "${lib.concatStringsSep ":" entries}:nixos-config=/home/${user}/nixos/configuration.nix:flake=${pkgs.path}:flake";
   specialArgs = {
     inherit
       sources
+      system
       user
       ;
       sysConfig = config;
@@ -46,7 +49,7 @@ in
   };
   vars.settings.on-machine.enable = true;
   nixpkgs = {
-    flake.source = sources.nixpkgs;
+    flake.source = pkgs.path;
     config.allowUnfree = true;
     overlays = [
       (
@@ -69,7 +72,7 @@ in
     ];
   };
   # nix.package = pkgs.lix;
-  nix.package = (load-flake sources.nix-src).packages.${builtins.currentSystem}.nix-cli;
+  nix.package = (load-flake sources.nix-src).packages.${system}.nix-cli;
   system.stateVersion = "25.11";
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
