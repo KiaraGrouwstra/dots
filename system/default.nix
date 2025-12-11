@@ -21,7 +21,7 @@ let
       ;
       sysConfig = config;
   };
-  inherit (import sources.flake-inputs) load-flake;
+  inherit (import sources.flake-inputs) import-flake;
 in
 {
   imports = with sources; [
@@ -71,7 +71,10 @@ in
       )
     ];
   };
-  nix.package = (load-flake sources.nix-src).packages.${system}.nix-cli;
+  nix.package = (import-flake {
+    src = sources.nix-src;
+    overrides = { inherit (sources) nixpkgs; };
+  }).self.outputs.packages.${system}.nix-cli;
   system.stateVersion = "25.11";
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
