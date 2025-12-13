@@ -423,6 +423,13 @@
         "about:newtab"
       ])
     ])
+    (plain "Mod+Shift+W" [
+      (leaf "spawn" [
+        "tor-browser"
+        "--new-window"
+        "about:newtab"
+      ])
+    ])
     (plain "Mod+T" [ (leaf "spawn" [ "wezterm" ]) ])
     (plain "Mod+E" [ (leaf "spawn" [ "cosmic-files" ]) ])
     (plain "Mod+J" [ (leaf "spawn" [ "cosmic-launcher" ]) ])
