@@ -16,6 +16,7 @@
       ./lazygit.nix
       ./nushell.nix
       ./wezterm.nix
+      ./neovim
     ];
     home.stateVersion = "24.11";
     dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
