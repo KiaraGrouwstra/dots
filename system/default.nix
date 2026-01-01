@@ -22,6 +22,13 @@ let
     sysConfig = config;
   };
   inherit (import sources.flake-inputs) import-flake;
+  noctalia =
+    (import-flake {
+      src = sources.noctalia-shell;
+      overrides = {
+        inherit (sources) nixpkgs;
+      };
+    }).self.outputs;
 in
 {
   imports = with sources; [
@@ -30,6 +37,7 @@ in
     "${vars}/options.nix"
     "${vars}/backends/on-machine.nix"
     "${disko}/module.nix"
+    noctalia.nixosModules.default
     ./disks.nix
     ./greetd.nix
     ./user.nix
@@ -120,8 +128,12 @@ in
     displayManager = {
       autoLogin.enable = true;
       autoLogin.user = user;
-      # cosmic-greeter.enable = true;
     };
-    desktopManager.cosmic.enable = true;
+    noctalia-shell.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
   };
+  environment.systemPackages = [
+    noctalia.packages.${system}.default
+  ];
 }

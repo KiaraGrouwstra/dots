@@ -115,7 +115,7 @@ in
           leaf = name: arguments: node name arguments [ ];
           flag = name: node name [ ] [ ];
           niri-config = kdl.generate "niri.kdl" (
-            import ./config.nix {
+            pkgs.callPackage ./config.nix {
               inherit
                 node
                 plain

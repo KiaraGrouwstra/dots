@@ -155,6 +155,22 @@
       "url": "https://github.com/nixos/nixpkgs/archive/ffcdcf99d65c61956d882df249a9be53e5902ea5.tar.gz",
       "hash": "09ifrgxin9may5kll1g2fdxixb0k3ipzhfw90mckl17mpbrgaglp"
     },
+    "noctalia-shell": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v3.8.0",
+      "revision": "c81661f9f9f56b94478d8b6d883125bcceb63936",
+      "url": "https://api.github.com/repos/noctalia-dev/noctalia-shell/tarball/v3.8.0",
+      "hash": "17j6z373kzkdr7z4faw6hzys93bpjpyjz886p9879sc69iq1f7h6"
+    },
     "vars": {
       "type": "Git",
       "repository": {

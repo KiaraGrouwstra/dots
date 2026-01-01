@@ -1,11 +1,22 @@
 # kdl helpers from https://github.com/sodiboo/niri-flake/blob/main/kdl.nix
 {
+  lib,
   node,
   plain,
   leaf,
   flag,
   ...
 }:
+let
+  noctalia =
+    cmd:
+    [
+      "noctalia-shell"
+      "ipc"
+      "call"
+    ]
+    ++ (lib.splitString " " cmd);
+in
 [
   (plain "input" [
     (plain "keyboard" [
@@ -264,8 +275,7 @@
     "--systemd"
     "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
   ])
-  (leaf "spawn-at-startup" [ "cosmic-bg" ])
-  (leaf "spawn-at-startup" [ "cosmic-panel" ])
+  (leaf "spawn-at-startup" [ "noctalia-shell" ])
 
   # You can override environment variables for processes spawned by niri.
   (plain "environment" [
@@ -455,7 +465,7 @@
     # shows a list of important hotkeys.
     (plain "Mod+Slash" [ (flag "show-hotkey-overlay") ])
 
-    (plain "Mod+L" [ (leaf "spawn" [ "swaylock" ]) ])
+    (plain "Mod+L" [ (leaf "spawn" (noctalia "lockScreen lock")) ])
     (plain "Mod+W" [
       (leaf "spawn" [
         "firefox"
@@ -471,76 +481,58 @@
       ])
     ])
     (plain "Mod+T" [ (leaf "spawn" [ "wezterm" ]) ])
-    (plain "Mod+E" [ (leaf "spawn" [ "cosmic-files" ]) ])
-    (plain "Mod+J" [ (leaf "spawn" [ "cosmic-launcher" ]) ])
-    (plain "Mod+Space" [ (leaf "spawn" [ "cosmic-launcher" ]) ])
-    (plain "Mod+Shift+J" [ (leaf "spawn" [ "cosmic-app-library" ]) ])
+    (plain "Mod+E" [ (leaf "spawn" [ "thunar" ]) ])
+    (plain "Mod+Space" [ (leaf "spawn" (noctalia "launcher toggle")) ])
 
     (plain "Mod+Escape" [
-      (leaf "spawn" [
-        "swaync-client"
-        "--close-all"
-      ])
+      (leaf "spawn" (noctalia "notifications dismissAll"))
     ])
     (plain "Mod+Grave" [
-      (leaf "spawn" [
-        "swaync-client"
-        "--toggle-panel"
-      ])
+      (leaf "spawn" (noctalia "notifications toggleHistory"))
     ])
 
     # You can also use a shell:
     # (plain "Mod+T" [(leaf "spawn" [ "bash" "-c" "notify-send hello && exec alacritty" ])])
 
+    # (plain "Mod+Tab" [ (leaf "next-window" { }) ])
+    # (plain "Mod+Shift+Tab" [ (leaf "previous-window" { }) ])
+
     # Example volume keys mappings for PipeWire & WirePlumber.
     (plain "XF86AudioRaiseVolume" [
-      (leaf "spawn" [
-        "wpctl"
-        "set-volume"
-        "@DEFAULT_AUDIO_SINK@"
-        "0.1+"
-      ])
+      (leaf "spawn" (noctalia "volume increase"))
     ])
     (plain "XF86AudioLowerVolume" [
-      (leaf "spawn" [
-        "wpctl"
-        "set-volume"
-        "@DEFAULT_AUDIO_SINK@"
-        "0.1-"
-      ])
+      (leaf "spawn" (noctalia "volume decrease"))
     ])
     (plain "XF86AudioMute" [
-      (leaf "spawn" [
-        "wpctl"
-        "set-mute"
-        "@DEFAULT_AUDIO_SINK@"
-        "toggle"
-      ])
+      (leaf "spawn" (noctalia "volume muteOutput"))
     ])
     (plain "XF86AudioPlay" [
-      (leaf "spawn" [
-        "playerctl"
-        "play-pause"
-      ])
+      (leaf "spawn" (noctalia "media playPause"))
     ])
     (plain "XF86AudioStop" [
-      (leaf "spawn" [
-        "playerctl"
-        "stop"
-      ])
+      (leaf "spawn" (noctalia "media pause"))
     ])
     (plain "XF86AudioPrev" [
-      (leaf "spawn" [
-        "playerctl"
-        "previous"
-      ])
+      (leaf "spawn" (noctalia "media previous"))
     ])
     (plain "XF86AudioNext" [
-      (leaf "spawn" [
-        "playerctl"
-        "next"
-      ])
+      (leaf "spawn" (noctalia "media next"))
     ])
+
+    # Example brightness key mappings for brightnessctl.
+    # You can use regular spawn with multiple arguments too (to avoid going through "sh"),
+    # but you need to manually put each argument in separate "" quotes.
+    # (node "XF86MonBrightnessUp" { allow-when-locked = true; } [
+    #   (leaf "spawn" (noctalia "brightness increase"))
+    # ])
+    # (node "XF86MonBF86MonBrightnessDown" { allow-when-locked = true; } [
+    #   (leaf "spawn" (noctalia "brightness decrease"))
+    # ])
+
+    (plain "Mod+Shift+XF86TouchpadToggle" [ (leaf "spawn" (noctalia "launcher toggle")) ])
+    (plain "XF86Calculator" [ (leaf "spawn" (noctalia "launcher calculator")) ])
+    (plain "Mod+Ctrl+Shift+Alt+Space" [ (leaf "spawn" (noctalia "launcher emoji")) ])
 
     (plain "Mod+Q" [ (flag "close-window") ])
 
@@ -699,5 +691,16 @@
     (node "Mod+Shift+WheelScrollDown" { cooldown-ms = 150; } [ (flag "move-column-to-workspace-down") ])
     (node "Mod+Shift+WheelScrollUp" { cooldown-ms = 150; } [ (flag "move-column-to-workspace-up") ])
 
+  ])
+
+  # Set the overview wallpaper on the backdrop.
+  (plain "layer-rule" [
+    (leaf "match" { namespace = "^noctalia-overview*"; })
+    (leaf "place-within-backdrop" true)
+  ])
+
+  (plain "debug" [
+    # Allows notification actions and window activation from Noctalia.
+    (flag "honor-xdg-activation-with-invalid-serial")
   ])
 ]

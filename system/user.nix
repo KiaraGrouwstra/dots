@@ -53,6 +53,7 @@
         transmission_4
         vlc
         wl-clipboard
+        xfce.thunar
         libreoffice-fresh
         nixos-conf-editor
         nixpkgs-review
@@ -61,6 +62,7 @@
         tor-browser
         nix-index
         zathura
+        dconf
       ];
   };
 }
