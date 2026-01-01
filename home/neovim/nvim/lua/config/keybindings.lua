@@ -101,3 +101,5 @@ map('n', '<Leader>q', ':q<cr>', { desc = 'quit' })
 
 map('n', '<A-g>', ':bnext<cr>', { desc = 'next buffer' })
 map('n', '<A-s>', ':bprevious<cr>', { desc = 'previous buffer' })
+
+map('n', 's', 'V', { desc = 'select line' })
