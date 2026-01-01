@@ -103,3 +103,5 @@ map('n', '<A-g>', ':bnext<cr>', { desc = 'next buffer' })
 map('n', '<A-s>', ':bprevious<cr>', { desc = 'previous buffer' })
 
 map('n', 's', 'V', { desc = 'select line' })
+map('n', 'U', '<C-r>', { desc = 'undo' })
+map('n', 'C', '<C-v>', { desc = 'select block' })
