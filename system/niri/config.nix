@@ -193,6 +193,46 @@
     # Set gaps around windows in logical pixels.
     (leaf "gaps" 16)
 
+    # You can enable drop shadows for windows.
+    (plain "shadow" [
+      # Uncomment the next line to enable shadows.
+      (flag "on")
+
+      # By default, the shadow draws only around its window, and not behind it.
+      # Uncomment this setting to make the shadow draw behind its window.
+      #
+      # Note that niri has no way of knowing about the CSD window corner
+      # radius. It has to assume that windows have square corners, leading to
+      # shadow artifacts inside the CSD rounded corners. This setting fixes
+      # those artifacts.
+      #
+      # However, instead you may want to set prefer-no-csd and/or
+      # geometry-corner-radius. Then, niri will know the corner radius and
+      # draw the shadow correctly, without having to draw it behind the
+      # window. These will also remove client-side shadows if the window
+      # draws any.
+      #
+      # (draw-behind-window "on")
+
+      # You can change how shadows look. The values below are in logical
+      # pixels and match the CSS box-shadow properties.
+
+      # Softness controls the shadow blur radius.
+      (leaf "softness" 30)
+
+      # Spread expands the shadow.
+      (leaf "spread" 5)
+
+      # Offset moves the shadow relative to the window.
+      (leaf "offset" {
+        x = 0;
+        y = 5;
+      })
+
+      # You can also change the shadow color and opacity.
+      (leaf "color" "#0007")
+    ])
+
     # Struts shrink the area occupied by windows, similarly to layer-shell panels.
     # You can think of them as a kind of outer gaps. They are set in logical pixels.
     # Left and right struts will cause the next window to the side to always be visible.
@@ -505,29 +545,18 @@
     (plain "Mod+Q" [ (flag "close-window") ])
 
     (plain "Mod+Left" [ (flag "focus-column-left-or-last") ])
-    (plain "Mod+Down" [ (flag "focus-window-down") ])
-    (plain "Mod+Up" [ (flag "focus-window-up") ])
+    (plain "Mod+Down" [ (flag "focus-window-or-workspace-down") ])
+    (plain "Mod+Up" [ (flag "focus-window-or-workspace-up") ])
     (plain "Mod+Right" [ (flag "focus-column-right-or-first") ])
     (plain "Mod+D" [ (flag "focus-column-left-or-last") ])
-    # (plain "Mod+G"      [(flag "focus-window-down")])
-    # (plain "Mod+S"      [(flag "focus-window-up")])
     (plain "Mod+F" [ (flag "focus-column-right-or-first") ])
 
     (plain "Mod+Shift+Left" [ (flag "move-column-left") ])
-    (plain "Mod+Shift+Down" [ (flag "move-window-down") ])
-    (plain "Mod+Shift+Up" [ (flag "move-window-up") ])
+    (plain "Mod+Shift+Down" [ (flag "move-window-down-or-to-workspace-down") ])
+    (plain "Mod+Shift+Up" [ (flag "move-window-up-or-to-workspace-up") ])
     (plain "Mod+Shift+Right" [ (flag "move-column-right") ])
     (plain "Mod+Shift+D" [ (flag "move-column-left") ])
-    # (plain "Mod+Shift+G"     [(flag "move-window-down")])
-    # (plain "Mod+Shift+S"     [(flag "move-window-up")])
     (plain "Mod+Shift+F" [ (flag "move-column-right") ])
-
-    # Alternative commands that move across workspaces when reaching
-    # the first or last window in a column.
-    # (plain "Mod+J"      [(flag "focus-window-or-workspace-down")])
-    # (plain "Mod+K"      [(flag "focus-window-or-workspace-up")])
-    # (plain "Mod+Ctrl+J" [(flag "move-window-down-or-to-workspace-down")])
-    # (plain "Mod+Ctrl+K" [(flag "move-window-up-or-to-workspace-up")])
 
     (plain "Mod+Home" [ (flag "focus-column-first") ])
     (plain "Mod+End" [ (flag "focus-column-last") ])
