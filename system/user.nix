@@ -58,6 +58,8 @@
         nixos-conf-editor
         nixpkgs-review
         gh # dep of nixpkgs-review
+        jujutsu
+        jjui
         nix-init
         tor-browser
         nix-index
