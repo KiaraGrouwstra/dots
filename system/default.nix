@@ -45,7 +45,7 @@ in
   home-manager = {
     extraSpecialArgs = specialArgs;
     users.${user}.home.sessionVariables = {
-      inherit NIX_PATH;
+      inherit system NIX_PATH;
     };
   };
   vars.settings.on-machine.enable = true;
