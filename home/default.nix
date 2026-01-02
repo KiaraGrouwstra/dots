@@ -15,6 +15,7 @@
       ./helix.nix
       ./lazygit.nix
       ./nushell.nix
+      ./style.nix
       ./wezterm.nix
       ./neovim
     ];
