@@ -58,6 +58,7 @@
         nixos-conf-editor
         nixpkgs-review
         gh # dep of nixpkgs-review
+        watchman
         jujutsu
         jjui
         nix-init
