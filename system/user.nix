@@ -64,6 +64,7 @@
         jjui
         nix-init
         tor-browser
+        tut
         nix-index
         zathura
         dconf
