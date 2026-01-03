@@ -46,6 +46,8 @@ in
     extraSpecialArgs = specialArgs;
     users.${user}.home.sessionVariables = {
       inherit system NIX_PATH;
+      BROWSER = "firefox";
+      XDG_CURRENT_DESKTOP = "X-Generic";
     };
   };
   vars.settings.on-machine.enable = true;
@@ -55,20 +57,26 @@ in
     overlays = [
       (
         final: prev:
-        lib.mapAttrs
-          (
-            k: overrides:
-            prev.${k}.overrideAttrs (
-              oldAttrs:
-              {
-                src = sources.${k};
-              }
-              // (overrides k oldAttrs)
+        lib.mapAttrs (name: command: pkgs.writeShellScriptBin name "${command} $@") {
+          xterm-256color = "xdg-terminal-exec";
+          x-terminal-emulator = "xdg-terminal-exec";
+          x-www-browser = "$BROWSER";
+        }
+        //
+          lib.mapAttrs
+            (
+              k: overrides:
+              prev.${k}.overrideAttrs (
+                oldAttrs:
+                {
+                  src = sources.${k};
+                }
+                // (overrides k oldAttrs)
+              )
             )
-          )
-          {
-            # lazyjj = _: _: { };
-          }
+            {
+              # lazyjj = _: _: { };
+            }
       )
     ];
   };
