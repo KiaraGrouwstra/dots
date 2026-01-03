@@ -42,16 +42,6 @@ local servers = {
     filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
     root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' },
   },
-  clojure_lsp = {
-    cmd = { 'clojure-lsp' },
-    filetypes = { 'clojure', 'edn' },
-    root_markers = { 'project.clj', 'deps.edn', 'build.boot', 'shadow-cljs.edn', '.git' },
-  },
-  zls = {
-    cmd = { 'zls' },
-    filetypes = { 'zig', 'zir' },
-    root_markers = { 'zls.json', 'build.zig', '.git' },
-  },
 }
 
 for server, config in pairs(servers) do
