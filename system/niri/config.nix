@@ -534,6 +534,7 @@ in
     (plain "XF86Calculator" [ (leaf "spawn" (noctalia "launcher calculator")) ])
     (plain "Mod+Ctrl+Shift+Alt+Space" [ (leaf "spawn" (noctalia "launcher emoji")) ])
 
+    (plain "Mod+O" [ (flag "toggle-overview") ])
     (plain "Mod+Q" [ (flag "close-window") ])
 
     (plain "Mod+Left" [ (flag "focus-column-left-or-last") ])
