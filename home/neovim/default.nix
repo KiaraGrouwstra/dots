@@ -39,6 +39,7 @@
       extraLuaConfig = builtins.readFile ./nvim/init.lua;
 
       plugins = with pkgs.vimPlugins; [
+        kanagawa-paper-nvim
         nvim-treesitter.withAllGrammars
         mini-nvim
         conjure
