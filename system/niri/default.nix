@@ -58,15 +58,16 @@ in
   # system-level portal is needed for secrets
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
     ];
     config =
       let
         common = {
           default = [
-            "gnome"
+            "wlr"
             "gtk"
           ];
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
