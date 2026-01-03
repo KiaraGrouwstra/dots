@@ -38,9 +38,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d787ec69c3216ea33be1c0424fe65cb23aa8fb31",
-      "url": "https://github.com/nix-community/home-manager/archive/d787ec69c3216ea33be1c0424fe65cb23aa8fb31.tar.gz",
-      "hash": "0knyq88fpv9713ka6fpm6dyypbhp3sksy3m1wj1hhir2g51giqr8"
+      "revision": "1cfa305fba94468f665de1bd1b62dddf2e0cb012",
+      "url": "https://github.com/nix-community/home-manager/archive/1cfa305fba94468f665de1bd1b62dddf2e0cb012.tar.gz",
+      "hash": "0zsmqs2f91c6kxiav4riskahmgvxhpkgszks2nlxnwawg021s39q"
     },
     "hydrasect": {
       "type": "Git",
