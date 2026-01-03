@@ -29,6 +29,7 @@
         bat
         bluetuith
         btop
+        exiftool # yazi
         fd
         jaq
         tea
