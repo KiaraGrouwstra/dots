@@ -18,6 +18,10 @@ let
     ++ (lib.splitString " " cmd);
 in
 [
+  # needed for noctalia theming, but my manual validate does not like this,
+  # see flake.nix in https://github.com/sodiboo/niri-flake/pull/1548/files
+  # (leaf "include" "noctalia.kdl")
+
   (plain "input" [
     (plain "keyboard" [
       (plain "xkb" [
