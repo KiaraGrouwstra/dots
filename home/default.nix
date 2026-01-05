@@ -54,5 +54,17 @@
         yazi.enable = true;
         chromium.enable = true;
       };
+      services.kdeconnect.enable = true;
     };
+
+  networking.firewall = rec {
+    # KDE Connect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
 }

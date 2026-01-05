@@ -280,6 +280,7 @@ in
     "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
   ])
   (leaf "spawn-at-startup" [ "noctalia-shell" ])
+  (leaf "spawn-at-startup" [ "kdeconnect-indicator" ])
 
   # You can override environment variables for processes spawned by niri.
   (plain "environment" [
