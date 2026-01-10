@@ -23,6 +23,7 @@
             "${sources.nixpkgs-staging-bisecter}/pkgs/by-name/ni/nixpkgs-staging-bisecter/package.nix"
             { };
         nix-bisect = pkgs.python3.pkgs.callPackage "${sources.nix-bisect}/package.nix" { };
+        stremio-service = pkgs.python3.pkgs.callPackage ./stremio-service.nix { };
       in
       with pkgs;
       [
@@ -68,6 +69,7 @@
         nix-index
         zathura
         dconf
+        stremio-service
       ];
   };
 }
