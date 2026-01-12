@@ -95,6 +95,11 @@ in
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
   boot.loader.systemd-boot.enable = true;
+  networking.nameservers = [
+    # dns.sb
+    "185.222.222.222"
+    "45.11.45.11"
+  ];
   networking.networkmanager.enable = true;
   systemd.network.wait-online.enable = false;
   i18n.defaultLocale = "en_US.UTF-8";
