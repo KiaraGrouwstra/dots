@@ -41,6 +41,12 @@ in
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
+  nix.registry = lib.mapAttrs (_: path: {
+    to = {
+      type = "path";
+      inherit path;
+    };
+  }) sources;
   nix.channel.enable = false;
   home-manager = {
     extraSpecialArgs = specialArgs;
