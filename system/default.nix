@@ -58,7 +58,6 @@ in
   };
   vars.settings.on-machine.enable = true;
   nixpkgs = {
-    flake.source = pkgs.path;
     config.allowUnfree = true;
     overlays = [
       (
