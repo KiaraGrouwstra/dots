@@ -97,10 +97,14 @@ in
       };
     }).self.outputs.packages.${system}.nix-cli;
   system.stateVersion = "25.11";
+  system.nixos-init.enable = true;
+  system.etc.overlay.enable = true;
+  services.userborn.enable = true;
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.loader.systemd-boot.enable = true;
+  boot.initrd.systemd.enable = true;
   networking.nameservers = [
     # dns.sb
     "185.222.222.222"
