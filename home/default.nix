@@ -1,8 +1,12 @@
 {
+  config,
   pkgs,
   user,
   ...
 }:
+let
+  sysConfig = config;
+in
 {
   _class = "nixos";
 
@@ -23,6 +27,13 @@
       ];
       home.stateVersion = "24.11";
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      xdg.systemDirs.data = [
+        "/run/current-system/sw/share"
+        "/etc/profiles/per-user/${user}/share"
+        "/home/${user}/.nix-profile/share"
+        "/home/${user}/.local/share"
+        "${sysConfig.services.displayManager.sessionData.desktops}/share"
+      ];
       xdg.mimeApps = {
         enable = true;
         defaultApplicationPackages = [
