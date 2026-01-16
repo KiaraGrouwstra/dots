@@ -151,5 +151,6 @@ in
     };
     power-profiles-daemon.enable = true;
     upower.enable = true;
+    flatpak.enable = true;
   };
 }
