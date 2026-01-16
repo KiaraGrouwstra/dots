@@ -35,11 +35,7 @@ in
   };
   systemd.packages = [ pkgs.xwayland-satellite ];
   systemd.user = {
-    targets = {
-      graphical-session.wants = [ "xwayland-satellite.service" ];
-      # boot with niri rather than the default cosmic-session
-      cosmic-session.enable = false;
-    };
+    targets.graphical-session.wants = [ "xwayland-satellite.service" ];
     services.xwayland-satellite.wantedBy = [ "graphical-session.target" ];
     services.niri-flake-polkit = {
       description = "PolicyKit Authentication Agent provided by niri-flake";
@@ -136,13 +132,5 @@ in
             cp $config $out
           '';
     };
-    programs.swaylock = {
-      enable = true;
-      package = pkgs.swaylock-effects;
-    };
   };
-
-  services.displayManager.sessionPackages = lib.mkForce [
-    pkgs.niri
-  ];
 }
