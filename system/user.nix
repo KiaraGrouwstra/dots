@@ -44,6 +44,7 @@
         nextcloud-client
         nixd
         nix-bisect
+        nix-derivation
         nixpkgs-staging-bisecter
         nps
         nixfmt-rfc-style
