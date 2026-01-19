@@ -13,7 +13,7 @@
       # prompts."foo" = { };
       # files."foo".secret = true;
     };
-    "templates" = rec {
+    "templates" = {
       dependencies = [ "prompted" ];
       files = { };
       runtimeInputs = [
@@ -35,7 +35,7 @@
               ''
             ) config.vars.generators."prompted".files
           )}
-        '') files
+        '') config.vars.generators."templates".files
       );
     };
   };
