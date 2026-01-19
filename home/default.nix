@@ -12,6 +12,23 @@ in
 
   home-manager.users.${user} =
     { config, ... }:
+    let
+      exo-desktop = (
+        let
+          command = "${pkgs.xfce.exo}/bin/exo-open";
+        in
+        pkgs.makeDesktopItem {
+          type = "Application";
+          name = "exo-open";
+          desktopName = "Exo-Open";
+          mimeTypes = [
+            "application/x-desktop"
+          ];
+          tryExec = command;
+          exec = command;
+        }
+      );
+    in
     {
       _class = "homeManager";
 
@@ -26,6 +43,7 @@ in
         ./neovim
       ];
       home.stateVersion = "24.11";
+      home.packages = [ exo-desktop ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [
         "/run/current-system/sw/share"
@@ -45,7 +63,13 @@ in
           config.programs.neovim.package
           pkgs.libreoffice
           pkgs.vlc
+          exo-desktop
         ];
+        defaultApplications = {
+          "application/x-desktop" = [
+            "exo-open.desktop"
+          ];
+        };
       };
       programs = {
         firefox = {

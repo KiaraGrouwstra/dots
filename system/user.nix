@@ -70,6 +70,11 @@
         zathura
         dconf
         stremio-service
+        xdg-terminal-exec
+        pkgs.xterm-256color
+        pkgs.x-terminal-emulator
+        pkgs.x-www-browser
+        pkgs.xfce.exo
       ];
   };
 }
