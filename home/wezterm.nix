@@ -1,15 +1,8 @@
 {
-  config,
-  inputs,
-  system,
-  ...
-}:
-{
   _class = "homeManager";
 
   programs.wezterm = {
     enable = true;
-    # package = inputs.wezterm.packages.${system}.default;
     extraConfig =
       # lua
       ''
