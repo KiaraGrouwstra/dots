@@ -40,6 +40,7 @@
              -- color_scheme_dirs = {"/home/kiara/.config/wezterm"},
              -- color_scheme = "theme",
              color_scheme = 'Earthsong',
+             scrollback_lines = 50000,
              keys = {
                  {
                      key = "Enter",
