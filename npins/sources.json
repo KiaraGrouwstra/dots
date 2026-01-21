@@ -42,19 +42,6 @@
       "url": "https://github.com/nix-community/home-manager/archive/1cfa305fba94468f665de1bd1b62dddf2e0cb012.tar.gz",
       "hash": "0zsmqs2f91c6kxiav4riskahmgvxhpkgszks2nlxnwawg021s39q"
     },
-    "hydrasect": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "kiaragrouwstra",
-        "repo": "nixpkgs"
-      },
-      "branch": "hydrasect",
-      "submodules": false,
-      "revision": "7fabe6e713039ffa8179f95f0959386930f8576a",
-      "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/7fabe6e713039ffa8179f95f0959386930f8576a.tar.gz",
-      "hash": "1ha88xc9iv4v4dzasmipcdxq1v608pl87iv1nl6r693kan3iq1fc"
-    },
     "kdl": {
       "type": "Git",
       "repository": {

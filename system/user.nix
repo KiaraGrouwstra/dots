@@ -17,7 +17,6 @@
       let
         unstable = import sources.nixpkgs-unstable { };
         nixos-conf-editor = pkgs.callPackage "${sources.nixos-conf-editor}/packages/nixos-conf-editor" { };
-        hydrasect = pkgs.callPackage "${sources.hydrasect}/pkgs/by-name/hy/hydrasect/package.nix" { };
         nixpkgs-staging-bisecter =
           pkgs.callPackage
             "${sources.nixpkgs-staging-bisecter}/pkgs/by-name/ni/nixpkgs-staging-bisecter/package.nix"
