@@ -30,6 +30,7 @@
         bluetuith
         btop
         exiftool # yazi
+        mediainfo # yazi
         fd
         jaq
         tea
