@@ -64,9 +64,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "03455ee8f91b2eeaab15bd45e24c688cfeed65e0",
-      "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/03455ee8f91b2eeaab15bd45e24c688cfeed65e0.tar.gz",
-      "hash": "1w9c0i906haff37xb6ar9iccqjmlg7dbqpj5wsm9dbb2h4v9vsci"
+      "revision": "39716f05596a5fba6a505eada0783e2d14cfc899",
+      "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/39716f05596a5fba6a505eada0783e2d14cfc899.tar.gz",
+      "hash": "0j8qf8wzwfvvr90mx2yzk0r5wh83gkrfg86nfzv4d5781c0m9q37"
     },
     "nix-src": {
       "type": "GitRelease",
