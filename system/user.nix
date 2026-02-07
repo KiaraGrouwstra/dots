@@ -54,7 +54,7 @@
         swaynotificationcenter
         tree
         transmission_4
-        vlc
+        unstable.vlc
         wl-clipboard
         xfce.thunar
         libreoffice-fresh
