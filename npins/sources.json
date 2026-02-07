@@ -138,9 +138,9 @@
       },
       "branch": "nixpkgs-unstable",
       "submodules": false,
-      "revision": "ffcdcf99d65c61956d882df249a9be53e5902ea5",
-      "url": "https://github.com/nixos/nixpkgs/archive/ffcdcf99d65c61956d882df249a9be53e5902ea5.tar.gz",
-      "hash": "09ifrgxin9may5kll1g2fdxixb0k3ipzhfw90mckl17mpbrgaglp"
+      "revision": "aa290c9891fa4ebe88f8889e59633d20cc06a5f2",
+      "url": "https://github.com/nixos/nixpkgs/archive/aa290c9891fa4ebe88f8889e59633d20cc06a5f2.tar.gz",
+      "hash": "0l2gcz0wzzcjbvygrgxqf6c9hji9yq1il13779i95i09ijl7q13b"
     },
     "noctalia-shell": {
       "type": "GitRelease",
