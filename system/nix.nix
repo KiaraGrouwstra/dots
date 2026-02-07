@@ -34,11 +34,11 @@
               sandbox = true;
               sandbox-fallback = false;
               substituters = "https://cache.nixos.org/";
-              system-features = "nixos-test benchmark big-parallel kvm";
+              system-features = "nixos-test benchmark big-parallel kvm uid-range";
               trusted-public-keys = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
               trusted-substituters = null;
               extra-sandbox-paths = null;
-              experimental-features = "nix-command flakes";
+              experimental-features = "nix-command flakes auto-allocate-uids cgroups";
               trusted-users = lib.concatStringsSep " " [
                 "root"
                 "@wheel"
@@ -53,6 +53,10 @@
               fallback = true;
               connect-timeout = 1;
               download-attempts = 2;
+              # nspawn-containers
+              auto-allocate-uids = true;
+              extra-system-features = ["uid-range"];
+              sandbox-paths = [ "/dev/net" ]; # to make nspawn↔qemu networking work
             };
       };
     };
