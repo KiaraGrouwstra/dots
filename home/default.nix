@@ -40,7 +40,6 @@ in
         ./nushell.nix
         ./style.nix
         ./wezterm.nix
-        ./neovim
       ];
       home.stateVersion = "24.11";
       home.packages = [ exo-desktop ];
