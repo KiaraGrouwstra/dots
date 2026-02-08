@@ -56,10 +56,17 @@
       "hash": "1srnmn3mdsqcqcacqs7z0605j3d7ih6lk2gc2v0q1cjgsvinzpsi"
     },
     "nixpkgs": {
-      "type": "Channel",
-      "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre902642.bb813de6d224/nixexprs.tar.xz",
-      "hash": "0mq4bb4wrqvi7iz8r4aaxi6xa50rz29vifnill4avrfky9immv4q"
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixpkgs-unstable",
+      "submodules": false,
+      "revision": "23258e03aaa49b3a68597e3e50eb0cbce7e42e9d",
+      "url": "https://github.com/NixOS/nixpkgs/archive/23258e03aaa49b3a68597e3e50eb0cbce7e42e9d.tar.gz",
+      "hash": "0pig1bihnb6ldwyyrwggby615pvi5s86gpdnnsdbx5wa471743lw"
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
@@ -78,14 +85,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "nixos",
+        "owner": "NixOS",
         "repo": "nixpkgs"
       },
       "branch": "nixpkgs-unstable",
       "submodules": false,
-      "revision": "aa290c9891fa4ebe88f8889e59633d20cc06a5f2",
-      "url": "https://github.com/nixos/nixpkgs/archive/aa290c9891fa4ebe88f8889e59633d20cc06a5f2.tar.gz",
-      "hash": "0l2gcz0wzzcjbvygrgxqf6c9hji9yq1il13779i95i09ijl7q13b"
+      "revision": "23258e03aaa49b3a68597e3e50eb0cbce7e42e9d",
+      "url": "https://github.com/NixOS/nixpkgs/archive/23258e03aaa49b3a68597e3e50eb0cbce7e42e9d.tar.gz",
+      "hash": "0pig1bihnb6ldwyyrwggby615pvi5s86gpdnnsdbx5wa471743lw"
     },
     "noctalia-shell": {
       "type": "GitRelease",
