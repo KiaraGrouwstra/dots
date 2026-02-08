@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v1.12.0",
-      "revision": "7121f74b976481bc36877abaf52adab2a178fcbe",
-      "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.12.0",
-      "hash": "0wbx518d2x54yn4xh98cgm65wvj0gpy6nia6ra7ns4j63hx14fkq"
+      "version": "v1.13.0",
+      "revision": "56ef5e72fec74b993ad0973b2dfa4eadeb48ba41",
+      "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.13.0",
+      "hash": "03jz60kw0khm1lp72q65z8gq69bfrqqbj08kw0hbiav1qh3g7p08"
     },
     "home-manager": {
       "type": "Git",
@@ -25,9 +25,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "1cfa305fba94468f665de1bd1b62dddf2e0cb012",
-      "url": "https://github.com/nix-community/home-manager/archive/1cfa305fba94468f665de1bd1b62dddf2e0cb012.tar.gz",
-      "hash": "0zsmqs2f91c6kxiav4riskahmgvxhpkgszks2nlxnwawg021s39q"
+      "revision": "cbd8a72e5fe6af19d40e2741dc440d9227836860",
+      "url": "https://github.com/nix-community/home-manager/archive/cbd8a72e5fe6af19d40e2741dc440d9227836860.tar.gz",
+      "hash": "17pbn4vqxbjzqjc0lmfwvhyhdcazvlc3wb684746ka2x5jzb9gzi"
     },
     "nix-bisect": {
       "type": "Git",
@@ -38,9 +38,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "39716f05596a5fba6a505eada0783e2d14cfc899",
-      "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/39716f05596a5fba6a505eada0783e2d14cfc899.tar.gz",
-      "hash": "0j8qf8wzwfvvr90mx2yzk0r5wh83gkrfg86nfzv4d5781c0m9q37"
+      "revision": "f7bbe42a9f61d19c7f6dcc76fcaa9157849ac501",
+      "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/f7bbe42a9f61d19c7f6dcc76fcaa9157849ac501.tar.gz",
+      "hash": "02wmpvbvnz2zgch8phaiy4s1aj1w6kin5l90bh76x9w1gscv0z14"
     },
     "nixos-facter-modules": {
       "type": "Git",
@@ -51,9 +51,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "14df13c84552a7d1f33c1cd18336128fbc43f920",
-      "url": "https://github.com/nix-community/nixos-facter-modules/archive/14df13c84552a7d1f33c1cd18336128fbc43f920.tar.gz",
-      "hash": "15yww1rrxjcvpgcpf15mhwhagcy9d62a2kfrbwimqw2p1v3mgzxq"
+      "revision": "e796d536e3d83de74267069e179dc620a608ed7d",
+      "url": "https://github.com/nix-community/nixos-facter-modules/archive/e796d536e3d83de74267069e179dc620a608ed7d.tar.gz",
+      "hash": "1srnmn3mdsqcqcacqs7z0605j3d7ih6lk2gc2v0q1cjgsvinzpsi"
     },
     "nixpkgs": {
       "type": "Channel",
@@ -98,10 +98,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v3.8.0",
-      "revision": "c81661f9f9f56b94478d8b6d883125bcceb63936",
-      "url": "https://api.github.com/repos/noctalia-dev/noctalia-shell/tarball/v3.8.0",
-      "hash": "17j6z373kzkdr7z4faw6hzys93bpjpyjz886p9879sc69iq1f7h6"
+      "version": "v4.4.0",
+      "revision": "55e9b3735d78aef8fdab49d3d3d7d31d81628b49",
+      "url": "https://api.github.com/repos/noctalia-dev/noctalia-shell/tarball/v4.4.0",
+      "hash": "0p0gp8sqmv4xd696nrhbiln61wkgiyzyz7kjbqx6fs9kqc3i0wyf"
     },
     "vars": {
       "type": "Git",
