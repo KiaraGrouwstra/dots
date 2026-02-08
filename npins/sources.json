@@ -71,19 +71,6 @@
       "url": "https://api.github.com/repos/DeterminateSystems/nix-src/tarball/v3.13.2",
       "hash": "06d2gzsjcjlxrpxfnh4r2qyfkkvjj8x3a14wkn5a0j2xl3d82fw1"
     },
-    "nixos-conf-editor": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "kiaragrouwstra",
-        "repo": "nixos-conf-editor"
-      },
-      "branch": "adwaita-root",
-      "submodules": false,
-      "revision": "e90ce4c42d2bc06b871f8297361657aceb3cd79a",
-      "url": "https://github.com/kiaragrouwstra/nixos-conf-editor/archive/e90ce4c42d2bc06b871f8297361657aceb3cd79a.tar.gz",
-      "hash": "0grxyncwzmi7zxb7rljz7808flcd3yw8l4j647ray4gf748ca165"
-    },
     "nixos-facter-modules": {
       "type": "Git",
       "repository": {

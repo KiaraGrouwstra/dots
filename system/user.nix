@@ -16,7 +16,6 @@
     packages =
       let
         unstable = import sources.nixpkgs-unstable { };
-        nixos-conf-editor = pkgs.callPackage "${sources.nixos-conf-editor}/packages/nixos-conf-editor" { };
         nixpkgs-staging-bisecter =
           pkgs.callPackage
             "${sources.nixpkgs-staging-bisecter}/pkgs/by-name/ni/nixpkgs-staging-bisecter/package.nix"
@@ -58,7 +57,6 @@
         wl-clipboard
         xfce.thunar
         libreoffice-fresh
-        nixos-conf-editor
         nixpkgs-review
         gh # dep of nixpkgs-review
         watchman
