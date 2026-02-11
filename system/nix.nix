@@ -24,44 +24,67 @@
             version = config.nix.package.version;
           }).generate
             "nix.conf"
-            {
-              allowed-users = "*";
-              auto-optimise-store = false;
-              builders = null;
-              cores = 0;
-              max-jobs = "auto";
-              require-sigs = true;
-              sandbox = true;
-              sandbox-fallback = false;
-              substituters = "https://cache.nixos.org/";
-              system-features = "nixos-test benchmark big-parallel kvm uid-range";
-              trusted-public-keys = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
-              trusted-substituters = null;
-              extra-sandbox-paths = null;
-              experimental-features = "nix-command flakes auto-allocate-uids cgroups";
-              trusted-users = lib.concatStringsSep " " [
-                "root"
-                "@wheel"
-                "kiara"
-              ];
-              # use a placeholder where we want our secret substituted in
-              access-tokens = ''
-                github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
-              '';
-              # allow offline builds
-              flake-registry = "";
-              fallback = true;
-              connect-timeout = 1;
-              download-attempts = 2;
-              # nspawn-containers
-              auto-allocate-uids = true;
-              extra-system-features = ["uid-range"];
-              sandbox-paths = [ "/dev/net" ]; # to make nspawn↔qemu networking work
-            };
+            (
+              lib.mapAttrs (_: v: if builtins.isList v then lib.concatStringsSep " " v else v) config.nix.settings
+            );
       };
     };
   };
   nix = {
+    settings = {
+      allowed-users = [
+        "*"
+      ];
+      auto-optimise-store = false;
+      builders = null;
+      cores = 0;
+      max-jobs = "auto";
+      require-sigs = true;
+      sandbox = true;
+      sandbox-fallback = false;
+      substituters = [
+        "https://cache.nixos.org/"
+      ];
+      system-features = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+        "uid-range"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      ];
+      trusted-substituters = [ ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "auto-allocate-uids"
+        "cgroups"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+        "kiara"
+      ];
+      # use a placeholder where we want our secret substituted in
+      access-tokens = ''
+        github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
+      '';
+      # allow offline builds
+      flake-registry = "";
+      fallback = true;
+      connect-timeout = 1;
+      download-attempts = 2;
+      # nspawn-containers
+      auto-allocate-uids = true;
+      extra-system-features = [
+        "uid-range"
+      ];
+      sandbox-paths = [
+        "/dev/net" # to make nspawn↔qemu networking work
+      ];
+    };
     gc = {
       automatic = true;
       dates = "weekly";
