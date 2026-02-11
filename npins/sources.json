@@ -16,6 +16,20 @@
       "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.13.0",
       "hash": "03jz60kw0khm1lp72q65z8gq69bfrqqbj08kw0hbiav1qh3g7p08"
     },
+    "flake-compat": {
+      "type": "Git",
+      "repository": {
+        "type": "Forgejo",
+        "server": "https://git.lix.systems/",
+        "owner": "lix-project",
+        "repo": "flake-compat"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "549f2762aebeff29a2e5ece7a7dc0f955281a1d1",
+      "url": "https://git.lix.systems/lix-project/flake-compat/archive/549f2762aebeff29a2e5ece7a7dc0f955281a1d1.tar.gz",
+      "hash": "0g4izwn5k7qpavlk3w41a92rhnp4plr928vmrhc75041vzm3vb1l"
+    },
     "home-manager": {
       "type": "Git",
       "repository": {
@@ -41,6 +55,19 @@
       "revision": "f7bbe42a9f61d19c7f6dcc76fcaa9157849ac501",
       "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/f7bbe42a9f61d19c7f6dcc76fcaa9157849ac501.tar.gz",
       "hash": "02wmpvbvnz2zgch8phaiy4s1aj1w6kin5l90bh76x9w1gscv0z14"
+    },
+    "nix-init": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nix-init"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "2fc450f60dacc2ae2f18260ea49a2a0cbaeb90b8",
+      "url": "https://github.com/nix-community/nix-init/archive/2fc450f60dacc2ae2f18260ea49a2a0cbaeb90b8.tar.gz",
+      "hash": "0c356f6ig54qjglihi03gcadx8a8gxxl3gy4vd6rrgiy7jwkv2ck"
     },
     "nixos-facter-modules": {
       "type": "Git",

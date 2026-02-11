@@ -1,10 +1,15 @@
 {
   config,
   pkgs,
+  system,
   user,
   sources,
   ...
 }:
+let
+  inherit (pkgs) callPackage python3;
+  flake-compat = src: import sources.flake-compat { inherit src; };
+in
 {
   users.users.${user} = {
     isNormalUser = true;
@@ -17,11 +22,12 @@
       let
         unstable = import sources.nixpkgs-unstable { };
         nixpkgs-staging-bisecter =
-          pkgs.callPackage
+          callPackage
             "${sources.nixpkgs-staging-bisecter}/pkgs/by-name/ni/nixpkgs-staging-bisecter/package.nix"
             { };
-        nix-bisect = pkgs.python3.pkgs.callPackage "${sources.nix-bisect}/package.nix" { };
-        stremio-service = pkgs.python3.pkgs.callPackage ./stremio-service.nix { };
+        nix-bisect = python3.pkgs.callPackage "${sources.nix-bisect}/package.nix" { };
+        stremio-service = python3.pkgs.callPackage ./stremio-service.nix { };
+        nix-init = (flake-compat sources.nix-init).outputs.packages.${system}.nix-init;
       in
       with pkgs;
       [
