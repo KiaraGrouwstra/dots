@@ -39,7 +39,7 @@ in
         fd
         jaq
         tea
-        gurk-rs
+        unstable.gurk-rs
         hydrasect
         iamb
         keepassxc
