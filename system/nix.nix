@@ -81,7 +81,7 @@
       extra-system-features = [
         "uid-range"
       ];
-      sandbox-paths = [
+      extra-sandbox-paths = [
         "/dev/net" # to make nspawn↔qemu networking work
       ];
     };
