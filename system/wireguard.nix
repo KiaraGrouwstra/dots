@@ -34,23 +34,23 @@ let
 in
 {
   vars.generators = lib.mapAttrs (_: _: secrets fileNames) vpns;
-  networking.wireguard = {
-    enable = true;
-    useNetworkd = true;
-    interfaces = lib.mapAttrs (k: peer: {
-      ips = import config.vars.generators.${k}.files.ips.path;
-      privateKeyFile = config.vars.generators.${k}.files.privateKey.path;
-      peers = [
-        (lib.mkMerge [
-          peer
-          {
-            persistentKeepalive = 25;
-            allowedIPs = import config.vars.generators.${k}.files.allowedIPs.path;
-          }
-        ])
-      ];
-    }) vpns;
-  };
+  # networking.wireguard = {
+  #   enable = true;
+  #   useNetworkd = true;
+  #   interfaces = lib.mapAttrs (k: peer: {
+  #     ips = import config.vars.generators.${k}.files.ips.path;
+  #     privateKeyFile = config.vars.generators.${k}.files.privateKey.path;
+  #     peers = [
+  #       (lib.mkMerge [
+  #         peer
+  #         {
+  #           persistentKeepalive = 25;
+  #           allowedIPs = import config.vars.generators.${k}.files.allowedIPs.path;
+  #         }
+  #       ])
+  #     ];
+  #   }) vpns;
+  # };
   networking.firewall.allowedTCPPorts = [
     51820
   ];
