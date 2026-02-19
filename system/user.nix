@@ -75,6 +75,7 @@ in
         zathura
         dconf
         stremio-service
+        unar
         xdg-terminal-exec
         xterm-256color
         x-terminal-emulator
