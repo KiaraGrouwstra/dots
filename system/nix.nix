@@ -92,7 +92,7 @@
     };
   };
   # make the final file use our substituted var
-  environment.etc."nix/nix.conf".source =
-    lib.mkForce
-      config.vars.generators."templates".files."nix.conf".path;
+  # environment.etc."nix/nix.conf".source =
+  #   lib.mkForce
+  #     config.vars.generators."templates".files."nix.conf".path;
 }
