@@ -38,7 +38,6 @@
       branch.autoSetupRebase = "always";
       branch.autoSetupMerge = "simple";
       checkout.defaultRemote = "origin";
-      remote.pushDefault = user;
       commit.gpgsign = true;
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
