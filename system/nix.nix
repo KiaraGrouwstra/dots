@@ -17,6 +17,7 @@
       files."nix.conf" = {
         # `secret` here refers to the substituted file, not to the (un-sensitive) template
         secret = true;
+        mode = "0644";
         # map `config.nix.settings` to `nix.conf`, stolen from <nixpkgs/nixos/modules/config/nix.nix>
         template =
           (pkgs.formats.nixConf {
@@ -92,7 +93,7 @@
     };
   };
   # make the final file use our substituted var
-  # environment.etc."nix/nix.conf".source =
-  #   lib.mkForce
-  #     config.vars.generators."templates".files."nix.conf".path;
+  environment.etc."nix/nix.conf".source =
+    lib.mkForce
+      config.vars.generators."templates".files."nix.conf".path;
 }
