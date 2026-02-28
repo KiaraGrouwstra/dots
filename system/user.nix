@@ -21,10 +21,7 @@ in
     packages =
       let
         unstable = import sources.nixpkgs-unstable { };
-        nixpkgs-staging-bisecter =
-          callPackage
-            "${sources.nixpkgs-staging-bisecter}/pkgs/by-name/ni/nixpkgs-staging-bisecter/package.nix"
-            { };
+        nixpkgs-staging-bisecter = callPackage "${sources.nixpkgs-staging-bisecter}/package.nix" { };
         nix-bisect = python3.pkgs.callPackage "${sources.nix-bisect}/package.nix" { };
         stremio-service = python3.pkgs.callPackage ./stremio-service.nix { };
         nix-init = (flake-compat sources.nix-init).outputs.packages.${system}.nix-init;

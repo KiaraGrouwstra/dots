@@ -99,14 +99,14 @@
       "type": "Git",
       "repository": {
         "type": "GitHub",
-        "owner": "kiaragrouwstra",
-        "repo": "nixpkgs"
+        "owner": "symphorien",
+        "repo": "nixpkgs-staging-bisecter"
       },
-      "branch": "nixpkgs-staging-bisecter",
+      "branch": "master",
       "submodules": false,
-      "revision": "bb836747fead032c43f52b45888007d5ce1a430a",
-      "url": "https://github.com/kiaragrouwstra/nixpkgs/archive/bb836747fead032c43f52b45888007d5ce1a430a.tar.gz",
-      "hash": "0km7yz6iaac9li2rr1y95rgj8ascqjpshhqfjlhldph613dlqswn"
+      "revision": "6b2e15049744411ddf6a0682d92fcf6971a69dea",
+      "url": "https://github.com/symphorien/nixpkgs-staging-bisecter/archive/6b2e15049744411ddf6a0682d92fcf6971a69dea.tar.gz",
+      "hash": "09iimgwb1ss2zbpmldb6rfjchyb4zkga4bvg83jcp1ix4hqk1b38"
     },
     "nixpkgs-unstable": {
       "type": "Git",
