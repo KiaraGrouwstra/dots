@@ -22,10 +22,10 @@ let
       endpoint = "vpn4.procolix.net:51820";
       publicKey = "NuLFSBNR9/ut+p/WwEijfYK+Rx7G68oHUMu1jQ22eG8=";
     };
-    # vpn-fediversity = {
-    #   endpoint = "vpn.fediversity.eu:51820";
-    #   publicKey = "TKTBW6RUjsMc9I9bH31vBUMZZByZVhL7rDENHjEcgyw=";
-    # };
+    vpn-fediversity = {
+      endpoint = "vpn.fediversity.eu:51820";
+      publicKey = "TKTBW6RUjsMc9I9bH31vBUMZZByZVhL7rDENHjEcgyw=";
+    };
     vpn-office = {
       endpoint = "kantoorvpn.procolix.com:51820";
       publicKey = "gEuso2o73wIK0s8XqXaiZ8CTy+MXKRtS5YHKrFRIphQ=";
