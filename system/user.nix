@@ -53,6 +53,7 @@ in
         ripgrep
         unstable.signal-desktop-bin
         swaynotificationcenter
+        socat
         tree
         transmission_4
         unstable.vlc
