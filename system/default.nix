@@ -48,6 +48,7 @@ in
   }) sources;
   nix.channel.enable = false;
   home-manager = {
+    useGlobalPkgs = true;
     extraSpecialArgs = specialArgs;
     users.${user}.home.sessionVariables = {
       inherit system NIX_PATH;
