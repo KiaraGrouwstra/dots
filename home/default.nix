@@ -71,6 +71,13 @@ in
         };
       };
       programs = {
+        bat = {
+          enable = true;
+          config = {
+            style = "plain";
+            paging = "never";
+          };
+        };
         firefox = {
           enable = true;
           nativeMessagingHosts = [ pkgs.keepassxc ];

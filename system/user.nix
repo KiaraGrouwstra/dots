@@ -28,7 +28,6 @@ in
       in
       with pkgs;
       [
-        bat
         bluetuith
         btop
         exiftool # yazi
