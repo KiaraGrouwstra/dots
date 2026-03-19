@@ -18,9 +18,9 @@ let
     "allowedIPs"
   ];
   vpns = {
-    procolix-vpn4 = {
-      endpoint = "vpn4.procolix.net:51820";
-      publicKey = "NuLFSBNR9/ut+p/WwEijfYK+Rx7G68oHUMu1jQ22eG8=";
+    procolix-vpn = {
+      endpoint = "vpn.procolix.eu:51820";
+      publicKey = "YHHnx/LcB1meyQj4nrhtzvEiQLJ8HloHj+e94U8EhEM=";
     };
     vpn-fediversity = {
       endpoint = "vpn.fediversity.eu:51820";
