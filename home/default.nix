@@ -48,6 +48,7 @@ in
         ./nushell.nix
         ./style.nix
         ./wezterm.nix
+        ./ghostty.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [ exo-desktop ];

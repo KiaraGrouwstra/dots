@@ -360,7 +360,7 @@ binds {
     Mod+L { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Mod+W { spawn "firefox --new-window about:newtab"; }
     Mod+Shift+W { spawn "tor-browser --new-window about:newtab"; }
-    Mod+T { spawn "wezterm"; }
+    Mod+T { spawn "ghostty"; }
     Mod+E { spawn "thunar"; }
     Mod+Space { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Mod+Escape { spawn-sh "noctalia-shell ipc call notifications dismissAll"; }
