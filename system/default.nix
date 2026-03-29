@@ -7,7 +7,7 @@
 let
   user = "kiara";
   sources = (import ../npins) {};
-  inherit (pkgs) system;
+  system = pkgs.stdenv.hostPlatform.system;
   NIX_PATH =
     let
       entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;

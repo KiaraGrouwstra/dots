@@ -53,7 +53,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     glib
   ];
 
-  useFetchCargoVendor = true;
   cargoHash = "sha256-zHLFnnshBxKqHplBNRxMEoLvZyICpdv5E1sSZV+yr/U=";
   buildFeatures = [
     "offline-build"

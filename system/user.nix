@@ -48,7 +48,7 @@ in
         nix-derivation
         nixpkgs-staging-bisecter
         nps
-        nixfmt-rfc-style
+        nixfmt
         npins
         ripgrep
         unstable.signal-desktop-bin
@@ -58,7 +58,7 @@ in
         transmission_4
         unstable.vlc
         wl-clipboard
-        xfce.thunar
+        thunar
         libreoffice-fresh
         nixpkgs-review
         gh # dep of nixpkgs-review
@@ -78,7 +78,7 @@ in
         xterm-256color
         x-terminal-emulator
         x-www-browser
-        xfce.exo
+        xfce4-exo
       ];
   };
 }

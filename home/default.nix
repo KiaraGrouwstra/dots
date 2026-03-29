@@ -12,6 +12,7 @@ let
     version = "0.7.12-instant-mode";
     src = sources."pay-respects";
     cargoLock.lockFile = "${sources."pay-respects"}/Cargo.lock";
+    meta.mainProgram = "pay-respects";
   };
 in
 {
@@ -22,7 +23,7 @@ in
     let
       exo-desktop = (
         let
-          command = "${pkgs.xfce.exo}/bin/exo-open";
+          command = "${pkgs.xfce4-exo}/bin/exo-open";
         in
         pkgs.makeDesktopItem {
           type = "Application";
@@ -77,7 +78,7 @@ in
           pkgs.zathura
           config.programs.firefox.package
           pkgs.yazi
-          pkgs.xfce.thunar
+          pkgs.thunar
           config.programs.helix.package
           config.programs.neovim.package
           pkgs.libreoffice
@@ -146,7 +147,10 @@ in
           enableNushellIntegration = true;
           package = pay-respects-fork;
         };
-        yazi.enable = true;
+        yazi = {
+          enable = true;
+          shellWrapperName = "yy";
+        };
         chromium.enable = true;
       };
       services.kdeconnect.enable = true;
