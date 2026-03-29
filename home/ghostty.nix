@@ -6,7 +6,7 @@
     enable = true;
     settings = {
       font-size = 10;
-      theme = "Earthsong";
+      theme = "noctalia";
       scrollback-limit = 50000;
       window-decoration = false;
       confirm-close-surface = false;

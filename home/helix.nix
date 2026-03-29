@@ -8,7 +8,7 @@
     enable = true;
     # https://docs.helix-editor.com/configuration.html
     settings = {
-      theme = lib.mkForce "base16_transparent";
+      theme = lib.mkForce "noctalia";
       editor = {
         auto-save = {
           focus-lost = true;
