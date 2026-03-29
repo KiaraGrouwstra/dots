@@ -44,6 +44,22 @@ in
         mimeTypes = [ "x-scheme-handler/magnet" ];
         exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.transmission_4}/bin/transmission-cli %u";
       };
+      respects-claude = pkgs.writeShellApplication {
+        name = "_pay-respects-fallback-100-claude";
+        text = ''
+          last_command="''${_PR_LAST_COMMAND:-}"
+          error_msg="''${_PR_ERROR_MSG:-}"
+          [ -z "$last_command" ] && exit 0
+          suggestion=$(claude -p "The following shell command failed.
+Command: $last_command
+Error: $error_msg
+
+Reply with ONLY the corrected shell command. No explanation, no markdown, no backticks." 2>/dev/null)
+          if [ -n "$suggestion" ]; then
+            printf '%s\n<_PR_BR>\n' "$suggestion"
+          fi
+        '';
+      };
     in
     {
       _class = "homeManager";
@@ -66,6 +82,7 @@ in
         exo-desktop
         magnet-handler
         pkgs.pywalfox-native
+        respects-claude
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [
