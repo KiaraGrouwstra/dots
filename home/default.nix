@@ -49,6 +49,7 @@ in
         ./style.nix
         ./wezterm.nix
         ./ghostty.nix
+        ./notifications.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [ exo-desktop ];
