@@ -156,10 +156,20 @@ in
           enable = true;
           shellWrapperName = "yy";
           keymap.mgr.prepend_keymap =
-            let repeat = n: cmd: builtins.genList (_: cmd) n; in
+            let
+              repeat = n: cmd: builtins.genList (_: cmd) n;
+            in
             [
-              { on = "J"; run = repeat 5 "arrow next"; desc = "Move down 5 files"; }
-              { on = "K"; run = repeat 5 "arrow prev"; desc = "Move up 5 files"; }
+              {
+                on = "J";
+                run = repeat 5 "arrow next";
+                desc = "Move down 5 files";
+              }
+              {
+                on = "K";
+                run = repeat 5 "arrow prev";
+                desc = "Move up 5 files";
+              }
             ];
         };
         chromium.enable = true;
