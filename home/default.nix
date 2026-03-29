@@ -12,6 +12,7 @@ let
     version = "0.7.12-instant-mode";
     src = sources."pay-respects";
     cargoLock.lockFile = "${sources."pay-respects"}/Cargo.lock";
+    cargoBuildFlags = [ "--workspace" ];
     meta.mainProgram = "pay-respects";
   };
 in
@@ -137,6 +138,18 @@ in
           enable = true;
           enableNushellIntegration = true;
           package = pay-respects-fork;
+          rules._PR_GENERAL.match_err = [
+            {
+              pattern = [
+                "nu::shell::external_command"
+                "command not found"
+                "unknown command"
+              ];
+              suggest = [
+                "#[executable(nix-shell), !cmd_contains(nix-shell)]\nnix-shell -p {{command[0]}} --run '{{command}}'"
+              ];
+            }
+          ];
         };
         yazi = {
           enable = true;
