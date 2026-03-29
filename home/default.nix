@@ -37,6 +37,7 @@ in
         ./git.nix
         ./helix.nix
         ./lazygit.nix
+        ./niri.nix
         ./nushell.nix
         ./style.nix
         ./wezterm.nix

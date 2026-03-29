@@ -43,6 +43,19 @@
       "url": "https://github.com/nix-community/home-manager/archive/c6fe2944ad9f2444b2d767c4a5edee7c166e8a95.tar.gz",
       "hash": "sha256-yeiWCY9aAUUJ3ebMVjs0UZXRnT5x90MCtpbpOWiXrvM="
     },
+    "nirimation": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "XansiVA",
+        "repo": "nirimation"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "17dda540a040ca501982418c436fd5c77a572392",
+      "url": "https://github.com/XansiVA/nirimation/archive/17dda540a040ca501982418c436fd5c77a572392.tar.gz",
+      "hash": "sha256-J6f02QKi8ggoEOtxK8RhLGSq4IkRh+LRahXcY/ReE18="
+    },
     "nix-bisect": {
       "type": "Git",
       "repository": {
@@ -151,6 +164,20 @@
       "version_upper_bound": null,
       "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx",
       "hash": "sha256-s6bke1e4x/vmoM4lGBYaUPWanN2KUINcAssCvdYgbBg=",
+      "frozen": true
+    },
+    "sharkler-dots": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "sharkler/sharkler-dots",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "a3938454846e71ca78eac86d22163397b20ebee5",
+      "url": "https://gitlab.com/api/v4/projects/sharkler%2Fsharkler-dots/repository/archive.tar.gz?sha=a3938454846e71ca78eac86d22163397b20ebee5",
+      "hash": "sha256-w/ccGk5XvsQMMQgCgOsCfY6AXleKlR1yJkjZ0zB78gs=",
       "frozen": true
     },
     "vars": {
