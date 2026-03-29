@@ -37,6 +37,7 @@ in
     ./nix.nix
     ./wireguard.nix
     ./niri
+    ./tts.nix
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];
