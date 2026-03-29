@@ -78,6 +78,31 @@ in
             paging = "never";
           };
         };
+        claude-code = {
+          enable = true;
+          settings = {
+            includeCoAuthoredBy = false;
+            voiceEnabled = true;
+            # theme = "dark";
+            # permissions.defaultMode = "auto";
+            permissions.defaultMode = "bypassPermissions";
+            statusLine = {
+              type = "command";
+              command = "/home/kiara/.claude/statusline.sh";
+            };
+            hooks.Notification = [
+              {
+                matcher = "";
+                hooks = [
+                  {
+                    type = "command";
+                    command = "notify-send 'Claude Code' 'Claude Code needs your attention'";
+                  }
+                ];
+              }
+            ];
+          };
+        };
         firefox = {
           enable = true;
           nativeMessagingHosts = [ pkgs.keepassxc ];
