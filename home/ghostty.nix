@@ -40,5 +40,7 @@
         "alt+q=close_surface"
       ];
     };
+    # don't write to config outside nix
+    systemd.enable = false;
   };
 }
