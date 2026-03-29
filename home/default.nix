@@ -35,6 +35,13 @@ in
           exec = command;
         }
       );
+      magnet-handler = pkgs.makeDesktopItem {
+        type = "Application";
+        name = "magnet-handler";
+        desktopName = "Open Magnet Link";
+        mimeTypes = [ "x-scheme-handler/magnet" ];
+        exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.transmission_4}/bin/transmission-cli %u";
+      };
     in
     {
       _class = "homeManager";
@@ -52,7 +59,10 @@ in
         ./notifications.nix
       ];
       home.stateVersion = "24.11";
-      home.packages = [ exo-desktop ];
+      home.packages = [
+        exo-desktop
+        magnet-handler
+      ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [
         "/run/current-system/sw/share"
@@ -75,6 +85,7 @@ in
           exo-desktop
         ];
         defaultApplications = {
+          "x-scheme-handler/magnet" = [ "magnet-handler.desktop" ];
           "application/x-desktop" = [
             "exo-open.desktop"
           ];
