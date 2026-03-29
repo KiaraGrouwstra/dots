@@ -66,6 +66,7 @@ in
         jujutsu
         jjui
         nix-init
+        sox
         tor-browser
         tut
         nix-index
