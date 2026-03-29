@@ -1,17 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, sources, ... }:
 let
-  amyOnnx = pkgs.fetchurl {
-    url = "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx";
-    sha256 = "063c43bbs0nb09f86l4avnf9mxah38b1h9ffl3kgpixqaxxy99mk";
-  };
-  amyJson = pkgs.fetchurl {
-    url = "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx.json";
-    sha256 = "0xvxjxk59byydx9gj6rdvvydp5zm8mzsrf9vyy6x6299sjs3x8lm";
-  };
   amyVoice = pkgs.runCommand "piper-voice-en_US-amy-medium" { } ''
     mkdir -p $out
-    cp ${amyOnnx} $out/en_US-amy-medium.onnx
-    cp ${amyJson} $out/en_US-amy-medium.onnx.json
+    cp ${sources."piper-amy-onnx"} $out/en_US-amy-medium.onnx
+    cp ${sources."piper-amy-json"} $out/en_US-amy-medium.onnx.json
   '';
 in
 {

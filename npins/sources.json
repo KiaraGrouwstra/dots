@@ -1,5 +1,17 @@
 {
   "pins": {
+    "piper-amy-onnx": {
+      "type": "PyPi",
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx",
+      "hash": "063c43bbs0nb09f86l4avnf9mxah38b1h9ffl3kgpixqaxxy99mk",
+      "frozen": true
+    },
+    "piper-amy-json": {
+      "type": "PyPi",
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx.json",
+      "hash": "0xvxjxk59byydx9gj6rdvvydp5zm8mzsrf9vyy6x6299sjs3x8lm",
+      "frozen": true
+    },
     "disko": {
       "type": "GitRelease",
       "repository": {
