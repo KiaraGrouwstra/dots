@@ -104,6 +104,7 @@ in
           settings = {
             includeCoAuthoredBy = false;
             voiceEnabled = true;
+            skipDangerousModePermissionPrompt = true;
             # theme = "dark";
             # permissions.defaultMode = "auto";
             permissions.defaultMode = "bypassPermissions";
