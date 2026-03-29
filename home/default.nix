@@ -65,6 +65,7 @@ Reply with ONLY the corrected shell command. No explanation, no markdown, no bac
       _class = "homeManager";
 
       imports = [
+        "${sources.noctalia-shell}/nix/home-module.nix"
         ./dotfiles.nix
         ./firefox.nix
         ./git.nix
@@ -110,6 +111,14 @@ Reply with ONLY the corrected shell command. No explanation, no markdown, no bac
           "application/x-desktop" = [
             "exo-open.desktop"
           ];
+        };
+      };
+      programs.noctalia-shell = {
+        enable = true;
+        package = pkgs.callPackage "${sources.noctalia-shell}/nix/package.nix" { };
+        settings.colorSchemes = {
+          useWallpaperColors = true;
+          darkMode = true;
         };
       };
       programs = {
