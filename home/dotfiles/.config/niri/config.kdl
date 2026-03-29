@@ -163,7 +163,7 @@ layout {
         // (leaf "fixed" 1920)
     }
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.3333333333333333; }
     // If you leave the children empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
