@@ -65,6 +65,7 @@ in
       home.packages = [
         exo-desktop
         magnet-handler
+        pkgs.pywalfox-native
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [
