@@ -104,6 +104,7 @@ in
   time.timeZone = "Europe/Amsterdam";
   fonts.enableDefaultPackages = true;
   hardware.amdgpu.opencl.enable = true;
+  zramSwap.enable = true;
 
   # wheel
   security = {
