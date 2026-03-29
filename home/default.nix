@@ -141,6 +141,10 @@ in
         yazi = {
           enable = true;
           shellWrapperName = "yy";
+          keymap.mgr.prepend_keymap = [
+            { on = "J"; run = "arrow 5";  desc = "Move down 5 files"; }
+            { on = "K"; run = "arrow -5"; desc = "Move up 5 files"; }
+          ];
         };
         chromium.enable = true;
       };
