@@ -196,6 +196,22 @@
       "url": "https://codeberg.org/kiara/pay-respects/archive/cbc93cd3d71f86f1eccc479fe3c86280d5a5df79.tar.gz",
       "hash": "sha256-lA6Q8soK3ugjFXh9maw7lctxKeQgeMjCc+4Tzns5imY="
     },
+    "piper-pim-json": {
+      "type": "PyPi",
+      "name": "piper-pim-json",
+      "version_upper_bound": null,
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/nl/nl_NL/pim/medium/nl_NL-pim-medium.onnx.json",
+      "hash": "sha256-CLWEVsoAz3cSOCaxcSdY+Z1f0Z3ft+x9qOGnFbBH9kI=",
+      "frozen": true
+    },
+    "piper-pim-onnx": {
+      "type": "PyPi",
+      "name": "piper-pim-onnx",
+      "version_upper_bound": null,
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/nl/nl_NL/pim/medium/nl_NL-pim-medium.onnx",
+      "hash": "sha256-QD5Yw2dcOU9QXCQoEXvzTMVulULc9urb3TqEcGwS4Eg=",
+      "frozen": true
+    },
     "piper-amy-json": {
       "type": "PyPi",
       "name": "piper-amy-json",
