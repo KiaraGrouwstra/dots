@@ -28,6 +28,7 @@ in
       in
       with pkgs;
       [
+        antimicrox
         bluetuith
         btop
         exiftool # yazi
