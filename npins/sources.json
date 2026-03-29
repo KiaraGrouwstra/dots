@@ -1,17 +1,5 @@
 {
   "pins": {
-    "piper-amy-onnx": {
-      "type": "PyPi",
-      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx",
-      "hash": "063c43bbs0nb09f86l4avnf9mxah38b1h9ffl3kgpixqaxxy99mk",
-      "frozen": true
-    },
-    "piper-amy-json": {
-      "type": "PyPi",
-      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx.json",
-      "hash": "0xvxjxk59byydx9gj6rdvvydp5zm8mzsrf9vyy6x6299sjs3x8lm",
-      "frozen": true
-    },
     "disko": {
       "type": "GitRelease",
       "repository": {
@@ -26,7 +14,7 @@
       "version": "v1.13.0",
       "revision": "56ef5e72fec74b993ad0973b2dfa4eadeb48ba41",
       "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.13.0",
-      "hash": "03jz60kw0khm1lp72q65z8gq69bfrqqbj08kw0hbiav1qh3g7p08"
+      "hash": "sha256-CNzzBsRhq7gg4BMBuTDObiWDH/rFYHEuDRVOwCcwXw4="
     },
     "flake-compat": {
       "type": "Git",
@@ -40,7 +28,7 @@
       "submodules": false,
       "revision": "549f2762aebeff29a2e5ece7a7dc0f955281a1d1",
       "url": "https://git.lix.systems/lix-project/flake-compat/archive/549f2762aebeff29a2e5ece7a7dc0f955281a1d1.tar.gz",
-      "hash": "0g4izwn5k7qpavlk3w41a92rhnp4plr928vmrhc75041vzm3vb1l"
+      "hash": "sha256-NKw96t+BgHIYzHUjkTK95FqYRVKB8DHpVhefWSz/kTw="
     },
     "home-manager": {
       "type": "Git",
@@ -53,7 +41,7 @@
       "submodules": false,
       "revision": "c6fe2944ad9f2444b2d767c4a5edee7c166e8a95",
       "url": "https://github.com/nix-community/home-manager/archive/c6fe2944ad9f2444b2d767c4a5edee7c166e8a95.tar.gz",
-      "hash": "1wxfjxl3kscnnq147xvi7sfx35ai6hxmdk76vl4la0asiw4rds69"
+      "hash": "sha256-yeiWCY9aAUUJ3ebMVjs0UZXRnT5x90MCtpbpOWiXrvM="
     },
     "nix-bisect": {
       "type": "Git",
@@ -66,7 +54,7 @@
       "submodules": false,
       "revision": "f7bbe42a9f61d19c7f6dcc76fcaa9157849ac501",
       "url": "https://github.com/kiaragrouwstra/nix-bisect/archive/f7bbe42a9f61d19c7f6dcc76fcaa9157849ac501.tar.gz",
-      "hash": "02wmpvbvnz2zgch8phaiy4s1aj1w6kin5l90bh76x9w1gscv0z14"
+      "hash": "sha256-JHywmX6Bp24OXCDRYuM0PEgVNPFRwYsge198u9e+lQs="
     },
     "nix-init": {
       "type": "Git",
@@ -79,7 +67,7 @@
       "submodules": false,
       "revision": "2fc450f60dacc2ae2f18260ea49a2a0cbaeb90b8",
       "url": "https://github.com/nix-community/nix-init/archive/2fc450f60dacc2ae2f18260ea49a2a0cbaeb90b8.tar.gz",
-      "hash": "0c356f6ig54qjglihi03gcadx8a8gxxl3gy4vd6rrgiy7jwkv2ck"
+      "hash": "sha256-k4k9uTw+vpxN28S/QXt/SKHeFHsDRBjpk5iUF40zZTA="
     },
     "nixos-facter-modules": {
       "type": "Git",
@@ -92,7 +80,7 @@
       "submodules": false,
       "revision": "e796d536e3d83de74267069e179dc620a608ed7d",
       "url": "https://github.com/nix-community/nixos-facter-modules/archive/e796d536e3d83de74267069e179dc620a608ed7d.tar.gz",
-      "hash": "1srnmn3mdsqcqcacqs7z0605j3d7ih6lk2gc2v0q1cjgsvinzpsi"
+      "hash": "sha256-Ud9v49ZPsoDBFuyJSQ2Mpw1ZgAH/aMwUwwzrVoetNus="
     },
     "nixpkgs": {
       "type": "Git",
@@ -105,7 +93,7 @@
       "submodules": false,
       "revision": "832efc09b4caf6b4569fbf9dc01bec3082a00611",
       "url": "https://github.com/NixOS/nixpkgs/archive/832efc09b4caf6b4569fbf9dc01bec3082a00611.tar.gz",
-      "hash": "1sxhlp1khk9ifh24lcg5qland4pg056l5jhyfw8xq3qmpavf390x"
+      "hash": "sha256-HaThtroVD9wRdx7KQk0B75JmFcXlMUoEdDFNOMOlsOs="
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
@@ -118,7 +106,7 @@
       "submodules": false,
       "revision": "6b2e15049744411ddf6a0682d92fcf6971a69dea",
       "url": "https://github.com/symphorien/nixpkgs-staging-bisecter/archive/6b2e15049744411ddf6a0682d92fcf6971a69dea.tar.gz",
-      "hash": "09iimgwb1ss2zbpmldb6rfjchyb4zkga4bvg83jcp1ix4hqk1b38"
+      "hash": "sha256-aKwwMSQ9hsvkQG8vot78ZHnIpMtmNVrv+kLrsPirMSY="
     },
     "nixpkgs-unstable": {
       "type": "Git",
@@ -131,7 +119,7 @@
       "submodules": false,
       "revision": "fef9403a3e4d31b0a23f0bacebbec52c248fbb51",
       "url": "https://github.com/NixOS/nixpkgs/archive/fef9403a3e4d31b0a23f0bacebbec52c248fbb51.tar.gz",
-      "hash": "1fzknmnvbfj8bxkw7bqcyjvxy3v2vz11vkp3r8nwihmrf6wnlpd4"
+      "hash": "sha256-pF1quXG5wsgtyuPOHcLfYg/ft/QMr8NnX0i6tW2187s="
     },
     "noctalia-shell": {
       "type": "GitRelease",
@@ -147,7 +135,23 @@
       "version": "v4.4.0",
       "revision": "55e9b3735d78aef8fdab49d3d3d7d31d81628b49",
       "url": "https://api.github.com/repos/noctalia-dev/noctalia-shell/tarball/v4.4.0",
-      "hash": "0p0gp8sqmv4xd696nrhbiln61wkgiyzyz7kjbqx6fs9kqc3i0wyf"
+      "hash": "sha256-znMQB8MzaWc6XnKe77+Pb/JgLI0LZmuSaZ3sijW6D1w="
+    },
+    "piper-amy-json": {
+      "type": "PyPi",
+      "name": "piper-amy-json",
+      "version_upper_bound": null,
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx.json",
+      "hash": "sha256-laI+tNQpCdON9zu5rH9F9Zfb/N4tG/lSb96vVGaXfXc=",
+      "frozen": true
+    },
+    "piper-amy-onnx": {
+      "type": "PyPi",
+      "name": "piper-amy-onnx",
+      "version_upper_bound": null,
+      "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx",
+      "hash": "sha256-s6bke1e4x/vmoM4lGBYaUPWanN2KUINcAssCvdYgbBg=",
+      "frozen": true
     },
     "vars": {
       "type": "Git",
@@ -160,8 +164,8 @@
       "submodules": false,
       "revision": "8d60447161d0a19f3f9010f424fae9097349e954",
       "url": "https://github.com/kiaragrouwstra/vars/archive/8d60447161d0a19f3f9010f424fae9097349e954.tar.gz",
-      "hash": "02b1pvq4l1nys82pw9ifjbqy6yvrhlw3vgvisv8yx4rv0lvdka0r"
+      "hash": "sha256-GajZNgU7k+7R1nG/PTiFeXvj8ZIuJn4F0t4GSvC+YQk="
     }
   },
-  "version": 5
+  "version": 7
 }

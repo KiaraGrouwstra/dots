@@ -6,7 +6,7 @@
 }:
 let
   user = "kiara";
-  sources = import ../npins;
+  sources = (import ../npins) {};
   inherit (pkgs) system;
   NIX_PATH =
     let
