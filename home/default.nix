@@ -49,6 +49,7 @@ in
 
       imports = [
         ./dotfiles.nix
+        ./firefox.nix
         ./git.nix
         ./helix.nix
         ./lazygit.nix
@@ -124,16 +125,6 @@ in
                 ];
               }
             ];
-          };
-        };
-        firefox = {
-          enable = true;
-          nativeMessagingHosts = [ pkgs.keepassxc ];
-          profiles.default = {
-            settings = {
-              "media.webspeech.synth.enabled" = true;
-              "narrate.voice" = "automatic";
-            };
           };
         };
         oh-my-posh = {
