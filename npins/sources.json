@@ -39,9 +39,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "cbd8a72e5fe6af19d40e2741dc440d9227836860",
-      "url": "https://github.com/nix-community/home-manager/archive/cbd8a72e5fe6af19d40e2741dc440d9227836860.tar.gz",
-      "hash": "17pbn4vqxbjzqjc0lmfwvhyhdcazvlc3wb684746ka2x5jzb9gzi"
+      "revision": "c6fe2944ad9f2444b2d767c4a5edee7c166e8a95",
+      "url": "https://github.com/nix-community/home-manager/archive/c6fe2944ad9f2444b2d767c4a5edee7c166e8a95.tar.gz",
+      "hash": "1wxfjxl3kscnnq147xvi7sfx35ai6hxmdk76vl4la0asiw4rds69"
     },
     "nix-bisect": {
       "type": "Git",
@@ -91,9 +91,9 @@
       },
       "branch": "nixpkgs-unstable",
       "submodules": false,
-      "revision": "23258e03aaa49b3a68597e3e50eb0cbce7e42e9d",
-      "url": "https://github.com/NixOS/nixpkgs/archive/23258e03aaa49b3a68597e3e50eb0cbce7e42e9d.tar.gz",
-      "hash": "0pig1bihnb6ldwyyrwggby615pvi5s86gpdnnsdbx5wa471743lw"
+      "revision": "832efc09b4caf6b4569fbf9dc01bec3082a00611",
+      "url": "https://github.com/NixOS/nixpkgs/archive/832efc09b4caf6b4569fbf9dc01bec3082a00611.tar.gz",
+      "hash": "1sxhlp1khk9ifh24lcg5qland4pg056l5jhyfw8xq3qmpavf390x"
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
