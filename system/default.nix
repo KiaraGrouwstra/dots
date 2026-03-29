@@ -24,6 +24,7 @@ let
 in
 {
   imports = with sources; [
+    "${lanzaboote}/nix/modules/lanzaboote.nix"
     "${nixos-facter-modules}/modules/nixos/facter.nix"
     "${home-manager}/nixos"
     "${vars}/options.nix"
@@ -39,6 +40,7 @@ in
     ./niri
     ./tts.nix
     ./nitrokey.nix
+    ./secure-boot.nix
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];

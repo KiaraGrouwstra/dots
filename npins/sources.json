@@ -1,5 +1,21 @@
 {
   "pins": {
+    "crane": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ipetkov",
+        "repo": "crane"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.23.2",
+      "revision": "d01ed44f4c494d2e65a30c78249e00a4e2139619",
+      "url": "https://api.github.com/repos/ipetkov/crane/tarball/refs/tags/v0.23.2",
+      "hash": "sha256-BEp040fMklOW2+ttpNUKivlE0hzpv0AAP+0kG47uVCk="
+    },
     "disko": {
       "type": "GitRelease",
       "repository": {
@@ -39,9 +55,25 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "c6fe2944ad9f2444b2d767c4a5edee7c166e8a95",
-      "url": "https://github.com/nix-community/home-manager/archive/c6fe2944ad9f2444b2d767c4a5edee7c166e8a95.tar.gz",
-      "hash": "sha256-yeiWCY9aAUUJ3ebMVjs0UZXRnT5x90MCtpbpOWiXrvM="
+      "revision": "769e07ef8f4cf7b1ec3b96ef015abec9bc6b1e2a",
+      "url": "https://github.com/nix-community/home-manager/archive/769e07ef8f4cf7b1ec3b96ef015abec9bc6b1e2a.tar.gz",
+      "hash": "sha256-2jfBEZUC67IlnxO5KItFCAd7Oc+1TvyV/jQlR+2ykGQ="
+    },
+    "lanzaboote": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "lanzaboote"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.0.0",
+      "revision": "2fe211d9c0e2320ce23dc995a3f93666ca149d9a",
+      "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/refs/tags/v1.0.0",
+      "hash": "sha256-RJmgVDzjRI18BWVogG6wpsl1UCuV6ui8qr4DJ1LfWZ8="
     },
     "nirimation": {
       "type": "Git",
@@ -179,6 +211,19 @@
       "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/amy/medium/en_US-amy-medium.onnx",
       "hash": "sha256-s6bke1e4x/vmoM4lGBYaUPWanN2KUINcAssCvdYgbBg=",
       "frozen": true
+    },
+    "rust-overlay": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "oxalica",
+        "repo": "rust-overlay"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "405b9b4c2c6c5a2b1d390524ce8a240729f34a96",
+      "url": "https://github.com/oxalica/rust-overlay/archive/405b9b4c2c6c5a2b1d390524ce8a240729f34a96.tar.gz",
+      "hash": "sha256-HpT5fE8JQSbAxolUnw3VgGAo3urVjcrgtB2rtoxURVw="
     },
     "sharkler-dots": {
       "type": "Git",
