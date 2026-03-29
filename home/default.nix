@@ -1,11 +1,18 @@
 {
   config,
   pkgs,
+  sources,
   user,
   ...
 }:
 let
   sysConfig = config;
+  pay-respects-fork = pkgs.rustPlatform.buildRustPackage {
+    pname = "pay-respects";
+    version = "0.7.12-instant-mode";
+    src = sources."pay-respects";
+    cargoLock.lockFile = "${sources."pay-respects"}/Cargo.lock";
+  };
 in
 {
   _class = "nixos";
@@ -117,6 +124,7 @@ in
         pay-respects = {
           enable = true;
           enableNushellIntegration = true;
+          package = pay-respects-fork;
         };
         yazi.enable = true;
         chromium.enable = true;

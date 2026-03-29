@@ -150,6 +150,20 @@
       "url": "https://api.github.com/repos/noctalia-dev/noctalia-shell/tarball/v4.4.0",
       "hash": "sha256-znMQB8MzaWc6XnKe77+Pb/JgLI0LZmuSaZ3sijW6D1w="
     },
+    "pay-respects": {
+      "type": "Git",
+      "repository": {
+        "type": "Forgejo",
+        "server": "https://codeberg.org/",
+        "owner": "kiara",
+        "repo": "pay-respects"
+      },
+      "branch": "instant-mode",
+      "submodules": false,
+      "revision": "cbc93cd3d71f86f1eccc479fe3c86280d5a5df79",
+      "url": "https://codeberg.org/kiara/pay-respects/archive/cbc93cd3d71f86f1eccc479fe3c86280d5a5df79.tar.gz",
+      "hash": "sha256-lA6Q8soK3ugjFXh9maw7lctxKeQgeMjCc+4Tzns5imY="
+    },
     "piper-amy-json": {
       "type": "PyPi",
       "name": "piper-amy-json",
