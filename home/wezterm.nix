@@ -40,7 +40,7 @@
              font_size = 10.0,
              -- color_scheme_dirs = {"/home/kiara/.config/wezterm"},
              -- color_scheme = "theme",
-             color_scheme = 'Noctalia',
+             color_scheme = 'Earthsong',
              scrollback_lines = 50000,
              keys = {
                  {
