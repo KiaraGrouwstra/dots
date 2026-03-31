@@ -77,6 +77,7 @@ Reply with ONLY the corrected shell command. No explanation, no markdown, no bac
         ./wezterm.nix
         ./ghostty.nix
         ./notifications.nix
+        ./clipboard.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [
