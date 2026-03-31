@@ -77,6 +77,7 @@ in
         ./wezterm.nix
         ./ghostty.nix
         ./notifications.nix
+        ./clipboard.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [
