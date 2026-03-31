@@ -47,17 +47,17 @@ in
       respects-claude = pkgs.writeShellApplication {
         name = "_pay-respects-fallback-100-claude";
         text = ''
-          last_command="''${_PR_LAST_COMMAND:-}"
-          error_msg="''${_PR_ERROR_MSG:-}"
-          [ -z "$last_command" ] && exit 0
-          suggestion=$(claude -p "The following shell command failed.
-Command: $last_command
-Error: $error_msg
+                    last_command="''${_PR_LAST_COMMAND:-}"
+                    error_msg="''${_PR_ERROR_MSG:-}"
+                    [ -z "$last_command" ] && exit 0
+                    suggestion=$(claude -p "The following shell command failed.
+          Command: $last_command
+          Error: $error_msg
 
-Reply with ONLY the corrected shell command. No explanation, no markdown, no backticks." 2>/dev/null)
-          if [ -n "$suggestion" ]; then
-            printf '%s\n<_PR_BR>\n' "$suggestion"
-          fi
+          Reply with ONLY the corrected shell command. No explanation, no markdown, no backticks." 2>/dev/null)
+                    if [ -n "$suggestion" ]; then
+                      printf '%s\n<_PR_BR>\n' "$suggestion"
+                    fi
         '';
       };
     in
