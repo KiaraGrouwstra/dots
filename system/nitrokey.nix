@@ -26,7 +26,10 @@
   #   pamu2fcfg -n >> ~/.config/Yubico/u2f_keys      # device 2 — appends on same line
   security.pam.u2f = {
     enable = true;
-    settings.cue = true; # shows "Please touch your security key" prompt
+    settings = {
+      cue = true; # shows "Please touch your security key" prompt
+      timeout = 15; # fall through to password after 15s if key not tapped
+    };
   };
 
   environment.systemPackages = [
