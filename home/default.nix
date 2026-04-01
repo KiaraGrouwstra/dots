@@ -78,6 +78,7 @@ in
         ./ghostty.nix
         ./notifications.nix
         ./clipboard.nix
+        ./dictation.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [

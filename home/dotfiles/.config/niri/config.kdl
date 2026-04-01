@@ -526,6 +526,9 @@ binds {
     // Mod+Space { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
+    Pause { spawn "dictate" "en"; }
+    Shift+Pause { spawn "dictate" "nl"; }
+
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
