@@ -4,7 +4,17 @@ let
 
   modelNl = sources."whisper-medium-q5";
 
+  modelVoxtral = sources."voxtral-mini-q4km";
+
+  modelVoxtralMmproj = sources."voxtral-mini-mmproj";
+
   whisper-cpp-rocm = pkgs.whisper-cpp.override {
+    rocmSupport = true;
+    rocmPackages = pkgs.rocmPackages;
+    rocmGpuTargets = "gfx90c";
+  };
+
+  llama-cpp-rocm = pkgs.llama-cpp.override {
     rocmSupport = true;
     rocmPackages = pkgs.rocmPackages;
     rocmGpuTargets = "gfx90c";
@@ -14,6 +24,7 @@ let
     name = "dictate";
     runtimeInputs = with pkgs; [
       whisper-cpp-rocm
+      llama-cpp-rocm
       wtype
       alsa-utils
       (pkgs.callPackage ./media-play-pause.nix { })
@@ -41,18 +52,29 @@ let
         flock -u 9
         sleep 0.2
         notify-send "dictate" "Transcribing…" -t 4000
-        # shellcheck disable=SC2086
-        whisper-cli \
-          -m "$MODEL" \
-          -otxt \
-          -of /tmp/dictate \
-          -nt \
-          $LANG_FLAG \
-          "$WAVFILE" 2>/dev/null
-        if [ -f /tmp/dictate.txt ]; then
-          text=$(grep -v '^\[' /tmp/dictate.txt | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
-          [ -n "$text" ] && wtype "$text"
-          rm /tmp/dictate.txt
+        if [ "$DICTATE_LANG" = "nl" ]; then
+          text=$(llama-mtmd-cli \
+            -m "${modelVoxtral}" \
+            --mmproj "${modelVoxtralMmproj}" \
+            --audio "$WAVFILE" \
+            -p "Transcribe this audio verbatim. Output only the transcription, nothing else." \
+            --temp 0 \
+            2>/dev/null | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+            [ -n "$text" ] && wtype "$text"
+        else
+          # shellcheck disable=SC2086
+          whisper-cli \
+            -m "$MODEL" \
+            -otxt \
+            -of /tmp/dictate \
+            -nt \
+            $LANG_FLAG \
+            "$WAVFILE" 2>/dev/null
+          if [ -f /tmp/dictate.txt ]; then
+            text=$(grep -v '^\[' /tmp/dictate.txt | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+            [ -n "$text" ] && wtype "$text"
+            rm /tmp/dictate.txt
+          fi
         fi
         rm -f "$WAVFILE"
         media-play-pause play
