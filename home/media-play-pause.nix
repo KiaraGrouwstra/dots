@@ -53,21 +53,35 @@ pkgs.writeShellApplication {
 
     if [ "$MODE" = "pause" ]; then
       # Pause whichever player is currently playing (local first, then KDE Connect).
+      paused_player=""
       while IFS= read -r p; do
         case "$p" in kdeconnect.*) continue ;; esac
         is_avrcp "$p" && continue
         if [ "$(playerctl -p "$p" status 2>/dev/null)" = "Playing" ]; then
           control "$p"
-          exit 0
+          paused_player="$p"
+          break
         fi
       done <<< "$all_players"
-      while IFS= read -r p; do
-        case "$p" in kdeconnect.*) ;; *) continue ;; esac
-        if [ "$(playerctl -p "$p" status 2>/dev/null)" = "Playing" ]; then
-          control "$p"
-          exit 0
-        fi
-      done <<< "$all_players"
+      if [ -z "$paused_player" ]; then
+        while IFS= read -r p; do
+          case "$p" in kdeconnect.*) ;; *) continue ;; esac
+          if [ "$(playerctl -p "$p" status 2>/dev/null)" = "Playing" ]; then
+            control "$p"
+            paused_player="$p"
+            break
+          fi
+        done <<< "$all_players"
+      fi
+      # Wait until the player reports it is no longer Playing (timeout 3s).
+      if [ -n "$paused_player" ]; then
+        i=0
+        while [ $i -lt 10 ]; do
+          [ "$(playerctl -p "$paused_player" status 2>/dev/null)" != "Playing" ] && break
+          sleep 0.3
+          i=$((i + 1))
+        done
+      fi
       exit 0
     fi
 
