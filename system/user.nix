@@ -52,6 +52,7 @@ in
         nixfmt
         npins
         playerctl
+        python3
         ripgrep
         unstable.signal-desktop-bin
         swaynotificationcenter
