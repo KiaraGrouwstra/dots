@@ -25,7 +25,7 @@
             let elapsed = $env.CMD_DURATION_MS | into int | into duration -u ms
             if $elapsed >= 5sec {
               let body = $"Task completed in ($elapsed)"
-              notify -s "Task Finished" -t $body
+              notify-send "Task Finished" $body
             }
           }]
         '';
