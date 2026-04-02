@@ -22,8 +22,15 @@
           $env.config.buffer_editor = "hx"
           $env.config.hooks.command_not_found = source ${./command-not-found.nu}
           $env.config.hooks.pre_prompt = [{||
-            let elapsed = $env.CMD_DURATION_MS | into int | into duration -u ms
-            if $elapsed >= 5sec {
+            let ms = ($env.CMD_DURATION_MS | into int)
+            if ($ms | into duration -u ms) >= 5sec {
+              let elapsed = if $ms >= 60000 {
+                  $"($ms / 60000 | math floor)min"
+              } else if $ms >= 1000 {
+                  $"($ms / 1000 | math floor)sec"
+              } else {
+                  $"($ms)ms"
+              }
               let body = $"Task completed in ($elapsed)"
               notify-send "Task Finished" $body
             }
