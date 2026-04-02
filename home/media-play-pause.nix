@@ -10,7 +10,7 @@ pkgs.writeShellApplication {
     MODE="''${1:-play-pause}"
 
     # Returns 0 if the player is an AVRCP Bluetooth player proxied by
-    # mpris-proxy (unreliable for play/pause), 1 otherwise.
+    # mpris-proxy, 1 otherwise.
     is_avrcp() {
       local unique pid comm
       unique=$(dbus-send --session --print-reply \
@@ -52,7 +52,7 @@ pkgs.writeShellApplication {
     fi
 
     if [ "$MODE" = "pause" ]; then
-      # Pause whichever player is currently playing (local first, then KDE Connect).
+      # Pause whichever player is currently playing (local first, then KDE Connect / AVRCP).
       paused_player=""
       while IFS= read -r p; do
         case "$p" in kdeconnect.*) continue ;; esac
@@ -65,7 +65,7 @@ pkgs.writeShellApplication {
       done <<< "$all_players"
       if [ -z "$paused_player" ]; then
         while IFS= read -r p; do
-          case "$p" in kdeconnect.*) ;; *) continue ;; esac
+          case "$p" in kdeconnect.*) ;; *) is_avrcp "$p" || continue ;; esac
           if [ "$(playerctl -p "$p" status 2>/dev/null)" = "Playing" ]; then
             control "$p"
             paused_player="$p"
@@ -97,9 +97,9 @@ pkgs.writeShellApplication {
       fi
     done <<< "$all_players"
 
-    # Phase 2: KDE Connect player that is Playing
+    # Phase 2: KDE Connect or AVRCP player that is Playing
     while IFS= read -r p; do
-      case "$p" in kdeconnect.*) ;; *) continue ;; esac
+      case "$p" in kdeconnect.*) ;; *) is_avrcp "$p" || continue ;; esac
       if [ "$(playerctl -p "$p" status 2>/dev/null)" = "Playing" ]; then
         control "$p"
         exit 0
@@ -127,9 +127,9 @@ pkgs.writeShellApplication {
       fi
     done <<< "$all_players"
 
-    # Phase 5: any KDE Connect player that is Paused
+    # Phase 5: any KDE Connect or AVRCP player that is Paused
     while IFS= read -r p; do
-      case "$p" in kdeconnect.*) ;; *) continue ;; esac
+      case "$p" in kdeconnect.*) ;; *) is_avrcp "$p" || continue ;; esac
       if [ "$(playerctl -p "$p" status 2>/dev/null)" = "Paused" ]; then
         control "$p"
         exit 0
