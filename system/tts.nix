@@ -14,7 +14,7 @@ in
     config = ''
       LogLevel  3
       LogDir  "default"
-      DefaultVolume 100
+      DefaultVolume 50
       SymbolsPreproc "char"
       SymbolsPreprocFile "gender-neutral.dic"
       SymbolsPreprocFile "font-variants.dic"
@@ -28,9 +28,10 @@ in
     '';
     modules.piper-generic = ''
       GenericExecuteSynth \
-      "printf %s \'$DATA\' | ${pkgs.piper-tts}/bin/piper --model ${voicesDir}/$VOICE.onnx --output-raw | ${pkgs.alsa-utils}/bin/aplay -r 22050 -f S16_LE -c 1 -t raw - 2>/dev/null"
+      "printf %s \'$DATA\' | ${pkgs.piper-tts}/bin/piper --model ${voicesDir}/$VOICE.onnx --output-raw | ${pkgs.pipewire}/bin/pw-play --raw --volume 0.3 --rate 22050 --format s16 --channels 1 -"
 
       GenericCmdDependency "${pkgs.piper-tts}/bin/piper"
+      GenericCmdDependency "${pkgs.pipewire}/bin/pw-play"
       GenericSoundIconFolder "/usr/share/sounds/sound-icons/"
 
       GenericPunctNone ""

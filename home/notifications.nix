@@ -30,9 +30,9 @@ let
 
     if [ -z "$NOTIFY_NO_TTS" ]; then
       if [ -n "$body" ]; then
-        ${pkgs.speechd}/bin/spd-say "$summary: $body" &
+        ${pkgs.speechd}/bin/spd-say -i -30 "$summary: $body" &
       elif [ -n "$summary" ]; then
-        ${pkgs.speechd}/bin/spd-say "$summary" &
+        ${pkgs.speechd}/bin/spd-say -i -30 "$summary" &
       fi
     fi
 
