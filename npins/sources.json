@@ -1,14 +1,5 @@
 {
   "pins": {
-    "whisper-base": {
-      "type": "PyPi",
-      "name": "whisper-base",
-      "version_upper_bound": null,
-      "version": "1.8.3",
-      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.bin",
-      "hash": "sha256-YO1bw90U7qhWST0zQ0m0BXgt3K8AKNS130CINF+6Lv4=",
-      "frozen": true
-    },
     "crane": {
       "type": "GitRelease",
       "repository": {
@@ -276,6 +267,24 @@
       "revision": "8d60447161d0a19f3f9010f424fae9097349e954",
       "url": "https://github.com/kiaragrouwstra/vars/archive/8d60447161d0a19f3f9010f424fae9097349e954.tar.gz",
       "hash": "sha256-GajZNgU7k+7R1nG/PTiFeXvj8ZIuJn4F0t4GSvC+YQk="
+    },
+    "whisper-base-en": {
+      "type": "PyPi",
+      "name": "whisper-base-en",
+      "version_upper_bound": null,
+      "version": "1.0.0",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin",
+      "hash": "sha256-oDd5yG3zMjB19eeWyyzlAp8A7Ihp7uP9+4l6/jbG0AI=",
+      "frozen": true
+    },
+    "whisper-medium-q5": {
+      "type": "PyPi",
+      "name": "whisper-medium-q5",
+      "version_upper_bound": null,
+      "version": "1.0.0",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-medium-q5_0.bin",
+      "hash": "sha256-Gf6ks4DDphjsRyPD7vLreF/7oNBTjPQ/jyNeezs0Ig8=",
+      "frozen": true
     }
   },
   "version": 7
