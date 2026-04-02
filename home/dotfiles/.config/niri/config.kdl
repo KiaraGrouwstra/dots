@@ -361,6 +361,7 @@ binds {
     Mod+W { spawn "firefox --new-window about:newtab"; }
     Mod+Shift+W { spawn "tor-browser --new-window about:newtab"; }
     Mod+T { spawn "wezterm"; }
+    Mod+Return { spawn "wezterm"; }
     Mod+E { spawn "thunar"; }
     Mod+Space { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Mod+Escape { spawn-sh "noctalia-shell ipc call notifications dismissAll"; }
@@ -399,6 +400,7 @@ binds {
     Mod+Ctrl+Shift+Alt+Space { spawn-sh "noctalia-shell ipc call launcher emoji"; }
     Mod+O { toggle-overview; }
     Mod+Q { close-window; }
+    Mod+Backspace { close-window; }
     Mod+Left { focus-column-left-or-last; }
     Mod+Down { focus-window-or-workspace-down; }
     Mod+Up { focus-window-or-workspace-up; }
@@ -528,6 +530,7 @@ binds {
 
     Pause { spawn "dictate" "en"; }
     Shift+Pause { spawn "dictate" "nl"; }
+    Mod+Pause { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
