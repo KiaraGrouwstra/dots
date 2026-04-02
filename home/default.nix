@@ -44,6 +44,7 @@ in
         mimeTypes = [ "x-scheme-handler/magnet" ];
         exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.transmission_4}/bin/transmission-cli %u";
       };
+      media-play-pause = pkgs.callPackage ./media-play-pause.nix { };
       respects-claude = pkgs.writeShellApplication {
         name = "_pay-respects-fallback-100-claude";
         text = ''
@@ -79,6 +80,7 @@ in
         ./notifications.nix
         ./clipboard.nix
         ./dictation.nix
+        ./mpris-proxy.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [
@@ -86,6 +88,7 @@ in
         magnet-handler
         pkgs.pywalfox-native
         respects-claude
+        media-play-pause
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [

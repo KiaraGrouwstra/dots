@@ -380,7 +380,7 @@ binds {
     XF86AudioRaiseVolume { spawn-sh "noctalia-shell ipc call volume increase"; }
     XF86AudioLowerVolume { spawn-sh "noctalia-shell ipc call volume decrease"; }
     XF86AudioMute { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
-    XF86AudioPlay { spawn-sh "noctalia-shell ipc call media playPause"; }
+    XF86AudioPlay { spawn "media-play-pause"; }
     XF86AudioStop { spawn-sh "noctalia-shell ipc call media pause"; }
     XF86AudioPrev { spawn-sh "noctalia-shell ipc call media previous"; }
     XF86AudioNext { spawn-sh "noctalia-shell ipc call media next"; }

@@ -51,6 +51,7 @@ in
         nps
         nixfmt
         npins
+        playerctl
         ripgrep
         unstable.signal-desktop-bin
         swaynotificationcenter
