@@ -14,17 +14,11 @@ let
     rocmGpuTargets = "gfx90c";
   };
 
-  llama-cpp-rocm = pkgs.llama-cpp.override {
-    rocmSupport = true;
-    rocmPackages = pkgs.rocmPackages;
-    rocmGpuTargets = [ "gfx90c" ];
-  };
-
   dictate = pkgs.writeShellApplication {
     name = "dictate";
     runtimeInputs = with pkgs; [
       whisper-cpp-rocm
-      llama-cpp-rocm
+      llama-cpp
       wtype
       alsa-utils
       (pkgs.callPackage ./media-play-pause.nix { })
@@ -59,7 +53,6 @@ let
             --audio "$WAVFILE" \
             -p "Transcribe this audio verbatim. Output only the transcription, nothing else." \
             --temp 0 \
-            -ngl 99 \
             2>/dev/null | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
             [ -n "$text" ] && wtype "$text"
         else
