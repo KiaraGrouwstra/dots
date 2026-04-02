@@ -17,7 +17,7 @@ let
   llama-cpp-rocm = pkgs.llama-cpp.override {
     rocmSupport = true;
     rocmPackages = pkgs.rocmPackages;
-    rocmGpuTargets = "gfx90c";
+    rocmGpuTargets = [ "gfx90c" ];
   };
 
   dictate = pkgs.writeShellApplication {
@@ -59,6 +59,7 @@ let
             --audio "$WAVFILE" \
             -p "Transcribe this audio verbatim. Output only the transcription, nothing else." \
             --temp 0 \
+            -ngl 99 \
             2>/dev/null | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
             [ -n "$text" ] && wtype "$text"
         else

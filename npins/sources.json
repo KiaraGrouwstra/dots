@@ -255,6 +255,24 @@
       "hash": "sha256-w/ccGk5XvsQMMQgCgOsCfY6AXleKlR1yJkjZ0zB78gs=",
       "frozen": true
     },
+    "voxtral-mini-mmproj": {
+      "type": "PyPi",
+      "name": "voxtral-mini-mmproj",
+      "version_upper_bound": null,
+      "version": "1.0.0",
+      "url": "https://huggingface.co/ggml-org/Voxtral-Mini-3B-2507-GGUF/resolve/main/mmproj-Voxtral-Mini-3B-2507-Q8_0.gguf",
+      "hash": "sha256-TyTE7zzpKdAu2dHPsFCumnNl8FfA3ewNSJWAmC6+DQI=",
+      "frozen": true
+    },
+    "voxtral-mini-q4km": {
+      "type": "PyPi",
+      "name": "voxtral-mini-q4km",
+      "version_upper_bound": null,
+      "version": "1.0.0",
+      "url": "https://huggingface.co/ggml-org/Voxtral-Mini-3B-2507-GGUF/resolve/main/Voxtral-Mini-3B-2507-Q4_K_M.gguf",
+      "hash": "sha256-RwW+jsIsoj0SYy9LSjaR+qlZF9kKBtPPPD7A6RlY8ag=",
+      "frozen": true
+    },
     "vars": {
       "type": "Git",
       "repository": {
