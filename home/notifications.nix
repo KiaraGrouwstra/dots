@@ -28,10 +28,12 @@ let
       esac
     done
 
-    if [ -n "$body" ]; then
-      ${pkgs.speechd}/bin/spd-say "$summary: $body" &
-    elif [ -n "$summary" ]; then
-      ${pkgs.speechd}/bin/spd-say "$summary" &
+    if [ -z "$NOTIFY_NO_TTS" ]; then
+      if [ -n "$body" ]; then
+        ${pkgs.speechd}/bin/spd-say "$summary: $body" &
+      elif [ -n "$summary" ]; then
+        ${pkgs.speechd}/bin/spd-say "$summary" &
+      fi
     fi
 
     exec ${pkgs.libnotify}/bin/notify-send "$@"

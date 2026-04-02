@@ -36,9 +36,10 @@ let
         fi
         rm -f "$WAVFILE"
       else
-        # Use real notify-send (not the TTS wrapper) so the announcement
-        # isn't picked up by the microphone recording that follows.
-        ${pkgs.libnotify}/bin/notify-send "dictate" "Listening…" -t 60000
+        # No live recording — clean up any stale state from a previous crash.
+        rm -f "$PIDFILE" "$WAVFILE"
+        NOTIFY_NO_TTS=1 notify-send "dictate" "Listening…" -t 60000
+        media-play-pause pause
         sleep 1
         arecord -f S16_LE -r 16000 -c 1 -t wav "$WAVFILE" &
         echo $! > "$PIDFILE"
