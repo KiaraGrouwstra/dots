@@ -68,6 +68,8 @@ in
       settings = {
         "media.webspeech.synth.enabled" = true;
         "narrate.voice" = "automatic";
+        # Use dark theme for native UI (context menus, dropdowns, etc.)
+        "ui.systemUsesDarkTheme" = 1;
       };
     };
   };
