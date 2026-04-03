@@ -140,6 +140,15 @@ in
         };
       };
       programs = {
+        atool = {
+          enable = true;
+          settings = {
+            path_unrar = "unrar-free";
+          };
+          extraPackages = with pkgs; [
+            bzip2 cpio gnutar gzip lhasa lzop p7zip unrar-free unzip xz zip
+          ];
+        };
         bat = {
           enable = true;
           config = {
