@@ -37,6 +37,32 @@ in
           exec = command;
         }
       );
+      aunpack-desktop =
+        let
+          mimeTypes = [
+            "application/gzip"
+            "application/x-7z-compressed"
+            "application/x-bzip2"
+            "application/x-compressed-tar"
+            "application/x-cpio"
+            "application/x-gtar"
+            "application/x-lha"
+            "application/x-lzop"
+            "application/x-tar"
+            "application/x-xz-compressed-tar"
+            "application/zip"
+            "application/x-rar"
+          ];
+        in
+        pkgs.makeDesktopItem {
+          type = "Application";
+          name = "aunpack";
+          desktopName = "Aunpack";
+          inherit mimeTypes;
+          exec = "${config.programs.atool.finalPackage}/bin/atool -x %f";
+          terminal = true;
+          noDisplay = true;
+        };
       magnet-handler = pkgs.makeDesktopItem {
         type = "Application";
         name = "magnet-handler";
@@ -84,6 +110,7 @@ in
       ];
       home.stateVersion = "24.11";
       home.packages = [
+        aunpack-desktop
         exo-desktop
         magnet-handler
         pkgs.pywalfox-native
@@ -113,9 +140,19 @@ in
         ];
         defaultApplications = {
           "x-scheme-handler/magnet" = [ "magnet-handler.desktop" ];
-          "application/x-desktop" = [
-            "exo-open.desktop"
-          ];
+          "application/x-desktop" = [ "exo-open.desktop" ];
+          "application/gzip" = [ "aunpack.desktop" ];
+          "application/x-7z-compressed" = [ "aunpack.desktop" ];
+          "application/x-bzip2" = [ "aunpack.desktop" ];
+          "application/x-compressed-tar" = [ "aunpack.desktop" ];
+          "application/x-cpio" = [ "aunpack.desktop" ];
+          "application/x-gtar" = [ "aunpack.desktop" ];
+          "application/x-lha" = [ "aunpack.desktop" ];
+          "application/x-lzop" = [ "aunpack.desktop" ];
+          "application/x-tar" = [ "aunpack.desktop" ];
+          "application/x-xz-compressed-tar" = [ "aunpack.desktop" ];
+          "application/zip" = [ "aunpack.desktop" ];
+          "application/x-rar" = [ "aunpack.desktop" ];
         };
       };
       programs.noctalia-shell = {
