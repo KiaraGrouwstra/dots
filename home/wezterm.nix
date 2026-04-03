@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   _class = "homeManager";
 
@@ -9,7 +10,7 @@
       PartOf = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${config.programs.wezterm.package}/bin/wezterm-mux-server";
+      ExecStart = "${pkgs.wezterm}/bin/wezterm-mux-server";
       Restart = "on-failure";
       RestartSec = "2s";
     };
