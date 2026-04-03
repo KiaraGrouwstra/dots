@@ -121,9 +121,22 @@ in
       programs.noctalia-shell = {
         enable = true;
         package = pkgs.callPackage "${sources.noctalia-shell}/nix/package.nix" { };
-        settings.colorSchemes = {
-          useWallpaperColors = true;
-          darkMode = true;
+        settings = {
+          colorSchemes = {
+            useWallpaperColors = true;
+            darkMode = true;
+          };
+          templates.activeTemplates = map (id: { inherit id; enabled = true; }) [
+            "cava"
+            "gtk"
+            "ghostty"
+            "helix"
+            "pywalfox"
+            "qt"
+            "niri"
+            "wezterm"
+            "yazi"
+          ];
         };
       };
       programs = {

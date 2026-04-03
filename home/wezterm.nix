@@ -24,7 +24,7 @@
       # lua
       ''
          local act = wezterm.action
-         wezterm.add_to_config_reload_watch_list("/home/kiara/.config/wezterm/theme.toml");
+         wezterm.add_to_config_reload_watch_list("/home/kiara/.config/wezterm/colors/Noctalia.toml");
 
         -- https://github.com/wez/wezterm/issues/6446#issuecomment-2568005371
          local function action_unless_fullscreen(action, key_or_key_spec)
