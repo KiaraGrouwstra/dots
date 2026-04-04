@@ -104,7 +104,6 @@ in
         ./wezterm.nix
         ./ghostty.nix
         ./notifications.nix
-        ./clipboard.nix
         ./dictation.nix
         ./mpris-proxy.nix
       ];
