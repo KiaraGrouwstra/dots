@@ -113,7 +113,7 @@ _: {
         "edit" = "";
         "editAtLine" = "";
         "editAtLineAndWait" = "";
-        "open" = "xdg-open {{filename}} >/dev/null";
+        "open" = "xdg-open {{filename}} out> /dev/null err> /dev/null"; # nushell
         "openLink" = "";
       };
       "refresher" = {
