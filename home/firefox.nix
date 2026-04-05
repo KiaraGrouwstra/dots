@@ -18,13 +18,25 @@ let
             )
               return;
 
-            if (e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
-              if (e.key === "j") {
-                win.gBrowser.tabContainer.advanceSelectedTab(1, true);
-                e.preventDefault();
-              } else if (e.key === "k") {
-                win.gBrowser.tabContainer.advanceSelectedTab(-1, true);
-                e.preventDefault();
+            if (e.altKey && !e.ctrlKey && !e.metaKey) {
+              if (e.shiftKey) {
+                // Alt+Shift+j/k — move tab
+                if (e.key === "J") {
+                  win.gBrowser.moveTabForward();
+                  e.preventDefault();
+                } else if (e.key === "K") {
+                  win.gBrowser.moveTabBackward();
+                  e.preventDefault();
+                }
+              } else {
+                // Alt+j/k — switch tab
+                if (e.key === "j") {
+                  win.gBrowser.tabContainer.advanceSelectedTab(1, true);
+                  e.preventDefault();
+                } else if (e.key === "k") {
+                  win.gBrowser.tabContainer.advanceSelectedTab(-1, true);
+                  e.preventDefault();
+                }
               }
             }
           },
