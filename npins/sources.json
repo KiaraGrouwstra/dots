@@ -136,9 +136,9 @@
       },
       "branch": "nixpkgs-unstable",
       "submodules": false,
-      "revision": "832efc09b4caf6b4569fbf9dc01bec3082a00611",
-      "url": "https://github.com/NixOS/nixpkgs/archive/832efc09b4caf6b4569fbf9dc01bec3082a00611.tar.gz",
-      "hash": "sha256-HaThtroVD9wRdx7KQk0B75JmFcXlMUoEdDFNOMOlsOs="
+      "revision": "8d8c1fa5b412c223ffa47410867813290cdedfef",
+      "url": "https://github.com/NixOS/nixpkgs/archive/8d8c1fa5b412c223ffa47410867813290cdedfef.tar.gz",
+      "hash": "sha256-J0dZU4atgcfo4QvM9D92uQ0Oe1eLTxBVXjJzdEMQpD0="
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
@@ -162,9 +162,9 @@
       },
       "branch": "nixpkgs-unstable",
       "submodules": false,
-      "revision": "fef9403a3e4d31b0a23f0bacebbec52c248fbb51",
-      "url": "https://github.com/NixOS/nixpkgs/archive/fef9403a3e4d31b0a23f0bacebbec52c248fbb51.tar.gz",
-      "hash": "sha256-pF1quXG5wsgtyuPOHcLfYg/ft/QMr8NnX0i6tW2187s="
+      "revision": "8d8c1fa5b412c223ffa47410867813290cdedfef",
+      "url": "https://github.com/NixOS/nixpkgs/archive/8d8c1fa5b412c223ffa47410867813290cdedfef.tar.gz",
+      "hash": "sha256-J0dZU4atgcfo4QvM9D92uQ0Oe1eLTxBVXjJzdEMQpD0="
     },
     "noctalia-shell": {
       "type": "GitRelease",
@@ -255,6 +255,19 @@
       "hash": "sha256-w/ccGk5XvsQMMQgCgOsCfY6AXleKlR1yJkjZ0zB78gs=",
       "frozen": true
     },
+    "vars": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kiaragrouwstra",
+        "repo": "vars"
+      },
+      "branch": "templates",
+      "submodules": false,
+      "revision": "8d60447161d0a19f3f9010f424fae9097349e954",
+      "url": "https://github.com/kiaragrouwstra/vars/archive/8d60447161d0a19f3f9010f424fae9097349e954.tar.gz",
+      "hash": "sha256-GajZNgU7k+7R1nG/PTiFeXvj8ZIuJn4F0t4GSvC+YQk="
+    },
     "voxtral-mini-mmproj": {
       "type": "PyPi",
       "name": "voxtral-mini-mmproj",
@@ -272,19 +285,6 @@
       "url": "https://huggingface.co/ggml-org/Voxtral-Mini-3B-2507-GGUF/resolve/main/Voxtral-Mini-3B-2507-Q4_K_M.gguf",
       "hash": "sha256-RwW+jsIsoj0SYy9LSjaR+qlZF9kKBtPPPD7A6RlY8ag=",
       "frozen": true
-    },
-    "vars": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "kiaragrouwstra",
-        "repo": "vars"
-      },
-      "branch": "templates",
-      "submodules": false,
-      "revision": "8d60447161d0a19f3f9010f424fae9097349e954",
-      "url": "https://github.com/kiaragrouwstra/vars/archive/8d60447161d0a19f3f9010f424fae9097349e954.tar.gz",
-      "hash": "sha256-GajZNgU7k+7R1nG/PTiFeXvj8ZIuJn4F0t4GSvC+YQk="
     },
     "whisper-base-en": {
       "type": "PyPi",

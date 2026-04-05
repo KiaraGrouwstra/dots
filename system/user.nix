@@ -54,7 +54,7 @@ in
         playerctl
         python3
         ripgrep
-        unstable.signal-desktop-bin
+        unstable.signal-desktop
         swaynotificationcenter
         socat
         tree
