@@ -114,7 +114,7 @@ _: {
         "editAtLine" = "";
         "editAtLineAndWait" = "";
         "open" = "xdg-open {{filename}} out> /dev/null err> /dev/null"; # nushell
-        "openLink" = "";
+        "openLink" = "xdg-open {{link}} out> /dev/null err> /dev/null"; # nushell
       };
       "refresher" = {
         "refreshInterval" = 10;
