@@ -45,6 +45,7 @@
     };
     ignores = [
       "**/.claude/settings.local.json"
+      "AGENTS.md"
       "CLAUDE.md"
     ];
   };
