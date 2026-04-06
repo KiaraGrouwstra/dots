@@ -31,6 +31,7 @@ in
         antimicrox
         bluetuith
         btop
+        dino
         exiftool # yazi
         mediainfo # yazi
         fd
