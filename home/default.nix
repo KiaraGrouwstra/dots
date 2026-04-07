@@ -206,13 +206,16 @@ in
               type = "command";
               command = "/home/kiara/.claude/statusline.sh";
             };
+            env = {
+              CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+            };
             hooks.Notification = [
               {
                 matcher = "";
                 hooks = [
                   {
                     type = "command";
-                    command = "notify-send 'Claude Code' 'Claude Code needs your attention'";
+                    command = "notify-send 'Claude' 'Done'";
                   }
                 ];
               }
