@@ -27,8 +27,8 @@ let
       publicKey = "TKTBW6RUjsMc9I9bH31vBUMZZByZVhL7rDENHjEcgyw=";
     };
     vpn-office = {
-      endpoint = "kantoorvpn.procolix.com:51820";
-      publicKey = "gEuso2o73wIK0s8XqXaiZ8CTy+MXKRtS5YHKrFRIphQ=";
+      endpoint = "kantoorvpn.procolix.eu:51820";
+      publicKey = "9j0IR8ZVMnmI9MOeqbFBqSmZXrjnPhG9t/xO+p1kiR0=";
     };
   };
 in
