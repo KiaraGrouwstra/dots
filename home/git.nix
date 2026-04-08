@@ -44,7 +44,7 @@
       user.signingkey = "~/.ssh/id_ed25519.pub";
     };
     ignores = [
-      "**/.claude/settings.local.json"
+      "**/.claude"
       "AGENTS.md"
       "CLAUDE.md"
     ];
