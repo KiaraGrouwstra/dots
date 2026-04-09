@@ -1,8 +1,4 @@
 {
-  user,
-  ...
-}:
-{
   _class = "homeManager";
 
   programs.delta = {
