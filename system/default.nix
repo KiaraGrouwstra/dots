@@ -130,6 +130,11 @@ in
     direnv.enable = true;
     steam.enable = true;
   };
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+  };
   services = {
     userborn.enable = true;
     lorri.enable = true;
