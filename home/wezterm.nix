@@ -323,7 +323,12 @@
                      key = "x",
                      mods = "ALT",
                      action = act.ActivateCopyMode
-                 }
+                 },
+                 -- Workaround for wezterm/wezterm#3621
+                 {
+                     key = "Delete",
+                     action = wezterm.action.SendKey { key = "Delete" }
+                 },
                  -- {
                  --    key = 'Semicolon',
                  --    mods = 'ALT',
