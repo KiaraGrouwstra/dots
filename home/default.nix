@@ -105,13 +105,13 @@ in
         ./wezterm.nix
         ./ghostty.nix
         ./notifications.nix
-        ./opencode.nix
         ./dictation.nix
         ./mpris-proxy.nix
       ];
       home.stateVersion = "24.11";
       home.packages = [
         aunpack-desktop
+        pkgs.claude-code-router
         exo-desktop
         magnet-handler
         pkgs.pywalfox-native
@@ -203,6 +203,7 @@ in
             # theme = "dark";
             # permissions.defaultMode = "auto";
             permissions.defaultMode = "bypassPermissions";
+            model = "MiniMax-M2.7";
             statusLine = {
               type = "command";
               command = "/home/kiara/.claude/statusline.sh";

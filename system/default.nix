@@ -41,6 +41,7 @@ in
     ./tts.nix
     ./nitrokey.nix
     ./secure-boot.nix
+    ./opencode.nix
   ];
   _module.args = specialArgs;
   nix.nixPath = [ NIX_PATH ];

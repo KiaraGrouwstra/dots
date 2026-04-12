@@ -1,0 +1,15 @@
+{
+  "PORT": 3456,
+  "Providers": [
+    {
+      "name": "minimax",
+      "api_base_url": "https://api.minimax.io/v1/chat/completions",
+      "api_key": "$MINIMAX_API_KEY",
+      "models": [
+        "MiniMax-M2.7",
+        "MiniMax-M2.7-highspeed"
+      ]
+    }
+  ],
+  "Router": {}
+}
