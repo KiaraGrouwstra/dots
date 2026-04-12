@@ -98,6 +98,7 @@ in
         ./git.nix
         ./helix.nix
         ./lazygit.nix
+        ./neovim
         ./niri.nix
         ./nushell.nix
         ./style.nix
