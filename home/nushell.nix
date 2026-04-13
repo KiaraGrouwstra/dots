@@ -31,8 +31,7 @@
               } else {
                   $"($ms)ms"
               }
-              let body = $"Task completed in ($elapsed)"
-              notify-send "Task Finished" $body
+              notify-send "Task done" $elapsed
             }
           }]
         '';
