@@ -14,7 +14,7 @@
       ];
 
       # Just load init.lua - it will require() everything else
-      extraLuaConfig = builtins.readFile ./nvim/init.lua;
+      initLua = builtins.readFile ./nvim/init.lua;
 
       plugins = with pkgs.vimPlugins; [
         kanagawa-paper-nvim
