@@ -117,6 +117,7 @@ in
         pkgs.pywalfox-native
         respects-claude
         media-play-pause
+        (pkgs.callPackage "${sources.sbox}/sbox.nix" { })
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [
