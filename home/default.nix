@@ -165,17 +165,23 @@ in
             useWallpaperColors = true;
             darkMode = true;
           };
-          templates.activeTemplates = map (id: { inherit id; enabled = true; }) [
-            "cava"
-            "gtk"
-            "ghostty"
-            "helix"
-            "pywalfox"
-            "qt"
-            "niri"
-            "wezterm"
-            "yazi"
-          ];
+          templates.activeTemplates =
+            map
+              (id: {
+                inherit id;
+                enabled = true;
+              })
+              [
+                "cava"
+                "gtk"
+                "ghostty"
+                "helix"
+                "pywalfox"
+                "qt"
+                "niri"
+                "wezterm"
+                "yazi"
+              ];
         };
       };
       programs = {
@@ -222,17 +228,19 @@ in
             env = {
               CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
             };
-            hooks.Notification = [
-              {
-                matcher = "";
-                hooks = [
-                  {
-                    type = "command";
-                    command = "notify-send 'Claude' 'Done'";
-                  }
-                ];
-              }
-            ];
+            hooks = {
+              Notification = [
+                {
+                  matcher = "";
+                  hooks = [
+                    {
+                      type = "command";
+                      command = "notify-send 'Claude' 'Done'";
+                    }
+                  ];
+                }
+              ];
+            };
           };
         };
         oh-my-posh = {
