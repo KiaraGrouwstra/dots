@@ -220,7 +220,6 @@ in
             # theme = "dark";
             # permissions.defaultMode = "auto";
             permissions.defaultMode = "bypassPermissions";
-            model = "MiniMax-M2.7";
             statusLine = {
               type = "command";
               command = "/home/kiara/.claude/statusline.sh";
