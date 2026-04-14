@@ -65,11 +65,11 @@
             url = "https://mcp.deepwiki.com/mcp";
           };
           plugin = [
+            "file://${../home/opencode-notify.ts}"
             "opencode-background"
             "opencode-background-agents"
             "opencode-direnv"
             "opencode-mystatus"
-            "opencode-notificator"
             "opencode-shell-strategy"
             "opencode-supermemory"
             "opencode-talk"
