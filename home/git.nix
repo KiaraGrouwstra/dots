@@ -40,6 +40,7 @@
       user.signingkey = "~/.ssh/id_ed25519.pub";
     };
     ignores = [
+      ".worktrees"
       "**/.claude"
       "AGENTS.md"
       "CLAUDE.md"
