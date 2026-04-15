@@ -66,6 +66,7 @@
           };
           plugin = [
             "file://${../home/opencode-notify.ts}"
+            "file://${../home/opencode-tts.ts}"
             "opencode-background"
             "opencode-background-agents"
             "opencode-direnv"
