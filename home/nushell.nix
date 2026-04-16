@@ -39,7 +39,7 @@
         inherit (pkgs.nushellPlugins)
           gstat
           polars
-          desktop_notifications
+          # desktop_notifications  # incompatible with nushell 0.112.1
           ;
       };
       shellAliases = {

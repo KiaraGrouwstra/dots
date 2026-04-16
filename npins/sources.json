@@ -136,9 +136,9 @@
       },
       "branch": "nixpkgs-unstable",
       "submodules": false,
-      "revision": "8d8c1fa5b412c223ffa47410867813290cdedfef",
-      "url": "https://github.com/NixOS/nixpkgs/archive/8d8c1fa5b412c223ffa47410867813290cdedfef.tar.gz",
-      "hash": "sha256-J0dZU4atgcfo4QvM9D92uQ0Oe1eLTxBVXjJzdEMQpD0="
+      "revision": "566acc07c54dc807f91625bb286cb9b321b5f42a",
+      "url": "https://github.com/NixOS/nixpkgs/archive/566acc07c54dc807f91625bb286cb9b321b5f42a.tar.gz",
+      "hash": "sha256-psVTpH6PK3q1htMJpmdz1hLF5pQgEshu7gQWgKO6t6Y="
     },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
