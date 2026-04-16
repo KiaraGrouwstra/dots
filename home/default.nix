@@ -87,6 +87,18 @@ in
                     fi
         '';
       };
+      claude-tts = pkgs.writeShellApplication {
+        name = "claude-tts";
+        runtimeInputs = [ pkgs.jq pkgs.speechd ];
+        excludeShellChecks = [ "SC2016" ];
+        text = ''
+          MSG=$(jq -r '.last_assistant_message // empty')
+          if [ -n "$MSG" ] && [ ''${#MSG} -gt 5 ]; then
+            CLEAN=$(echo "$MSG" | tr '\n' ' ' | sed 's/```[^`]*```//g' | sed 's/`[^`]*`//g' | sed 's/  */ /g' | head -c 800)
+            echo "$CLEAN" | spd-say -e -w
+          fi
+        '';
+      };
     in
     {
       _class = "homeManager";
@@ -235,6 +247,17 @@ in
                     {
                       type = "command";
                       command = "notify-send 'Claude' 'Done'";
+                    }
+                  ];
+                }
+              ];
+              Stop = [
+                {
+                  hooks = [
+                    {
+                      type = "command";
+                      command = "${claude-tts}/bin/claude-tts";
+                      async = true;
                     }
                   ];
                 }
