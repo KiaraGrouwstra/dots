@@ -2,12 +2,6 @@
 let
   modelEn = sources."whisper-base-en";
 
-  modelNl = sources."whisper-medium-q5";
-
-  modelVoxtral = sources."voxtral-mini-q4km";
-
-  modelVoxtralMmproj = sources."voxtral-mini-mmproj";
-
   whisper-cpp-rocm = pkgs.whisper-cpp.override {
     rocmSupport = true;
     rocmPackages = pkgs.rocmPackages;
@@ -18,7 +12,6 @@ let
     name = "dictate";
     runtimeInputs = with pkgs; [
       whisper-cpp-rocm
-      llama-cpp
       wtype
       alsa-utils
       wireplumber
@@ -45,7 +38,6 @@ let
       LANG_FLAG="-l $DICTATE_LANG"
       case "$DICTATE_LANG" in
         en) MODEL="${modelEn}" ;;
-        *)  MODEL="${modelNl}" ;;
       esac
 
       # Guard only the state-check/toggle window; release as soon as state is committed.
@@ -60,29 +52,18 @@ let
         flock -u 9
         sleep 0.2
         notify-send "dictate" "Transcribing…" -t 4000
-        if [ "$DICTATE_LANG" = "nl" ]; then
-          text=$(llama-mtmd-cli \
-            -m "${modelVoxtral}" \
-            --mmproj "${modelVoxtralMmproj}" \
-            --audio "$WAVFILE" \
-            -p "Transcribe this audio verbatim. Output only the transcription, nothing else." \
-            --temp 0 \
-            2>/dev/null | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
-            [ -n "$text" ] && wtype "$text"
-        else
-          # shellcheck disable=SC2086
-          whisper-cli \
-            -m "$MODEL" \
-            -otxt \
-            -of /tmp/dictate \
-            -nt \
-            $LANG_FLAG \
-            "$WAVFILE" 2>/dev/null
-          if [ -f /tmp/dictate.txt ]; then
-            text=$(grep -v '^\[' /tmp/dictate.txt | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
-            [ -n "$text" ] && wtype "$text"
-            rm /tmp/dictate.txt
-          fi
+        # shellcheck disable=SC2086
+        whisper-cli \
+          -m "$MODEL" \
+          -otxt \
+          -of /tmp/dictate \
+          -nt \
+          $LANG_FLAG \
+          "$WAVFILE" 2>/dev/null
+        if [ -f /tmp/dictate.txt ]; then
+          text=$(grep -v '^\[' /tmp/dictate.txt | tr -d '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+          [ -n "$text" ] && wtype "$text"
+          rm /tmp/dictate.txt
         fi
         rm -f "$WAVFILE"
         using_headphones || media-play-pause play

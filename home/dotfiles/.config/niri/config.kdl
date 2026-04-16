@@ -497,7 +497,6 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Pause { spawn "dictate" "en"; }
-    Shift+Pause { spawn "dictate" "nl"; }
     Mod+Pause { spawn-sh "noctalia-shell ipc call launcher toggle"; }
 
     Print { screenshot; }
