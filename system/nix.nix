@@ -114,6 +114,7 @@
       download-attempts = 2;
       # nspawn-containers
       auto-allocate-uids = true;
+      use-cgroups = true;
       extra-system-features = [
         "uid-range"
       ];
