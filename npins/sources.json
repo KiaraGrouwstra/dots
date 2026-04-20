@@ -75,6 +75,19 @@
       "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/refs/tags/v1.0.0",
       "hash": "sha256-RJmgVDzjRI18BWVogG6wpsl1UCuV6ui8qr4DJ1LfWZ8="
     },
+    "marketplace": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "aiskillstore",
+        "repo": "marketplace"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "e59fdbf4017836095ad35bc812916fd4c2270810",
+      "url": "https://github.com/aiskillstore/marketplace/archive/e59fdbf4017836095ad35bc812916fd4c2270810.tar.gz",
+      "hash": "sha256-OolO5WTHPfs0G4pFRWJAyFoR8ph0T5wtXWc8CpJeD3Q="
+    },
     "nirimation": {
       "type": "Git",
       "repository": {
