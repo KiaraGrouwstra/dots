@@ -31,7 +31,7 @@
               } else {
                   $"($ms)ms"
               }
-              notify-send "Task done" $elapsed
+              notify-send $elapsed
             }
           }]
         '';
