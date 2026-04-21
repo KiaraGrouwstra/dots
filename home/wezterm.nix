@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   _class = "homeManager";
 
@@ -11,7 +10,7 @@
          wezterm.add_to_config_reload_watch_list("/home/kiara/.config/wezterm/colors/Noctalia.toml");
 
         wezterm.on('bell', function(window, pane)
-            wezterm.background_child_process({'notify-send', 'wezterm', 'Bell in ' .. pane:get_title()})
+            wezterm.background_child_process({'notify-send', pane:get_title()})
         end)
 
         -- https://github.com/wez/wezterm/issues/6446#issuecomment-2568005371
