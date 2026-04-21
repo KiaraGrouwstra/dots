@@ -70,6 +70,7 @@ in
         jujutsu
         jjui
         nix-init
+        nix-output-monitor
         sox
         tor-browser
         tut
