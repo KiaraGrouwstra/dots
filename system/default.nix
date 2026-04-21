@@ -59,6 +59,8 @@ in
       inherit system NIX_PATH;
       BROWSER = "firefox";
       XDG_CURRENT_DESKTOP = "X-Generic";
+      NIX_AUTO_RUN = "1";
+      NIX_AUTO_INSTALL = "1";
     };
   };
   vars.settings.on-machine.enable = true;
