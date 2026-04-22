@@ -28,9 +28,10 @@ in
     '';
     modules.piper-generic = ''
       GenericExecuteSynth \
-      "printf %s \'$DATA\' | ${pkgs.piper-tts}/bin/piper --model ${voicesDir}/$VOICE.onnx --output-raw | ${pkgs.pipewire}/bin/pw-play --raw --volume 0.3 --rate 22050 --format s16 --channels 1 -"
+      "printf %s \'$DATA\' | ${pkgs.piper-tts}/bin/piper --model ${voicesDir}/$VOICE.onnx --output-raw | ${pkgs.sox}/bin/sox -t raw -r 22050 -e signed -b 16 -c 1 - -t raw -r 22050 -e signed -b 16 -c 1 - tempo 2.0 | ${pkgs.pipewire}/bin/pw-play --raw --volume 0.3 --rate 22050 --format s16 --channels 1 -"
 
       GenericCmdDependency "${pkgs.piper-tts}/bin/piper"
+      GenericCmdDependency "${pkgs.sox}/bin/sox"
       GenericCmdDependency "${pkgs.pipewire}/bin/pw-play"
       GenericSoundIconFolder "/usr/share/sounds/sound-icons/"
 
