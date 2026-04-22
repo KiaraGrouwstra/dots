@@ -1,5 +1,7 @@
 { pkgs, ... }:
 let
+  spd-say = import ./spd-say.nix { inherit pkgs; };
+
   # Wrapper around notify-send that also speaks the notification via spd-say.
   # Parses notify-send's SUMMARY [BODY] positional args, skipping options.
   notify-send = pkgs.writeShellScriptBin "notify-send" ''
@@ -30,9 +32,9 @@ let
 
     if [ -z "$NOTIFY_NO_TTS" ]; then
       if [ -n "$body" ]; then
-        ${pkgs.speechd}/bin/spd-say -i -30 "$summary: $body" &
+        ${spd-say}/bin/spd-say -i -30 "$summary: $body" &
       elif [ -n "$summary" ]; then
-        ${pkgs.speechd}/bin/spd-say -i -30 "$summary" &
+        ${spd-say}/bin/spd-say -i -30 "$summary" &
       fi
     fi
 

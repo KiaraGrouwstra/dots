@@ -4,7 +4,7 @@ import { execSync } from "node:child_process";
 const speak = (text: string) => {
   const escaped = text.replace(/'/g, "'\\''");
   try {
-    execSync(`/run/current-system/sw/bin/spd-say -w '${escaped}'`, { stdio: "ignore" });
+    execSync(`spd-say '${escaped}'`, { stdio: "ignore" });
   } catch (e) {
     console.error("[tts] error:", e);
   }

@@ -87,15 +87,16 @@ in
                     fi
         '';
       };
+      spd-say = import ./spd-say.nix { inherit pkgs; };
       claude-tts = pkgs.writeShellApplication {
         name = "claude-tts";
-        runtimeInputs = [ pkgs.jq pkgs.speechd ];
+        runtimeInputs = [ pkgs.jq spd-say ];
         excludeShellChecks = [ "SC2016" ];
         text = ''
           MSG=$(jq -r '.last_assistant_message // empty')
           if [ -n "$MSG" ] && [ ''${#MSG} -gt 5 ]; then
             CLEAN=$(echo "$MSG" | tr '\n' ' ' | sed 's/```[^`]*```//g' | sed 's/`[^`]*`//g' | sed 's/  */ /g' | head -c 800)
-            echo "$CLEAN" | spd-say -e -w
+            echo "$CLEAN" | spd-say -e
           fi
         '';
       };
@@ -129,6 +130,7 @@ in
         pkgs.pywalfox-native
         respects-claude
         media-play-pause
+        spd-say
         (pkgs.callPackage "${sources.sbox}/sbox.nix" { })
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
