@@ -35,6 +35,9 @@
       #       }
       #     }]
       #   '';
+      settings = {
+        show_banner = false;
+      };
       plugins = lib.attrValues {
         inherit (pkgs.nushellPlugins)
           gstat
