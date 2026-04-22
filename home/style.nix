@@ -48,7 +48,9 @@ in
       # gtk-application-prefer-dark-theme is needed for GTK3 apps (e.g. Thunar)
       # since color-scheme = prefer-dark only affects GTK4/libadwaita
       gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk3.extraCss = ''@import url("noctalia.css");'';
       # GTK4 apps use libadwaita which reads color-scheme from dconf; don't override with custom theme
       gtk4.theme = null;
+      gtk4.extraCss = ''@import url("noctalia.css");'';
     };
 }
