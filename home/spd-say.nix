@@ -19,7 +19,17 @@ pkgs.writeShellScriptBin "spd-say" ''
     should_resume=1
   fi
 
-  ${pkgs.speechd}/bin/spd-say -w "$@" &
+  # Buffer stdin before backgrounding (backgrounded processes lose stdin).
+  input=""
+  if [ ! -t 0 ]; then
+    input=$(cat)
+  fi
+
+  if [ -n "$input" ]; then
+    echo "$input" | ${pkgs.speechd}/bin/spd-say -w "$@" &
+  else
+    ${pkgs.speechd}/bin/spd-say -w "$@" &
+  fi
   spd_pid=$!
 
   # Offer a Stop button via notification. Uses real libnotify to bypass
