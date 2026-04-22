@@ -10,7 +10,11 @@
          wezterm.add_to_config_reload_watch_list("/home/kiara/.config/wezterm/colors/Noctalia.toml");
 
         wezterm.on('bell', function(window, pane)
-            wezterm.background_child_process({'notify-send', pane:get_title()})
+            wezterm.background_child_process({
+                '/bin/sh', '-c',
+                'NOTIFY_NO_TTS=1 exec notify-send "$1"',
+                '--', pane:get_title()
+            })
         end)
 
         -- https://github.com/wez/wezterm/issues/6446#issuecomment-2568005371
