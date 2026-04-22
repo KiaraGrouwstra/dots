@@ -249,17 +249,6 @@ in
               CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
             };
             hooks = {
-              Notification = [
-                {
-                  matcher = "";
-                  hooks = [
-                    {
-                      type = "command";
-                      command = "notify-send 'Claude' 'Done'";
-                    }
-                  ];
-                }
-              ];
               Stop = [
                 {
                   hooks = [

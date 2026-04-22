@@ -19,10 +19,10 @@ const plugin: Plugin = async () => ({
         bell();
         notify("OpenCode", "Permission requested");
         break;
-      case "session.idle":
-        bell();
-        notify("OpenCode", "Done");
-        break;
+      // case "session.idle":
+      //   bell();
+      //   notify("OpenCode", "Done");
+      //   break;
       case "session.error":
         bell();
         notify("OpenCode", "Error");
