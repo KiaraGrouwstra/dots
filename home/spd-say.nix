@@ -43,6 +43,7 @@ pkgs.writeShellScriptBin "spd-say" ''
   (
     action=$(${pkgs.libnotify}/bin/notify-send -t 0 -A "stop=Stop" "Speaking" 2>/dev/null || true)
     if [ "$action" = "stop" ]; then
+      ${pkgs.speechd}/bin/spd-say -C
       kill "$spd_pid" 2>/dev/null
     fi
   ) &
