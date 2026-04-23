@@ -242,12 +242,15 @@ in
             # theme = "dark";
             # permissions.defaultMode = "auto";
             permissions.defaultMode = "bypassPermissions";
+            model = "claude-opus-4-7[1m]";
+            effortLevel = "medium";
             statusLine = {
               type = "command";
               command = "/home/kiara/.claude/statusline.sh";
             };
             env = {
               CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+              CLAUDE_CODE_EFFORT_LEVEL = "medium";
             };
             hooks = {
               Stop = [

@@ -153,6 +153,19 @@
       "url": "https://github.com/NixOS/nixpkgs/archive/b86751bc4085f48661017fa226dee99fab6c651b.tar.gz",
       "hash": "sha256-a8BYi3mzoJ/AcJP8UldOx8emoPRLeWqALZWu4ZvjPXw="
     },
+    "nixpkgs-small": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-unstable-small",
+      "submodules": false,
+      "revision": "fec2c46cca5bf9767486a290abae51200b656d69",
+      "url": "https://github.com/NixOS/nixpkgs/archive/fec2c46cca5bf9767486a290abae51200b656d69.tar.gz",
+      "hash": "sha256-XOzEtft7E0P6TgQViLUOQeGHlEYiQ0+FY24BPEksj6s="
+    },
     "nixpkgs-staging-bisecter": {
       "type": "Git",
       "repository": {

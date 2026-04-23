@@ -90,6 +90,17 @@ in
               # lazyjj = _: _: { };
             }
       )
+      (final: prev:
+        let
+          small = import sources.nixpkgs-small {
+            inherit (prev.stdenv.hostPlatform) system;
+            config.allowUnfree = true;
+          };
+        in
+        {
+          inherit (small) claude-code claude-code-router;
+        }
+      )
     ];
   };
   system.stateVersion = "25.11";
