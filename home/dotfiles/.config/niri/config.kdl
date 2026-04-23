@@ -326,8 +326,8 @@ binds {
     // shows a list of important hotkeys.
     Mod+Slash { show-hotkey-overlay; }
     Mod+L { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
-    Mod+W { spawn "firefox --new-window about:newtab"; }
-    Mod+Shift+W { spawn "tor-browser --new-window about:newtab"; }
+    Mod+W { spawn "firefox" "--new-window" "about:newtab"; }
+    Mod+Shift+W { spawn "tor-browser" "--new-window" "about:newtab"; }
     Mod+T { spawn "wezterm"; }
     Mod+Return { spawn "wezterm"; }
     Mod+E { spawn "thunar"; }
