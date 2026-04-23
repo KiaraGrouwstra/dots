@@ -30,6 +30,12 @@ let
       esac
     done
 
+    # Skip everything when muted.
+    if ${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null \
+       | ${pkgs.gnugrep}/bin/grep -q MUTED; then
+      exit 0
+    fi
+
     if [ -z "$NOTIFY_NO_TTS" ]; then
       if [ -n "$body" ]; then
         ${spd-say}/bin/spd-say -i -30 "$summary: $body" &
