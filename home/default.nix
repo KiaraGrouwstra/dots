@@ -179,6 +179,7 @@ in
             useWallpaperColors = true;
             darkMode = true;
           };
+          appLauncher.terminalCommand = "wezterm -e";
           templates.activeTemplates =
             map
               (id: {
