@@ -331,6 +331,7 @@ binds {
     Mod+T { spawn "wezterm"; }
     Mod+Return { spawn "wezterm"; }
     Mod+E { spawn "thunar"; }
+    Mod+Shift+E { spawn "xdg-terminal-exec" "yazi"; }
     Mod+Space { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Mod+Escape { spawn-sh "noctalia-shell ipc call notifications dismissAll"; }
     Mod+Grave { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
