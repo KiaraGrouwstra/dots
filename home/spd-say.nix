@@ -7,6 +7,12 @@ in
 # Only resumes media if something was actually playing when we paused
 # (avoids interfering with dictation's own media-pause lifecycle).
 pkgs.writeShellScriptBin "spd-say" ''
+  # Skip TTS when muted.
+  if ${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null \
+     | ${pkgs.gnugrep}/bin/grep -q MUTED; then
+    exit 0
+  fi
+
   # Skip TTS when a WebRTC call (or any mic capture) is active.
   if ${pkgs.pipewire}/bin/pw-dump 2>/dev/null \
      | ${pkgs.gnugrep}/bin/grep -q '"media.class".*"Stream/Input/Audio"'; then
