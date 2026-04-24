@@ -244,6 +244,7 @@ in
             permissions.defaultMode = "bypassPermissions";
             model = "claude-opus-4-7[1m]";
             effortLevel = "medium";
+            awaySummaryEnabled = false;
             statusLine = {
               type = "command";
               command = "/home/kiara/.claude/statusline.sh";
