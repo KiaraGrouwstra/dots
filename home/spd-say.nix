@@ -26,8 +26,15 @@ pkgs.writeShellScriptBin "spd-say" ''
   fi
 
   should_resume=0
-  if ${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -q "Playing"; then
-    ${media-play-pause}/bin/media-play-pause pause
+  resume() {
+    [ "$should_resume" = "1" ] && \
+      ${media-play-pause}/bin/media-play-pause play </dev/null >/dev/null 2>&1 || true
+  }
+  trap resume EXIT
+
+  # `media-play-pause pause` exits 0 iff it actually paused a player;
+  # using its exit code avoids a race between a pre-check and the pause call.
+  if ${media-play-pause}/bin/media-play-pause pause </dev/null; then
     should_resume=1
   fi
 
@@ -54,8 +61,4 @@ pkgs.writeShellScriptBin "spd-say" ''
   # Dismiss notification if speech ended naturally.
   kill "$notify_pid" 2>/dev/null
   wait "$notify_pid" 2>/dev/null
-
-  if [ "$should_resume" = "1" ]; then
-    ${media-play-pause}/bin/media-play-pause play
-  fi
 ''

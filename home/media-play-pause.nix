@@ -53,6 +53,8 @@ pkgs.writeShellApplication {
 
     if [ "$MODE" = "pause" ]; then
       # Pause whichever player is currently playing (local first, then KDE Connect / AVRCP).
+      # Exits 0 if a player was paused, 1 otherwise — lets callers tell whether
+      # they should later trigger a matching resume.
       paused_player=""
       while IFS= read -r p; do
         case "$p" in kdeconnect.*) continue ;; esac
@@ -81,8 +83,9 @@ pkgs.writeShellApplication {
           sleep 0.3
           i=$((i + 1))
         done
+        exit 0
       fi
-      exit 0
+      exit 1
     fi
 
     # play-pause: toggle using all phases.
