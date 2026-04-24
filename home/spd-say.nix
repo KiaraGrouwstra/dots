@@ -19,16 +19,16 @@ pkgs.writeShellScriptBin "spd-say" ''
     exit 0
   fi
 
-  should_resume=0
-  if ${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -q "Playing"; then
-    ${media-play-pause}/bin/media-play-pause pause
-    should_resume=1
-  fi
-
   # Buffer stdin before backgrounding (backgrounded processes lose stdin).
   input=""
   if [ ! -t 0 ]; then
     input=$(cat)
+  fi
+
+  should_resume=0
+  if ${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -q "Playing"; then
+    ${media-play-pause}/bin/media-play-pause pause
+    should_resume=1
   fi
 
   if [ -n "$input" ]; then
