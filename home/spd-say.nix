@@ -13,6 +13,11 @@ pkgs.writeShellScriptBin "spd-say" ''
     exit 0
   fi
 
+  # Skip TTS when system Do-Not-Disturb is enabled.
+  if [ "$(${pkgs.swaynotificationcenter}/bin/swaync-client --get-dnd 2>/dev/null)" = "true" ]; then
+    exit 0
+  fi
+
   # Skip TTS when a WebRTC call (or any mic capture) is active.
   if ${pkgs.pipewire}/bin/pw-dump 2>/dev/null \
      | ${pkgs.gnugrep}/bin/grep -q '"media.class".*"Stream/Input/Audio"'; then

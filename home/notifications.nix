@@ -36,6 +36,12 @@ let
       exit 0
     fi
 
+    # Skip TTS (but still forward the notification) when system Do-Not-Disturb is on;
+    # swaync handles DnD visuals itself.
+    if [ "$(${pkgs.swaynotificationcenter}/bin/swaync-client --get-dnd 2>/dev/null)" = "true" ]; then
+      NOTIFY_NO_TTS=1
+    fi
+
     if [ -z "$NOTIFY_NO_TTS" ]; then
       if [ -n "$body" ]; then
         ${spd-say}/bin/spd-say -i -30 "$summary: $body" &
