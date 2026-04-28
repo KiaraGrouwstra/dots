@@ -32,7 +32,7 @@
     };
   };
   nix = {
-    package = pkgs.lix;
+    # package = pkgs.lix;
     # required, otherwise remote buildMachines aren't used
     distributedBuilds = true;
     # You can see the resulting builder-strings of this NixOS-configuration with "cat /etc/nix/machines".
