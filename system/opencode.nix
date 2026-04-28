@@ -21,8 +21,7 @@
 
       programs.opencode = {
         enable = true;
-        # web.enable = true;
-        settings.theme = "mocha";
+        tui.theme = "mocha";
         themes.mocha = {
           defs = {
             base = "#3B3228";
