@@ -245,6 +245,10 @@ in
             model = "claude-opus-4-7[1m]";
             effortLevel = "medium";
             awaySummaryEnabled = false;
+            attribution = {
+              commit = "Assisted-by: Claude:claude-opus-4-7[1m]";
+              pr = "Disclaimer: I used a coding agent in the creation of this patch.";
+            };
             statusLine = {
               type = "command";
               command = "/home/kiara/.claude/statusline.sh";
