@@ -153,4 +153,5 @@ in
     upower.enable = true;
     flatpak.enable = true;
   };
+  systemd.user.services.lorri.serviceConfig.PrivateTmp = lib.mkForce false;
 }
