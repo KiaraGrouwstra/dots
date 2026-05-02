@@ -133,4 +133,32 @@
   environment.etc."nix/nix.conf".source =
     lib.mkForce
       config.vars.generators."templates".files."nix.conf".path;
+
+  # Periodically reap empty `nix-build-uid-*` cgroups left behind by
+  # `use-cgroups = true` builds whose payload spawned nested systemd
+  # (e.g. NixOS VM tests). Their child cgroups linger after the build
+  # exits, so nix-daemon cannot rmdir the parent and the next build
+  # reusing the same uid fails with EEXIST.
+  systemd.services.nix-build-cgroup-reaper = {
+    description = "Reap empty nix-daemon build cgroups";
+    serviceConfig = {
+      Type = "oneshot";
+      # `rmdir` on a cgroupfs dir succeeds only when it has no procs and
+      # no child cgroups; the cgroupfs control files don't block it. With
+      # `-depth` we hit the deepest leftover cgroups first, working back
+      # up to the `nix-build-uid-*` root.
+      ExecStart = pkgs.writeShellScript "reap-nix-build-cgroups" ''
+        ${pkgs.findutils}/bin/find /sys/fs/cgroup/system.slice/nix-daemon.service \
+          -depth -type d -path '*/nix-build-uid-*' \
+          -exec rmdir {} + 2>/dev/null || true
+      '';
+    };
+  };
+  systemd.timers.nix-build-cgroup-reaper = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5min";
+      OnUnitActiveSec = "10min";
+    };
+  };
 }
