@@ -57,6 +57,7 @@ in
     extraSpecialArgs = specialArgs;
     users.${user}.home.sessionVariables = {
       inherit system NIX_PATH;
+      SYSTEM = system;
       BROWSER = "firefox";
       XDG_CURRENT_DESKTOP = "X-Generic";
       NIX_AUTO_RUN = "1";
