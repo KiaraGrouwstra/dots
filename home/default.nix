@@ -228,13 +228,13 @@ in
         };
         claude-code = {
           enable = true;
-          skills = {
-            researching-with-deepwiki = "${sources.marketplace}/skills/asmayaseen/researching-with-deepwiki";
-          };
-          mcpServers.deepwiki = {
-            type = "http";
-            url = "https://mcp.deepwiki.com/mcp";
-          };
+          # skills = {
+          #   researching-with-deepwiki = "${sources.marketplace}/skills/asmayaseen/researching-with-deepwiki";
+          # };
+          # mcpServers.deepwiki = {
+          #   type = "http";
+          #   url = "https://mcp.deepwiki.com/mcp";
+          # };
           settings = {
             includeCoAuthoredBy = false;
             voiceEnabled = true;

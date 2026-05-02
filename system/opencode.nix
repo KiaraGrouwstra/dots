@@ -134,10 +134,10 @@
               apiKey = "{file:${config.vars.generators."prompted".files."minimax-key".path}}";
             };
           };
-          mcp.deepwiki = {
-            type = "remote";
-            url = "https://mcp.deepwiki.com/mcp";
-          };
+          # mcp.deepwiki = {
+          #   type = "remote";
+          #   url = "https://mcp.deepwiki.com/mcp";
+          # };
           plugin = [
             "file://${../home/opencode-notify.ts}"
             "file://${../home/opencode-tts.ts}"
