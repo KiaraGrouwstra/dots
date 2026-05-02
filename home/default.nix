@@ -235,44 +235,44 @@ in
           #   type = "http";
           #   url = "https://mcp.deepwiki.com/mcp";
           # };
-          settings = {
-            includeCoAuthoredBy = false;
-            voiceEnabled = true;
-            skipDangerousModePermissionPrompt = true;
-            # theme = "dark";
-            # permissions.defaultMode = "auto";
-            permissions.defaultMode = "bypassPermissions";
-            model = "opusplan";
-            # model = "claude-opus-4-7[1m]";
-            effortLevel = "medium";
-            awaySummaryEnabled = false;
-            attribution = {
-              commit = "Assisted-by: Claude:claude-opus-4-7[1m]";
-              pr = "Disclaimer: I used a coding agent in the creation of this patch.";
-            };
-            statusLine = {
-              type = "command";
-              command = "/home/kiara/.claude/statusline.sh";
-            };
-            env = {
-              CLAUDE_CODE_EFFORT_LEVEL = "medium";
-              CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
-              CLAUDE_CODE_FORK_SUBAGENT = "1";
-            };
-            hooks = {
-              Stop = [
-                {
-                  hooks = [
-                    {
-                      type = "command";
-                      command = "${claude-tts}/bin/claude-tts";
-                      async = true;
-                    }
-                  ];
-                }
-              ];
-            };
-          };
+          # settings = {
+          #   includeCoAuthoredBy = false;
+          #   voiceEnabled = true;
+          #   skipDangerousModePermissionPrompt = true;
+          #   # theme = "dark";
+          #   # permissions.defaultMode = "auto";
+          #   permissions.defaultMode = "bypassPermissions";
+          #   model = "opusplan";
+          #   # model = "claude-opus-4-7[1m]";
+          #   effortLevel = "medium";
+          #   awaySummaryEnabled = false;
+          #   attribution = {
+          #     commit = "Assisted-by: Claude:claude-opus-4-7[1m]";
+          #     pr = "Disclaimer: I used a coding agent in the creation of this patch.";
+          #   };
+          #   statusLine = {
+          #     type = "command";
+          #     command = "/home/kiara/.claude/statusline.sh";
+          #   };
+          #   env = {
+          #     CLAUDE_CODE_EFFORT_LEVEL = "medium";
+          #     CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+          #     CLAUDE_CODE_FORK_SUBAGENT = "1";
+          #   };
+          #   hooks = {
+          #     Stop = [
+          #       {
+          #         hooks = [
+          #           {
+          #             type = "command";
+          #             command = "${claude-tts}/bin/claude-tts";
+          #             async = true;
+          #           }
+          #         ];
+          #       }
+          #     ];
+          #   };
+          # };
         };
         oh-my-posh = {
           enable = true;
