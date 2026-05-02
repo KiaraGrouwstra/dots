@@ -9,8 +9,14 @@
 
   vars.generators = {
     "prompted" = {
-      prompts."minimax-key" = { };
-      files."minimax-key".secret = true;
+      prompts = {
+        "kimi-key" = { };
+        "minimax-key" = { };
+      };
+      files = {
+        "kimi-key".secret = true;
+        "minimax-key".secret = true;
+      };
     };
   };
 
@@ -130,8 +136,9 @@
             };
             options = {
               baseURL = "https://api.minimax.io/anthropic/v1";
-              # apiKey = "\${MINIMAX_API_KEY}";
               apiKey = "{file:${config.vars.generators."prompted".files."minimax-key".path}}";
+              # baseURL = "https://api.kimi.com/coding/";
+              # apiKey = "{file:${config.vars.generators."prompted".files."kimi-key".path}}";
             };
           };
           # mcp.deepwiki = {

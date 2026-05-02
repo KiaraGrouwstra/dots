@@ -59,6 +59,19 @@
       "url": "https://github.com/nix-community/home-manager/archive/7e7269ac064bea120d7b23daed432a096617872d.tar.gz",
       "hash": "sha256-pm1SDX9Tj4eHWwjtDEqSU+5QZO7nHHqU8GT0JtbI9rc="
     },
+    "kimi-cli": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "MoonshotAI",
+        "repo": "kimi-cli"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "17938161923c6f7550c9f291ff15ed5b1cacc1a9",
+      "url": "https://github.com/MoonshotAI/kimi-cli/archive/17938161923c6f7550c9f291ff15ed5b1cacc1a9.tar.gz",
+      "hash": "sha256-rvNxcGUCwl1ZEarbV3I3mEorn34fi1S8L+x5Lq1xuco="
+    },
     "lanzaboote": {
       "type": "GitRelease",
       "repository": {

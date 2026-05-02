@@ -24,7 +24,8 @@ in
         nixpkgs-staging-bisecter = callPackage "${sources.nixpkgs-staging-bisecter}/package.nix" { };
         nix-bisect = python3.pkgs.callPackage "${sources.nix-bisect}/package.nix" { };
         stremio-service = python3.pkgs.callPackage ./stremio-service.nix { };
-        nix-init = (flake-compat sources.nix-init).outputs.packages.${system}.nix-init;
+        inherit ((flake-compat sources.nix-init).outputs.packages.${system}) nix-init;
+        inherit ((flake-compat sources.kimi-cli).outputs.packages.${system}) kimi-cli;
       in
       with pkgs;
       [
@@ -74,6 +75,7 @@ in
         sox
         tor-browser
         tut
+        kimi-cli
         nix-index
         zathura
         dconf
