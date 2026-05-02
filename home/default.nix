@@ -242,7 +242,8 @@ in
             # theme = "dark";
             # permissions.defaultMode = "auto";
             permissions.defaultMode = "bypassPermissions";
-            model = "claude-opus-4-7[1m]";
+            model = "opusplan";
+            # model = "claude-opus-4-7[1m]";
             effortLevel = "medium";
             awaySummaryEnabled = false;
             attribution = {
