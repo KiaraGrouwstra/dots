@@ -254,8 +254,9 @@ in
               command = "/home/kiara/.claude/statusline.sh";
             };
             env = {
-              CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
               CLAUDE_CODE_EFFORT_LEVEL = "medium";
+              CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+              CLAUDE_CODE_FORK_SUBAGENT = "1";
             };
             hooks = {
               Stop = [
