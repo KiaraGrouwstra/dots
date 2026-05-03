@@ -300,6 +300,7 @@ in
         yazi = {
           enable = true;
           shellWrapperName = "yy";
+          settings.mgr.show_hidden = true;
           keymap.mgr.prepend_keymap =
             let
               repeat = n: cmd: builtins.genList (_: cmd) n;
