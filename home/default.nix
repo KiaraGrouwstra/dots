@@ -243,11 +243,12 @@ in
           #   # permissions.defaultMode = "auto";
           #   permissions.defaultMode = "bypassPermissions";
           #   model = "opusplan";
-          #   # model = "claude-opus-4-7[1m]";
+          #   # model = "claude-sonnet-4-7";
           #   effortLevel = "medium";
           #   awaySummaryEnabled = false;
+          #   showClearContextOnPlanAccept = true;
           #   attribution = {
-          #     commit = "Assisted-by: Claude:claude-opus-4-7[1m]";
+          #     commit = "Assisted-by: Claude:claude-sonnet-4-7";
           #     pr = "Disclaimer: I used a coding agent in the creation of this patch.";
           #   };
           #   statusLine = {
@@ -255,6 +256,7 @@ in
           #     command = "/home/kiara/.claude/statusline.sh";
           #   };
           #   env = {
+          #     CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = "47";
           #     CLAUDE_CODE_EFFORT_LEVEL = "medium";
           #     CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
           #     CLAUDE_CODE_FORK_SUBAGENT = "1";
@@ -265,7 +267,8 @@ in
           #         hooks = [
           #           {
           #             type = "command";
-          #             command = "${claude-tts}/bin/claude-tts";
+          #             # command = "${claude-tts}/bin/claude-tts";
+          #             command = "claude-tts";
           #             async = true;
           #           }
           #         ];
