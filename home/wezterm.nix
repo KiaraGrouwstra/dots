@@ -9,6 +9,16 @@
          local act = wezterm.action
          wezterm.add_to_config_reload_watch_list("/home/kiara/.config/wezterm/colors/Noctalia.toml");
 
+        -- in the title show application before pwd
+        wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+          local title = tab.active_pane.title
+          local dir, cmd = title:match('^(.-)> (.+)$')
+          if dir and cmd then
+            return cmd .. ' ' .. dir
+          end
+          return title
+        end)
+
         wezterm.on('bell', function(window, pane)
             wezterm.background_child_process({
                 '/bin/sh', '-c',
