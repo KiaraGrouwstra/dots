@@ -242,7 +242,7 @@ in
           #   skipDangerousModePermissionPrompt = true;
           #   # theme = "dark";
           #   # permissions.defaultMode = "auto";
-          #   permissions.defaultMode = "bypassPermissions";
+          #   permissions.defaultMode = "plan";
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-7";
           #   effortLevel = "medium";
