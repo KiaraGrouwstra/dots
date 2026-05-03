@@ -304,7 +304,18 @@
                  {
                      key = "t",
                      mods = "ALT",
-                     action = act {SpawnTab = "CurrentPaneDomain"}
+                     action = wezterm.action_callback(function(win, pane)
+                         local mux_win = win:mux_window()
+                         local idx = 0
+                         for _, info in ipairs(mux_win:tabs_with_info()) do
+                             if info.is_active then
+                                 idx = info.index
+                                 break
+                             end
+                         end
+                         win:perform_action(act {SpawnTab = "CurrentPaneDomain"}, pane)
+                         win:perform_action(act {MoveTab = idx + 1}, pane)
+                     end)
                  },
                  -- {
                  --    key = "t",
