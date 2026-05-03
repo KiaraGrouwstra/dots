@@ -132,6 +132,7 @@ in
         media-play-pause
         spd-say
         (pkgs.callPackage "${sources.sbox}/sbox.nix" { })
+        claude-tts
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
       xdg.systemDirs.data = [
