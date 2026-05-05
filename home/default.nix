@@ -38,32 +38,6 @@ in
           exec = command;
         }
       );
-      aunpack-desktop =
-        let
-          mimeTypes = [
-            "application/gzip"
-            "application/x-7z-compressed"
-            "application/x-bzip2"
-            "application/x-compressed-tar"
-            "application/x-cpio"
-            "application/x-gtar"
-            "application/x-lha"
-            "application/x-lzop"
-            "application/x-tar"
-            "application/x-xz-compressed-tar"
-            "application/zip"
-            "application/x-rar"
-          ];
-        in
-        pkgs.makeDesktopItem {
-          type = "Application";
-          name = "aunpack";
-          desktopName = "Aunpack";
-          inherit mimeTypes;
-          exec = "${config.programs.atool.finalPackage}/bin/atool -x %f";
-          terminal = true;
-          noDisplay = true;
-        };
       magnet-handler = pkgs.makeDesktopItem {
         type = "Application";
         name = "magnet-handler";
@@ -125,7 +99,6 @@ in
       ];
       home.stateVersion = "24.11";
       home.packages = [
-        aunpack-desktop
         pkgs.claude-code-router
         exo-desktop
         magnet-handler
