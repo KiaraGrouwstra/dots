@@ -20,7 +20,6 @@
       #   ''
       #     $env.config.show_banner = false
       #     $env.config.buffer_editor = "hx"
-      #     $env.config.hooks.command_not_found = source ${./command-not-found.nu}
       #     $env.config.hooks.pre_prompt = [{||
       #       let ms = ($env.CMD_DURATION_MS | into int)
       #       if ($ms | into duration -u ms) >= 5sec {

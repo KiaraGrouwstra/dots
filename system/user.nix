@@ -76,7 +76,6 @@ in
         tor-browser
         tut
         kimi-cli
-        nix-index
         zathura
         dconf
         stremio-service

@@ -255,6 +255,10 @@ in
           #   };
           # };
         };
+        nix-index = {
+          enable = true;
+          enableNushellIntegration = true;
+        };
         oh-my-posh = {
           enable = true;
           enableNushellIntegration = true;
