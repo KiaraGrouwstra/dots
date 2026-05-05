@@ -242,8 +242,11 @@ in
           #   voiceEnabled = true;
           #   skipDangerousModePermissionPrompt = true;
           #   # theme = "dark";
-          #   # permissions.defaultMode = "auto";
-          #   permissions.defaultMode = "plan";
+          #   permissions = {
+          #     # defaultMode = "auto";
+          #     defaultMode = "plan";
+          #     allow = [ "Bash(*)" "Read(*)" "Search(*)" "WebFetch(*)" ];
+          #   };
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-7";
           #   effortLevel = "medium";
