@@ -15,6 +15,7 @@ let
     cargoBuildFlags = [ "--workspace" ];
     meta.mainProgram = "pay-respects";
   };
+  flake-compat = src: import sources.flake-compat { inherit src; };
 in
 {
   _class = "nixos";
@@ -106,6 +107,7 @@ in
 
       imports = [
         "${sources.noctalia-shell}/nix/home-module.nix"
+        (flake-compat sources.sbox).outputs.homeManagerModules.sbox
         ./dotfiles.nix
         ./firefox.nix
         ./git.nix
@@ -131,7 +133,6 @@ in
         respects-claude
         media-play-pause
         spd-say
-        (pkgs.callPackage "${sources.sbox}/sbox.nix" { })
         claude-tts
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -323,6 +324,19 @@ in
             ];
         };
         chromium.enable = true;
+        sbox = {
+          enable = true;
+          bind = {
+            "$HOME/.cache" = {};
+            "$HOME/.claude" = {};
+            "$HOME/.claude.json" = {};
+          };
+          bindReadOnly = {
+            "$HOME/.ssh/id_ed25519".to = "$HOME/.ssh/id_ed25519";
+            "$HOME/.ssh/id_ed25519.pub".to = "$HOME/.ssh/id_ed25519.pub";
+          };
+          shareHistory = "project";
+        };
       };
       services.kdeconnect.enable = true;
     };
