@@ -43,7 +43,7 @@ in
         name = "magnet-handler";
         desktopName = "Open Magnet Link";
         mimeTypes = [ "x-scheme-handler/magnet" ];
-        exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.transmission_4}/bin/transmission-cli %u";
+        exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.transmission_4}/bin/transmission-cli %u";
       };
       media-play-pause = pkgs.callPackage ./media-play-pause.nix { };
       respects-claude = pkgs.writeShellApplication {
