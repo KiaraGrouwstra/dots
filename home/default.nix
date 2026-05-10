@@ -218,7 +218,7 @@ in
           #   permissions = {
           #     # defaultMode = "auto";
           #     defaultMode = "plan";
-          #     allow = [ "Bash(*)" "Read(*)" "Search(*)" "WebFetch(*)" ];
+          #     allow = [ "Bash(*)" "Read(*)" "Web Search(*)" "Search(*)" "WebFetch(*)" ];
           #   };
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-7";
