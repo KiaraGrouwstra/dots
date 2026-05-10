@@ -40,7 +40,7 @@ in
         tea
         unstable.gurk-rs
         hydrasect
-        # iamb # https://github.com/NixOS/nixpkgs/issues/501937
+        iamb
         keepassxc
         lazyjj
         mattermost-desktop
