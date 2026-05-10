@@ -75,6 +75,33 @@ in
           fi
         '';
       };
+      fork = pkgs.writeShellApplication {
+        name = "fork";
+        runtimeInputs = [
+          config.programs.git.package
+          pkgs.gum
+          config.programs.claude-code.package
+          sysConfig.nix.package
+        ];
+        text = ''
+          branch=$(gum input --placeholder "fix-ci")
+          default=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null \
+            || (git rev-parse --verify --quiet origin/main >/dev/null && echo origin/main) \
+            || (git rev-parse --verify --quiet origin/master >/dev/null && echo origin/master) \
+            || (git rev-parse --verify --quiet main >/dev/null && echo main) \
+            || (git rev-parse --verify --quiet master >/dev/null && echo master))
+          if [ -z "$default" ]; then
+            echo "fork: could not determine default branch" >&2
+            exit 1
+          fi
+          git branch "$branch" "$default" || echo "branch $branch exists"
+          git worktree add ".worktrees/''${branch/"/"/-}" "$branch"
+          echo cd ".worktrees/$branch/"
+          cd ".worktrees/$branch/"
+          ln -s ../../CLAUDE.md CLAUDE.md
+          git config remote.pushDefault "$(whoami)"
+        '';
+      };
     in
     {
       _class = "homeManager";
@@ -101,6 +128,7 @@ in
       home.packages = [
         pkgs.claude-code-router
         exo-desktop
+        fork
         magnet-handler
         pkgs.pywalfox-native
         respects-claude
