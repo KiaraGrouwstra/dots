@@ -94,11 +94,10 @@ in
             echo "fork: could not determine default branch" >&2
             exit 1
           fi
-          git branch "$branch" "$default" || echo "branch $branch exists"
-          git worktree add ".worktrees/''${branch/"/"/-}" "$branch"
-          echo cd ".worktrees/$branch/"
-          cd ".worktrees/$branch/"
-          ln -s ../../CLAUDE.md CLAUDE.md
+          git branch "$branch" "$default" || echo "branch $branch exists" >&2
+          git worktree add ".worktrees/''${branch/"/"/-}" "$branch" >&2 || echo "worktree exists" >&2
+          ln -s ../../CLAUDE.md ".worktrees/''${branch/"/"/-}/CLAUDE.md" || echo "symlink exists" >&2
+          printf '%s\n' ".worktrees/''${branch/"/"/-}"
           git config remote.pushDefault "$(whoami)"
         '';
       };

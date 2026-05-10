@@ -15,25 +15,26 @@
         sysConfig.environment.variables
         config.home.sessionVariables
       ];
-      # extraConfig =
-      #   # nu
-      #   ''
-      #     $env.config.show_banner = false
-      #     $env.config.buffer_editor = "hx"
-      #     $env.config.hooks.pre_prompt = [{||
-      #       let ms = ($env.CMD_DURATION_MS | into int)
-      #       if ($ms | into duration -u ms) >= 5sec {
-      #         let elapsed = if $ms >= 60000 {
-      #             $"($ms / 60000 | math floor)min"
-      #         } else if $ms >= 1000 {
-      #             $"($ms / 1000 | math floor)sec"
-      #         } else {
-      #             $"($ms)ms"
-      #         }
-      #         notify-send $elapsed
-      #       }
-      #     }]
-      #   '';
+      extraConfig =
+        # nu
+        ''
+          $env.config.show_banner = false
+          $env.config.buffer_editor = "hx"
+          # $env.config.hooks.pre_prompt = [{||
+          #   let ms = ($env.CMD_DURATION_MS | into int)
+          #   if ($ms | into duration -u ms) >= 5sec {
+          #     let elapsed = if $ms >= 60000 {
+          #         $"($ms / 60000 | math floor)min"
+          #     } else if $ms >= 1000 {
+          #         $"($ms / 1000 | math floor)sec"
+          #     } else {
+          #         $"($ms)ms"
+          #     }
+          #     notify-send $elapsed
+          #   }
+          # }]
+          def --env fork [] { cd (^fork | str trim) }
+        '';
       settings = {
         show_banner = false;
       };
