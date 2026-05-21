@@ -245,7 +245,7 @@ in
           #   permissions = {
           #     # defaultMode = "auto";
           #     defaultMode = "plan";
-          #     allow = [ "Bash(*)" "Read(*)" "Web Search(*)" "Search(*)" "WebFetch(*)" ];
+          #     allow = [ "Bash(*)" "Read(*)" "Create file(*)" "Edit file(*)" "Web Search(*)" "Search(*)" "Update(*)" "WebFetch(*)" ];
           #   };
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-7";
@@ -253,7 +253,7 @@ in
           #   awaySummaryEnabled = false;
           #   showClearContextOnPlanAccept = true;
           #   attribution = {
-          #     commit = "Assisted-by: Claude:claude-sonnet-4-7";
+          #     commit = "Assisted-by: Claude: claude-opus-4-7 (planning) + claude-sonnet-4-7 (execution)";
           #     pr = "Disclaimer: I used a coding agent in the creation of this patch.";
           #   };
           #   statusLine = {
