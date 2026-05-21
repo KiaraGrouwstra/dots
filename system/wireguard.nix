@@ -24,7 +24,7 @@ let
     };
     vpn-fediversity = {
       endpoint = "vpn.fediversity.eu:51820";
-      publicKey = "TKTBW6RUjsMc9I9bH31vBUMZZByZVhL7rDENHjEcgyw=";
+      publicKey = "HWSb8vjhJ6VOL9NWqtV6LYxDQMY5CDKu8RtJuyepvyk=";
     };
     vpn-office = {
       endpoint = "kantoorvpn.procolix.eu:51820";
