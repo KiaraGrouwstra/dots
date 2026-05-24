@@ -1,23 +1,5 @@
-{ pkgs, ... }:
 {
   _class = "homeManager";
-
-  # Persistent mux server — keeps terminal processes alive when the GUI is closed
-  systemd.user.services.wezterm-mux-server = {
-    Unit = {
-      Description = "WezTerm Mux Server";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.wezterm}/bin/wezterm-mux-server";
-      Restart = "on-failure";
-      RestartSec = "2s";
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-  };
 
   programs.wezterm = {
     enable = true;
@@ -67,9 +49,6 @@
 
          return {
              default_cwd = "/etc/nixos",
-             -- Connect to persistent mux server; gui-startup only fires on fresh/empty mux
-             unix_domains = {{name = "default"}},
-             default_gui_startup_args = {"connect", "default"},
              hide_tab_bar_if_only_one_tab = true,
              window_close_confirmation = "NeverPrompt",
              enable_kitty_keyboard = true,
