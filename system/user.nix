@@ -66,7 +66,7 @@ in
         wl-clipboard
         thunar
         libreoffice-fresh
-        nixpkgs-review
+        nixpkgs-reviewFull
         gh # dep of nixpkgs-review
         watchman
         jujutsu
