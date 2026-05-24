@@ -44,6 +44,7 @@
       "**/.claude"
       "AGENTS.md"
       "CLAUDE.md"
+      ".mcp.json"
     ];
   };
 }
