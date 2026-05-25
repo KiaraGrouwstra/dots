@@ -96,7 +96,8 @@ in
           fi
           git branch "$branch" "$default" || echo "branch $branch exists" >&2
           git worktree add ".worktrees/''${branch/"/"/-}" "$branch" >&2 || echo "worktree exists" >&2
-          ln -s ../../CLAUDE.md ".worktrees/''${branch/"/"/-}/CLAUDE.md" || echo "symlink exists" >&2
+          ln -s ../../CLAUDE.md ".worktrees/''${branch/"/"/-}/CLAUDE.md" || echo "md symlink exists" >&2
+          ln -s ../../.mcp.json ".worktrees/''${branch/"/"/-}/.mcp.json" || echo "mcp symlink exists" >&2
           printf '%s\n' ".worktrees/''${branch/"/"/-}"
           git config remote.pushDefault "$(whoami)"
         '';
@@ -245,7 +246,7 @@ in
           #   permissions = {
           #     # defaultMode = "auto";
           #     defaultMode = "plan";
-          #     allow = [ "Bash(*)" "Read(*)" "Create file(*)" "Edit file(*)" "Web Search(*)" "Search(*)" "Update(*)" "WebFetch(*)" ];
+          #     allow = [ "Bash" "Edit" "Write" "Read" "Grep" "Glob" "Monitor" "WebSearch" "WebFetch" "NotebookEdit" ];
           #   };
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-7";
