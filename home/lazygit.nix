@@ -94,7 +94,7 @@ _: {
           "main"
           "master"
         ];
-        "autoFetch" = true;
+        "autoFetch" = false;
         "autoRefresh" = true;
         "fetchAll" = true;
         "branchLogCmd" =
