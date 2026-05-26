@@ -38,6 +38,7 @@ in
         mediainfo # yazi
         fd
         jaq
+        jq
         tea
         unstable.gurk-rs
         hydrasect
