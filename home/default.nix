@@ -254,7 +254,7 @@ in
           #   awaySummaryEnabled = false;
           #   showClearContextOnPlanAccept = true;
           #   attribution = {
-          #     commit = "Assisted-by: Claude: claude-opus-4-7 (planning) + claude-sonnet-4-7 (execution)";
+          #     commit = "Assisted-by: claude-code: claude-opus-4-7 (planning) + claude-sonnet-4-7 (execution)";
           #     pr = "Disclaimer: I used a coding agent in the creation of this patch.";
           #   };
           #   statusLine = {
