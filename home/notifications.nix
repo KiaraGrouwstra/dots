@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
-  spd-say = import ./spd-say.nix { inherit pkgs; };
+  noctalia-shell = config.programs.noctalia-shell.package;
+  spd-say = import ./spd-say.nix {
+    inherit pkgs noctalia-shell;
+  };
 
   # Wrapper around notify-send that also speaks the notification via spd-say.
   # Parses notify-send's SUMMARY [BODY] positional args, skipping options.
@@ -37,8 +40,9 @@ let
     fi
 
     # Skip TTS (but still forward the notification) when system Do-Not-Disturb is on;
-    # swaync handles DnD visuals itself.
-    if [ "$(${pkgs.swaynotificationcenter}/bin/swaync-client --get-dnd 2>/dev/null)" = "true" ]; then
+    # noctalia-shell handles DnD visuals itself.
+    if [ "$(${noctalia-shell}/bin/noctalia-shell ipc call state all 2>/dev/null \
+            | ${pkgs.jq}/bin/jq -r '.state.doNotDisturb' 2>/dev/null)" = "true" ]; then
       NOTIFY_NO_TTS=1
     fi
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, noctalia-shell, ... }:
 let
   media-play-pause = pkgs.callPackage ./media-play-pause.nix { };
 in
@@ -13,8 +13,9 @@ pkgs.writeShellScriptBin "spd-say" ''
     exit 0
   fi
 
-  # Skip TTS when system Do-Not-Disturb is enabled.
-  if [ "$(${pkgs.swaynotificationcenter}/bin/swaync-client --get-dnd 2>/dev/null)" = "true" ]; then
+  # Skip TTS when noctalia-shell DnD is enabled.
+  if [ "$(${noctalia-shell}/bin/noctalia-shell ipc call state all 2>/dev/null \
+          | ${pkgs.jq}/bin/jq -r '.state.doNotDisturb' 2>/dev/null)" = "true" ]; then
     exit 0
   fi
 

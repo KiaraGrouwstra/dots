@@ -59,7 +59,6 @@ in
         python3
         ripgrep
         unstable.signal-desktop
-        swaynotificationcenter
         socat
         tree
         transmission_4

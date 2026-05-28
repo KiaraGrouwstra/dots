@@ -62,7 +62,10 @@ in
                     fi
         '';
       };
-      spd-say = import ./spd-say.nix { inherit pkgs; };
+      spd-say = import ./spd-say.nix {
+        inherit pkgs;
+        noctalia-shell = pkgs.callPackage "${sources.noctalia-shell}/nix/package.nix" { };
+      };
       claude-tts = pkgs.writeShellApplication {
         name = "claude-tts";
         runtimeInputs = [ pkgs.jq spd-say ];
