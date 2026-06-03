@@ -14,7 +14,7 @@ in
     config = ''
       LogLevel  3
       LogDir  "default"
-      DefaultVolume 50
+      DefaultVolume 30
       SymbolsPreproc "char"
       SymbolsPreprocFile "gender-neutral.dic"
       SymbolsPreprocFile "font-variants.dic"
