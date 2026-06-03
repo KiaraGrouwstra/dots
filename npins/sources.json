@@ -1,5 +1,18 @@
 {
   "pins": {
+    "claude-code-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "sadjow",
+        "repo": "claude-code-nix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "e20808ee8c42fe5a1325a81cf3f5f95b84d1c876",
+      "url": "https://github.com/sadjow/claude-code-nix/archive/e20808ee8c42fe5a1325a81cf3f5f95b84d1c876.tar.gz",
+      "hash": "sha256-5nf6CTYEoZL5YSfKLLX/T29G8il2dF5L4/c9b+Q68qk="
+    },
     "crane": {
       "type": "GitRelease",
       "repository": {
