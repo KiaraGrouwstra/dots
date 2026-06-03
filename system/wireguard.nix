@@ -12,7 +12,7 @@ let
       secret = true;
     });
   };
-  fileNames = [
+  baseFileNames = [
     "privateKey"
     "ips"
     "allowedIPs"
@@ -25,15 +25,19 @@ let
     vpn-fediversity = {
       endpoint = "vpn.fediversity.eu:51820";
       publicKey = "HWSb8vjhJ6VOL9NWqtV6LYxDQMY5CDKu8RtJuyepvyk=";
+      # Portal-issued config requires a preshared key.
+      presharedKey = true;
     };
     vpn-office = {
       endpoint = "kantoorvpn.procolix.eu:51820";
       publicKey = "9j0IR8ZVMnmI9MOeqbFBqSmZXrjnPhG9t/xO+p1kiR0=";
     };
   };
+  # Per-VPN secret file names: add `presharedKey` when the peer needs one.
+  fileNamesFor = peer: baseFileNames ++ lib.optional (peer.presharedKey or false) "presharedKey";
 in
 {
-  vars.generators = lib.mapAttrs (_: _: secrets fileNames) vpns;
+  vars.generators = lib.mapAttrs (_: peer: secrets (fileNamesFor peer)) vpns;
   networking.wireguard = {
     enable = true;
     useNetworkd = true;
@@ -42,11 +46,14 @@ in
       privateKeyFile = config.vars.generators.${k}.files.privateKey.path;
       peers = [
         (lib.mkMerge [
-          peer
+          (removeAttrs peer [ "presharedKey" ])
           {
             persistentKeepalive = 25;
             allowedIPs = import config.vars.generators.${k}.files.allowedIPs.path;
           }
+          (lib.mkIf (peer.presharedKey or false) {
+            presharedKeyFile = config.vars.generators.${k}.files.presharedKey.path;
+          })
         ])
       ];
     }) vpns;
