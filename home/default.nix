@@ -254,7 +254,7 @@ in
           #   };
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-8";
-          #   effortLevel = "medium";
+          #   effortLevel = "high";
           #   awaySummaryEnabled = false;
           #   showClearContextOnPlanAccept = true;
           #   attribution = {
@@ -267,11 +267,24 @@ in
           #   };
           #   env = {
           #     CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = "47";
+          #     CLAUDE_CODE_DISABLE_1M_CONTEXT = "1";
+          #     CLAUDE_CODE_DISABLE_THINKING = "1";
           #     CLAUDE_CODE_EFFORT_LEVEL = "medium";
           #     CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
           #     CLAUDE_CODE_FORK_SUBAGENT = "1";
           #   };
           #   hooks = {
+          #     Notification = [
+          #       {
+          #         hooks = [
+          #           {
+          #             type = "command";
+          #             command = "printf '\\a' > /dev/tty";
+          #             async = true;
+          #           }
+          #         ];
+          #       }
+          #     ];
           #     Stop = [
           #       {
           #         hooks = [
