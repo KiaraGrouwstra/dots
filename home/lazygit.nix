@@ -62,7 +62,7 @@ _: {
             "|"
             "/"
             "-"
-            "\\\\"
+            "\\"
           ];
           "rate" = 50;
         };
@@ -132,7 +132,7 @@ _: {
       "keybinding" = {
         "universal" = {
           "quit" = "q";
-          "quit-alt1" = "<c-c>";
+          "quit-alt1" = "<c+c>";
           "return" = "<esc>";
           "quitWithoutChangingDirectory" = "Q";
           "togglePanel" = "<tab>";
@@ -163,7 +163,7 @@ _: {
           "optionMenu-alt1" = "?";
           "select" = "<space>";
           "goInto" = "<enter>";
-          "openRecentRepos" = "<c-r>";
+          "openRecentRepos" = "<c+r>";
           "confirm" = "<enter>";
           "remove" = "d";
           "new" = "n";
@@ -171,33 +171,33 @@ _: {
           "openFile" = "o";
           "scrollUpMain" = "<pgup>";
           "scrollDownMain" = "<pgdown>";
-          "scrollUpMain-alt1" = "<c-k>";
-          "scrollDownMain-alt1" = "<c-j>";
-          "scrollUpMain-alt2" = "<c-u>";
-          "scrollDownMain-alt2" = "<c-d>";
+          "scrollUpMain-alt1" = "<c+k>";
+          "scrollDownMain-alt1" = "<c+j>";
+          "scrollUpMain-alt2" = "<c+u>";
+          "scrollDownMain-alt2" = "<c+d>";
           "executeShellCommand" = ":";
           "createRebaseOptionsMenu" = "m";
           "pushFiles" = "P";
           "pullFiles" = "p";
           "refresh" = "R";
-          "createPatchOptionsMenu" = "<c-p>";
+          "createPatchOptionsMenu" = "<c+p>";
           "nextTab" = "]";
           "prevTab" = "[";
           "nextScreenMode" = "+";
           "prevScreenMode" = "_";
           "undo" = "z";
-          "redo" = "<c-z>";
-          "filteringMenu" = "<c-s>";
+          "redo" = "<c+z>";
+          "filteringMenu" = "<c+s>";
           "diffingMenu" = "W";
-          "copyToClipboard" = "<c-o>";
+          "copyToClipboard" = "<c+o>";
           "submitEditorText" = "<enter>";
           "extrasMenu" = "@";
-          "toggleWhitespaceInDiffView" = "<c-w>";
+          "toggleWhitespaceInDiffView" = "<c+w>";
           "increaseContextInDiffView" = "}";
           "decreaseContextInDiffView" = "{";
           "toggleRangeSelect" = "v";
-          "rangeSelectUp" = "<s-up>";
-          "rangeSelectDown" = "<s-down>";
+          "rangeSelectUp" = "<s+up>";
+          "rangeSelectDown" = "<s+down>";
         };
         "status" = {
           "checkForUpdate" = "u";
@@ -208,7 +208,7 @@ _: {
           "commitChangesWithoutHook" = "w";
           "amendLastCommit" = "A";
           "commitChangesWithEditor" = "C";
-          "findBaseCommitForFixup" = "<c-f>";
+          "findBaseCommitForFixup" = "<c+f>";
           "confirmDiscard" = "x";
           "ignoreFile" = "i";
           "refreshFiles" = "r";
@@ -219,7 +219,7 @@ _: {
           "fetch" = "f";
           "toggleTreeView" = "`";
           "openMergeOptions" = "M";
-          "openStatusFilter" = "<c-b>";
+          "openStatusFilter" = "<c+b>";
         };
         "branches" = {
           "createPullRequest" = "o";
@@ -244,8 +244,8 @@ _: {
           "markCommitAsFixup" = "f";
           "createFixupCommit" = "F";
           "squashAboveCommits" = "S";
-          "moveDownCommit" = "<c-j>";
-          "moveUpCommit" = "<c-k>";
+          "moveDownCommit" = "<c+j>";
+          "moveUpCommit" = "<c+k>";
           "amendToCommit" = "A";
           # "amendAttributeMenu" = "a";
           "pickCommit" = "p";
@@ -254,9 +254,9 @@ _: {
           "pasteCommits" = "V";
           "tagCommit" = "T";
           "checkoutCommit" = "<space>";
-          "resetCherryPick" = "<c-R>";
-          # "copyCommitMessageToClipboard" = "<c-y>";
-          "openLogMenu" = "<c-l>";
+          "resetCherryPick" = "<c+s+r>";
+          # "copyCommitMessageToClipboard" = "<c+y>";
+          "openLogMenu" = "<c+l>";
           "viewBisectOptions" = "b";
         };
         "stash" = {
@@ -276,7 +276,7 @@ _: {
           "bulkMenu" = "b";
         };
         "commitMessage" = {
-          "commitMenu" = "<c-o>";
+          "commitMenu" = "<c+o>";
         };
         "amendAttribute" = {
           "addCoAuthor" = "c";
