@@ -58,6 +58,7 @@ pkgs.writeShellScriptBin "spd-say" ''
     if [ "$action" = "stop" ]; then
       ${pkgs.speechd}/bin/spd-say -C
       kill "$spd_pid" 2>/dev/null
+      resume
     fi
   ) &
   notify_pid=$!
