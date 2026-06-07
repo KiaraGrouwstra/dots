@@ -45,6 +45,7 @@
       "AGENTS.md"
       "CLAUDE.md"
       ".mcp.json"
+      "bin"
     ];
   };
 }
