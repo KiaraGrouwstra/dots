@@ -100,7 +100,9 @@ in
           git branch "$branch" "$default" || echo "branch $branch exists" >&2
           git worktree add ".worktrees/''${branch/"/"/-}" "$branch" >&2 || echo "worktree exists" >&2
           ln -s ../../CLAUDE.md ".worktrees/''${branch/"/"/-}/CLAUDE.md" || echo "md symlink exists" >&2
-          ln -s ../../.mcp.json ".worktrees/''${branch/"/"/-}/.mcp.json" || echo "mcp symlink exists" >&2
+          ln -s ../../bin ".worktrees/''${branch/"/"/-}/bin" || echo "bin symlink exists" >&2
+          ln -s ../../.mcp.json ".worktrees/''${branch/"/"/-}/.mcp.json" || echo "MCP symlink exists" >&2
+          ln -s ../../.pre-commit-config.yaml ".worktrees/''${branch/"/"/-}/.pre-commit-config.yaml" || echo "pre-commit-config symlink exists" >&2
           printf '%s\n' ".worktrees/''${branch/"/"/-}"
           git config remote.pushDefault "$(whoami)"
         '';
