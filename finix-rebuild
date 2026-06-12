@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Rebuild driver for the finix system. Targets ./system.nix (the finix entry
+# point on this branch) instead of the channel/NIX_PATH.
+#
+# Finix's nixos-compat layer exposes `system.build.nixos-rebuild = nixos-rebuild-ng`
+# and `system.build.toplevel`, so nixos-rebuild-ng drives activation. We point it
+# at the finix entry file with --file; it resolves config.system.build.toplevel.
+#
+# Usage:
+#   doas ./finix-rebuild build           # just build the toplevel (safe)
+#   doas ./finix-rebuild boot            # install as boot default (keeps the prior generation to roll back to)
+#   doas ./finix-rebuild switch          # activate now + set boot default
+#   doas ./finix-rebuild build-vm        # build a bootable test VM
+#
+# Stage gate: never `switch` the daily driver until the VM (build-vm) boots.
+set -euo pipefail
+
+here="$(cd "$(dirname "$0")" && pwd)"
+action="${1:-build}"
+shift || true
+
+exec nixos-rebuild "$action" \
+  --file "$here/system.nix" \
+  "$@"

@@ -12,7 +12,9 @@
     nushell = {
       enable = true;
       environmentVariables = lib.mkMerge [
-        sysConfig.environment.variables
+        # finix has no `environment.variables` option (system vars come from
+        # /etc/profile.d); fall back to {} there.
+        (sysConfig.environment.variables or { })
         config.home.sessionVariables
       ];
       extraConfig =

@@ -14,13 +14,16 @@ in
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [
-      "networkmanager"
       "wheel"
+      "networkmanager"
+      "video"
+      # "incus-admin"
+      # "nitrokey"
     ];
     shell = config.home-manager.users.kiara.programs.nushell.package;
     packages =
       let
-        unstable = import sources.nixpkgs-unstable { };
+        unstable = import "${sources.nixpkgs-unstable}" { };
         nixpkgs-staging-bisecter = callPackage "${sources.nixpkgs-staging-bisecter}/package.nix" { };
         nix-bisect = python3.pkgs.callPackage "${sources.nix-bisect}/package.nix" { };
         stremio-service = python3.pkgs.callPackage ./stremio-service.nix { };
@@ -82,9 +85,6 @@ in
         stremio-service
         unar
         xdg-terminal-exec
-        xterm-256color
-        x-terminal-emulator
-        x-www-browser
         xfce4-exo
       ];
   };

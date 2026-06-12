@@ -1,3 +1,10 @@
+# vars (clan-style secret generators) for finix.
+#
+# The vars options + on-machine backend are imported in ./default.nix; this file
+# enables the backend and declares the generic generators. The on-machine backend
+# writes secrets to /etc/vars/secret/<gen>/<file> at runtime (the build needs no
+# root and the closure carries no secrets). Per-feature generators live with
+# their feature (e.g. wireguard VPN keys in ./wireguard.nix).
 {
   config,
   lib,
@@ -5,9 +12,10 @@
   ...
 }:
 {
+  vars.settings.on-machine.enable = true;
+
   vars.generators = {
     "prompted" = {
-      # TODO: use clan.core.vars' `prompts.<name>.persist`
       script = ''cp -R "$prompts"/. "$out/"'';
       # usage:
       # prompts."foo" = { };

@@ -84,7 +84,7 @@ in
           config.programs.git.package
           pkgs.gum
           config.programs.claude-code.package
-          sysConfig.nix.package
+          sysConfig.services.nix-daemon.package
         ];
         text = ''
           branch=$(gum input --placeholder "fix-ci")

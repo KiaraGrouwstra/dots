@@ -1,157 +1,114 @@
+# Finix system module set (finit as PID 1, not systemd).
+#
+# Imports the finix-community `laptop` profile (the `standard` stack: udev +
+# elogind + NetworkManager) and layers the machine-specific config on top.
 {
-  lib,
+  modules,
   config,
+  lib,
   pkgs,
   ...
 }:
 let
   user = "kiara";
   sources = (import ../npins) { };
-  system = pkgs.stdenv.hostPlatform.system;
-  NIX_PATH =
-    let
-      entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
-    in
-    "${lib.concatStringsSep ":" entries}:nixos-config=/etc/nixos/configuration.nix";
+  system = "x86_64-linux";
+
+  profiles = import "${sources.profiles}";
+  community = import "${sources.community-modules}";
+
   specialArgs = {
-    inherit
-      sources
-      system
-      user
-      ;
+    inherit sources system user;
     sysConfig = config;
   };
+
+  homeModule = import ../home {
+    inherit
+      config
+      pkgs
+      sources
+      user
+      lib
+      ;
+  };
+  userHmModule = homeModule.home-manager.users.${user};
 in
 {
-  imports = with sources; [
-    "${lanzaboote}/nix/modules/lanzaboote.nix"
-    "${nixos-facter-modules}/modules/nixos/facter.nix"
-    "${home-manager}/nixos"
-    "${vars}/options.nix"
-    "${vars}/backends/on-machine.nix"
-    "${disko}/module.nix"
-    "${noctalia-shell}/nix/nixos-module.nix"
+  imports = [
+    profiles.nixosModules.laptop
+    community.nixosModules.home-manager
+    community.nixosModules.soteria
+    "${sources.vars}/options.nix"
+    "${sources.vars}/backends/on-machine.nix"
+    # noctalia's nixos-module is only a systemd *user* service launching the
+    # shell; finix has no user session, so the shell is spawned by niri's
+    # `spawn-at-startup "noctalia-shell"` instead (home dotfiles config.kdl).
+    # The home-module (programs.noctalia-shell) supplies the package + config.
+    ./hardware.nix
     ./disks.nix
-    ./greetd.nix
+    ./secure-boot.nix
     ./user.nix
     ./vars.nix
     ./nix.nix
     ./wireguard.nix
-    ./niri
+    ./firewall.nix
+    ./services.nix
     ./tts.nix
-    ./nitrokey.nix
-    ./secure-boot.nix
-    ./opencode.nix
-  ];
+    ./niri
+  ]
+  # Native finix service/program modules, imported by reference from the
+  # `modules` arg (= finix's `nixosModules`, passed through specialArgs).
+  ++ (with modules; [
+    # incus
+    flatpak
+    niri
+    xwayland-satellite
+    gnome-keyring
+    doas
+  ]);
+
   _module.args = specialArgs;
-  nix.nixPath = [ NIX_PATH ];
-  nix.registry = lib.mapAttrs (_: path: {
-    to = {
-      type = "path";
-      inherit path;
-    };
-  }) sources;
-  nix.channel.enable = false;
-  home-manager = {
-    useGlobalPkgs = true;
-    extraSpecialArgs = specialArgs;
-    users.${user}.home.sessionVariables = {
-      inherit system NIX_PATH;
-      BROWSER = "firefox";
-      XDG_CURRENT_DESKTOP = "X-Generic";
-      NIX_AUTO_RUN = "1";
-      NIX_AUTO_INSTALL = "1";
+
+  nixpkgs.pkgs = import "${sources.nixpkgs}" {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      # incus pulls in minio, currently flagged insecure upstream.
+      # permittedInsecurePackages = [ "minio-2025-10-15T17-29-55Z" ];
     };
   };
-  vars.settings.on-machine.enable = true;
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      (
-        final: prev:
-        lib.mapAttrs (name: command: pkgs.writeShellScriptBin name "${command} $@") {
-          xterm-256color = "xdg-terminal-exec";
-          x-terminal-emulator = "xdg-terminal-exec";
-          x-www-browser = "$BROWSER";
-        }
-        //
-          lib.mapAttrs
-            (
-              k: overrides:
-              prev.${k}.overrideAttrs (
-                oldAttrs:
-                {
-                  src = sources.${k};
-                }
-                // (overrides k oldAttrs)
-              )
-            )
-            {
-              # lazyjj = _: _: { };
-            }
-      )
-    ];
-  };
-  system.stateVersion = "25.11";
-  hardware.bluetooth.enable = true;
-  facter.reportPath = ./facter.json;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.loader.systemd-boot.enable = true;
-  boot.initrd.systemd.enable = true;
-  networking.nameservers = [
-    # dns.sb
-    "185.222.222.222"
-    "45.11.45.11"
-  ];
-  networking.networkmanager.enable = true;
-  systemd.network.wait-online.enable = false;
-  i18n.defaultLocale = "en_US.UTF-8";
+
+  profiles.laptop.enable = true;
+  profiles.laptop.hardwareSupport = "standard";
+
+  networking.hostName = "nixos";
   time.timeZone = "Europe/Amsterdam";
-  fonts.enableDefaultPackages = true;
-  hardware.amdgpu.opencl.enable = true;
-  zramSwap.enable = true;
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # wheel
-  security = {
-    doas = {
-      enable = true;
-      extraRules = [
-        {
-          groups = [ "wheel" ];
-          keepEnv = true;
-          noPass = true;
-        }
-      ];
-    };
-    sudo = {
-      enable = false;
-      execWheelOnly = true;
-    };
-  };
-
-  programs = {
-    direnv.enable = true;
-    steam.enable = true;
-  };
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchDocked = "ignore";
-    HandleLidSwitchExternalPower = "ignore";
-  };
-  services = {
-    userborn.enable = true;
-    lorri.enable = true;
-    displayManager = {
-      autoLogin.enable = true;
-      autoLogin.user = user;
-    };
-    noctalia-shell = {
-      enable = true;
-      package = pkgs.callPackage "${sources.noctalia-shell}/nix/package.nix" { };
-    };
-    power-profiles-daemon.enable = true;
-    upower.enable = true;
-    flatpak.enable = true;
-  };
-  systemd.user.services.lorri.serviceConfig.PrivateTmp = lib.mkForce false;
+  # community HM module specialArgs only pass pkgs/lib/osConfig; the home/
+  # submodules also expect sources/user/sysConfig. The home bridge below injects
+  # them per-user (see home-manager.users.${user}.imports).
+  home-manager.users.${user}.imports = [
+    userHmModule
+    {
+      _module.args = {
+        inherit sources user;
+        sysConfig = config;
+      };
+      # finix has no systemd user session - drop units with no equivalent.
+      services.kdeconnect.enable = lib.mkForce false;
+      # The community HM module does not derive these from the system user the
+      # way the NixOS HM module does; set them explicitly.
+      home.username = user;
+      home.homeDirectory = "/home/${user}";
+      home.sessionVariables = {
+        BROWSER = "firefox";
+        XDG_CURRENT_DESKTOP = "X-Generic";
+        NIX_AUTO_RUN = "1";
+        NIX_AUTO_INSTALL = "1";
+      };
+      # nixpkgs/HM release skew is expected (we pin both independently).
+      home.enableNixpkgsReleaseCheck = false;
+    }
+  ];
 }

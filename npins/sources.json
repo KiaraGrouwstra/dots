@@ -13,6 +13,19 @@
       "url": "https://github.com/sadjow/claude-code-nix/archive/4b0229ec9e37c594156b492653eada8413446f09.tar.gz",
       "hash": "sha256-sL9ZxUqeNFK2TXg0o0swSeJz0KlgkpLiyPSOq+Durug="
     },
+    "community-modules": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "finix-community",
+        "repo": "community-modules"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "adf03efa05cd20000a65484441ab8d1ba1d38853",
+      "url": "https://github.com/finix-community/community-modules/archive/adf03efa05cd20000a65484441ab8d1ba1d38853.tar.gz",
+      "hash": "sha256-hu+ZcxD/eR2v42kJV+WiOtdL92IJwM53Qz17iKEQuIk="
+    },
     "crane": {
       "type": "GitRelease",
       "repository": {
@@ -44,6 +57,19 @@
       "revision": "56ef5e72fec74b993ad0973b2dfa4eadeb48ba41",
       "url": "https://api.github.com/repos/nix-community/disko/tarball/v1.13.0",
       "hash": "sha256-CNzzBsRhq7gg4BMBuTDObiWDH/rFYHEuDRVOwCcwXw4="
+    },
+    "finix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "finix-community",
+        "repo": "finix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "f5fd2367b30b65a4cfa285f393f79024f0958ac9",
+      "url": "https://github.com/finix-community/finix/archive/f5fd2367b30b65a4cfa285f393f79024f0958ac9.tar.gz",
+      "hash": "sha256-tsRpewgY0W1YEEEbYxKvEPiKXNrdAxURHVqAKf5Z+F8="
     },
     "flake-compat": {
       "type": "Git",
@@ -266,6 +292,19 @@
       "url": "https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/nl/nl_NL/pim/medium/nl_NL-pim-medium.onnx",
       "hash": "sha256-QD5Yw2dcOU9QXCQoEXvzTMVulULc9urb3TqEcGwS4Eg=",
       "frozen": true
+    },
+    "profiles": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "finix-community",
+        "repo": "profiles"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "dbaf5f80126f964047034c40b3a917f93fbb9442",
+      "url": "https://github.com/finix-community/profiles/archive/dbaf5f80126f964047034c40b3a917f93fbb9442.tar.gz",
+      "hash": "sha256-kIbqjivls8Es76OpS8P3WzCdhHBUHwVTQEyp+jGgGhU="
     },
     "rust-overlay": {
       "type": "Git",

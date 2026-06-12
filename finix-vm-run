@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Launch the finix VM (Phase 6 VM gate).
+#
+# Boots kernel-direct with the host /nix/store over 9p (no limine/LUKS in the
+# VM path - those are bare-metal only). Adds a user-mode NIC + serial console
+# so finit boot, regreet/niri, pipewire, NetworkManager and incus can be
+# inspected. Run unprivileged (KVM via /dev/kvm if the user is in the kvm group).
+#
+# Usage: ./finix-vm-run            # graphical window
+#        ./finix-vm-run --nographic # serial console only
+set -euo pipefail
+here="$(cd "$(dirname "$0")" && pwd)"
+
+# Realise the VM closure (qemu/kernel/initrd/toplevel) so they exist in the
+# store before qemu is invoked from the resolved argv.
+nix build -f "$here/system-finix-vm.nix" \
+  config.system.build.toplevel \
+  config.boot.initrd.package \
+  config.boot.kernelPackages.kernel \
+  config.virtualisation.qemu.package \
+  --no-link
+
+# Read argv as a JSON array so multi-word tokens (e.g. the `-append` kernel
+# cmdline "loglevel=1 splash init=...") stay single arguments.
+mapfile -t argv < <(
+  nix-instantiate --eval --strict --json \
+    -E "(import $here/system-finix-vm.nix).config.virtualisation.qemu.argv" \
+    | "$(command -v jq)" -r '.[]'
+)
+
+# Split netdev/device form so `romfile=` can disable the NIC option ROM - its
+# iPXE stub otherwise grabs the boot order ahead of the direct `-kernel` boot.
+argv+=(-netdev user,id=net0 -device virtio-net-pci,netdev=net0,romfile=)
+# virtio-gpu + virtio-keyboard/tablet so the wayland greeter (regreet) has a
+# DRM device + input; without a GPU it crash-loops trying to open a display.
+argv+=(-device virtio-gpu-pci -device virtio-keyboard -device virtio-tablet)
+if [ "${1:-}" = "--nographic" ]; then
+  # Headless smoke test: serial console only, no display device.
+  argv+=(-nographic)
+fi
+
+exec "${argv[@]}"
