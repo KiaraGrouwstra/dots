@@ -256,7 +256,7 @@ in
           #   };
           #   model = "opusplan";
           #   # model = "claude-sonnet-4-8";
-          #   effortLevel = "high";
+          #   effortLevel = "medium";
           #   awaySummaryEnabled = false;
           #   showClearContextOnPlanAccept = true;
           #   attribution = {
@@ -268,6 +268,7 @@ in
           #     command = "/home/kiara/.claude/statusline.sh";
           #   };
           #   env = {
+          #     ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-fable-4-8";
           #     CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = "47";
           #     CLAUDE_CODE_DISABLE_1M_CONTEXT = "1";
           #     CLAUDE_CODE_DISABLE_THINKING = "1";
