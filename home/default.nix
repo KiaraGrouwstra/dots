@@ -142,13 +142,18 @@ in
         claude-tts
       ];
       dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-      xdg.systemDirs.data = [
-        "/run/current-system/sw/share"
-        "/etc/profiles/per-user/${user}/share"
-        "/home/${user}/.nix-profile/share"
-        "/home/${user}/.local/share"
-        "${sysConfig.services.displayManager.sessionData.desktops}/share"
-      ];
+      # xdg.systemDirs.data disabled: home-manager generates bash parameter
+      # expansion syntax (${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}) in environment.d,
+      # which systemd does not expand. This causes a literal bash string to end
+      # up in $XDG_DATA_DIRS, breaking Neovim wildcard expansion (E79).
+      # The system /etc/set-environment already sets the needed paths.
+      # xdg.systemDirs.data = [
+      #   "/run/current-system/sw/share"
+      #   "/etc/profiles/per-user/${user}/share"
+      #   "/home/${user}/.nix-profile/share"
+      #   "/home/${user}/.local/share"
+      #   "${sysConfig.services.displayManager.sessionData.desktops}/share"
+      # ];
       xdg.mimeApps = {
         enable = true;
         defaultApplicationPackages = [
