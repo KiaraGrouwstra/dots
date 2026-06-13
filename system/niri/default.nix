@@ -13,6 +13,18 @@
   programs.niri.enable = true;
   programs.xwayland-satellite.enable = true;
 
+  # Session-wide environment. Finix has no `environment.variables`; the
+  # equivalent is pam_env via `security.pam.environment` (NixOS routes the same
+  # vars through pam too). `.override` forces the value over any inherited one.
+  #   DISPLAY        - xwayland-satellite's rootless X server
+  #   NIXOS_OZONE_WL - wayland backend for electron/chromium apps
+  #   EDITOR         - helix
+  security.pam.environment = {
+    DISPLAY.override = ":0";
+    NIXOS_OZONE_WL.override = "1";
+    EDITOR.override = "hx";
+  };
+
   # Polkit auth agent for the standalone wayland session (no DE agent).
   # Replaces the niri-flake systemd-user polkit unit (no user session on finix).
   services.soteria.enable = true;

@@ -7,9 +7,44 @@
 #   - nix.gc systemd timers              (port to fcron later if desired)
 #   - nix-build-cgroup-reaper            (systemd-coupled; finit cgroup handling
 #                                         may make it moot - revisit)
-#   - the github-pat access-token templating via vars (revisit per-need)
-{ ... }:
+#
+# The github-pat access-token is injected at runtime via vars, mirroring main:
+# the rendered nix.conf carries a placeholder, the `templates` generator
+# substitutes the real secret into a runtime copy, and we force the etc source
+# at it. So the build needs no token and the closure carries no secret. Same
+# pattern as the wireguard task in ./wireguard.nix.
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  vars.generators = {
+    # token from https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+    "prompted".prompts."github-pat" = { };
+    "prompted".files."github-pat".secret = true;
+
+    "templates".files."nix.conf" = {
+      # `secret` here refers to the substituted file, not the placeholder template.
+      secret = true;
+      mode = "0644";
+      # render nix.conf from the daemon settings the same way finix's own
+      # configFile does (key = space-joined value), with the placeholder embedded.
+      template =
+        (pkgs.formats.nixConf {
+          package = config.services.nix-daemon.package;
+          version = config.services.nix-daemon.package.version;
+        }).generate
+          "nix.conf"
+          (
+            lib.mapAttrs (
+              _: v: if builtins.isList v then lib.concatStringsSep " " v else v
+            ) config.services.nix-daemon.settings
+          );
+    };
+  };
+
   services.nix-daemon.settings = {
     experimental-features = [
       "nix-command"
@@ -28,6 +63,8 @@
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
+    # placeholder substituted in at runtime by the `templates` generator
+    access-tokens = "github.com=${config.vars.generators."prompted".files."github-pat".placeholder}";
     builders-use-substitutes = true;
     auto-optimise-store = false;
     cores = 0;
@@ -54,4 +91,7 @@
       "/dev/net"
     ];
   };
+
+  # point the live nix.conf at the runtime-templated copy (with the real token)
+  environment.etc."nix/nix.conf".source = lib.mkForce config.vars.generators."templates".files."nix.conf".path;
 }

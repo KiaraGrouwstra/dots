@@ -46,7 +46,8 @@ in
     # The home-module (programs.noctalia-shell) supplies the package + config.
     ./hardware.nix
     ./disks.nix
-    ./secure-boot.nix
+    # bootloader (limine) comes from the laptop profile; Secure Boot is opt-in
+    # and off for v1 (see README). No local boot module needed for now.
     ./user.nix
     ./vars.nix
     ./nix.nix
@@ -84,6 +85,14 @@ in
   networking.hostName = "nixos";
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # Custom DNS (dns.sb). Finix has no `networking.nameservers`; the NM module is
+  # minimal too, so push the servers through a NetworkManager conf.d drop-in
+  # (NM's global-dns), matching what `networking.nameservers` does on NixOS.
+  environment.etc."NetworkManager/conf.d/dns.conf".text = ''
+    [global-dns-domains-*]
+    servers=185.222.222.222,45.11.45.11
+  '';
 
   # community HM module specialArgs only pass pkgs/lib/osConfig; the home/
   # submodules also expect sources/user/sysConfig. The home bridge below injects

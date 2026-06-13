@@ -33,20 +33,29 @@ direct finit units. It pays off only for reusing nixpkgs portable-service defs.
 - `system/disks.nix` - the existing on-disk layout as plain finix `fileSystems`
   (disko's NixOS module is `modulesPath`-coupled and unused). LUKS unlock is
   finix's `fsType = "luks"` -> `cryptsetup open` (passphrase).
-- `system/secure-boot.nix` - limine; Secure Boot investigation + opt-in (off for v1).
-- `system/greetd.nix` - session defaults on top of the profile's greetd/regreet.
-- `system/user.nix` - the user, groups, shell, and package set.
+- `system/user.nix` - the user, groups, shell, and package set (incl. the
+  `x-terminal-emulator`/`x-www-browser`/`xterm-256color` command wrappers,
+  inlined as `writeShellScriptBin` since finix has no `nixpkgs.overlays`).
 - `system/vars.nix` - vars on-machine backend + generic generators.
-- `system/nix.nix` - `services.nix-daemon.settings` (finix's nix.conf namespace).
+- `system/nix.nix` - `services.nix-daemon.settings` (finix's nix.conf namespace),
+  plus the github-pat access-token injected at runtime via vars (placeholder in
+  the rendered nix.conf, substituted into the live `/etc/nix/nix.conf` by the
+  `templates` generator - same pattern as the wireguard task).
 - `system/wireguard.nix` - 3 VPNs as NetworkManager keyfiles assembled at boot by
   a finit task from the `vars` secrets (no `ensureProfiles` in finix; secrets
   read at runtime so the build needs no root and the closure carries none).
 - `system/firewall.nix` - nftables ruleset (overrides the profile's): ssh,
   wireguard, incus, kdeconnect ports.
 - `system/services.nix` - doas (passwordless wheel), incus, kdeconnect package.
-- `system/nitrokey.nix` - nitrokey udev rules (FIDO2 LUKS unlock dropped).
 - `system/tts.nix` - speech-dispatcher as a finit service.
-- `system/niri/` - niri session, xwayland-satellite, soteria, steam, fonts.
+- `system/niri/` - niri session, xwayland-satellite, soteria, steam, fonts, and
+  the session env (`DISPLAY`/`NIXOS_OZONE_WL`/`EDITOR` via `security.pam.environment`,
+  since finix has no `environment.variables`).
+
+The bootloader (limine) and greeter (greetd/regreet) come from the laptop
+profile, so there are no local `secure-boot.nix`/`greetd.nix` modules. Custom DNS
+(dns.sb) is a NetworkManager `conf.d` drop-in in `system/default.nix` (finix has
+no `networking.nameservers`). Nitrokey udev rules are dropped for v1.
 
 ## Status
 

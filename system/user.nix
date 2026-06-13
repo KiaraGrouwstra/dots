@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   system,
   user,
@@ -9,6 +10,16 @@
 let
   inherit (pkgs) callPackage python3;
   flake-compat = src: import sources.flake-compat { inherit src; };
+
+  # Conventional command-name wrappers other tools shell out to. On NixOS these
+  # came from a `nixpkgs.overlays` entry (finix exposes no `overlays` option), but
+  # they override nothing - they are plain `writeShellScriptBin` packages, so we
+  # inline them here where they are used. `$BROWSER` is set in home.sessionVariables.
+  cmdWrappers = lib.mapAttrsToList (name: command: pkgs.writeShellScriptBin name ''${command} "$@"'') {
+    xterm-256color = "xdg-terminal-exec";
+    x-terminal-emulator = "xdg-terminal-exec";
+    x-www-browser = "$BROWSER";
+  };
 in
 {
   users.users.${user} = {
@@ -86,6 +97,7 @@ in
         unar
         xdg-terminal-exec
         xfce4-exo
-      ];
+      ]
+      ++ cmdWrappers;
   };
 }
