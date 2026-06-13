@@ -30,6 +30,16 @@ finix.lib.finixSystem {
         virtualisation.memorySize = 4096;
         virtualisation.cores = 4;
 
+        # The host /nix/store comes in over 9p (qemu's in-process `local`
+        # server). Its default transfer size is tiny, so the heavy parallel
+        # store reads of a graphical session (niri/regreet/pipewire faulting in
+        # pages) stall and the transport drops - the guest then sees
+        # "Transport endpoint is not connected" (errno 107). Bump `msize` on the
+        # store mount so each 9p request moves far more data and the link stays
+        # up. This merges with the qemu module's fixed option list for the same
+        # mount point.
+        fileSystems."/nix/.ro-store".options = [ "msize=262144" ];
+
         # Serial console so `finix-vm-run --nographic` shows kernel + finit logs.
         boot.kernelParams = [ "console=ttyS0" ];
 
