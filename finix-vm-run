@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 # Launch the finix VM (Phase 6 VM gate).
 #
-# Boots kernel-direct with the host /nix/store over 9p (no limine/LUKS in the
-# VM path - those are bare-metal only). Adds a user-mode NIC + serial console
-# so finit boot, regreet/niri, pipewire, NetworkManager and incus can be
-# inspected. Run unprivileged (KVM via /dev/kvm if the user is in the kvm group).
+# Boots kernel-direct with the host /nix/store shared over virtiofs (no
+# limine/LUKS in the VM path - those are bare-metal only). Adds a user-mode NIC
+# + serial console so finit boot, regreet/niri, pipewire, NetworkManager and
+# incus can be inspected. Run unprivileged (KVM via /dev/kvm if the user is in
+# the kvm group).
+#
+# The store is shared via virtiofs (a multi-threaded virtiofsd host daemon over
+# vhost-user), not qemu's single-threaded in-process 9p server: under the
+# parallel store reads of a graphical session the 9p transport drops with errno
+# 107 ("Transport endpoint is not connected"). virtiofs needs a shared-memory
+# backend (memory-backend-file) so the device and qemu map the same region.
 #
 # Usage: ./finix-vm-run            # graphical window
 #        ./finix-vm-run --nographic # serial console only
@@ -20,12 +27,49 @@ nix build -f "$here/system-finix-vm.nix" \
   config.virtualisation.qemu.package \
   --no-link
 
+virtiofsd="$(nix build -f '<nixpkgs>' virtiofsd --no-link --print-out-paths)/bin/virtiofsd"
+
 # Read argv as a JSON array so multi-word tokens (e.g. the `-append` kernel
 # cmdline "loglevel=1 splash init=...") stay single arguments.
-mapfile -t argv < <(
+mapfile -t raw_argv < <(
   nix-instantiate --eval --strict --json \
     -E "(import $here/system-finix-vm.nix).config.virtualisation.qemu.argv" \
     | "$(command -v jq)" -r '.[]'
+)
+
+# Drop the module's `-virtfs local,...,mount_tag=nix-store,...` pair: we share
+# the store over virtiofs instead. (-virtfs takes one following value arg.)
+argv=()
+skip_next=0
+for tok in "${raw_argv[@]}"; do
+  if [ "$skip_next" = 1 ]; then skip_next=0; continue; fi
+  if [ "$tok" = "-virtfs" ]; then skip_next=1; continue; fi
+  argv+=("$tok")
+done
+
+# Start virtiofsd as a host daemon exporting /nix/store over a vhost-user
+# socket. --shared-dir is the store; the guest mounts mount_tag "nix-store".
+sock="$(mktemp -u /tmp/finix-vm-virtiofs.XXXXXX.sock)"
+"$virtiofsd" --socket-path="$sock" --shared-dir=/nix/store \
+  --cache=auto --sandbox=none &
+viofs_pid=$!
+trap 'kill "$viofs_pid" 2>/dev/null; rm -f "$sock"' EXIT
+# Wait for the socket to appear before qemu connects to it.
+for _ in $(seq 1 50); do [ -S "$sock" ] && break; sleep 0.1; done
+
+# virtiofs requires the vm memory to be shared so the device and qemu map the
+# same region. Derive the backend size from the `-m` value already in argv (the
+# module sets virtualisation.memorySize), then add a shared memfd backend and
+# attach it as the machine's memory via a numa node.
+memsize=4096
+for i in "${!argv[@]}"; do
+  if [ "${argv[$i]}" = "-m" ]; then memsize="${argv[$((i + 1))]}"; break; fi
+done
+argv+=(
+  -chardev "socket,id=viofs0,path=$sock"
+  -device "vhost-user-fs-pci,queue-size=1024,chardev=viofs0,tag=nix-store"
+  -object "memory-backend-memfd,id=mem,size=${memsize}M,share=on"
+  -numa "node,memdev=mem"
 )
 
 # Split netdev/device form so `romfile=` can disable the NIC option ROM - its
@@ -39,4 +83,4 @@ if [ "${1:-}" = "--nographic" ]; then
   argv+=(-nographic)
 fi
 
-exec "${argv[@]}"
+"${argv[@]}"

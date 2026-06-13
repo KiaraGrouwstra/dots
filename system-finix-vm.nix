@@ -18,6 +18,31 @@ finix.lib.finixSystem {
   lib = (import "${sources.nixpkgs}" { }).lib;
   modules = [
     ./system
+    # Register `virtiofs` as a known filesystem so the initrd module's
+    # auto-derivation (it maps every neededForBoot fsType to
+    # `supportedFilesystems.<fsType>.enable`) accepts the store mount below.
+    # Finix ships such a module for 9p (modules/filesystems/9p.nix) but not
+    # virtiofs; this mirrors it and pulls the `virtiofs` kernel module into the
+    # initrd when enabled.
+    (
+      { config, lib, ... }:
+      {
+        options.boot.initrd.supportedFilesystems.virtiofs.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+        };
+        options.boot.supportedFilesystems.virtiofs.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+        };
+        config = {
+          boot.kernelModules = lib.mkIf config.boot.supportedFilesystems.virtiofs.enable [ "virtiofs" ];
+          boot.initrd.kernelModules = lib.mkIf config.boot.initrd.supportedFilesystems.virtiofs.enable [
+            "virtiofs"
+          ];
+        };
+      }
+    )
     (
       { lib, ... }:
       {
@@ -30,15 +55,20 @@ finix.lib.finixSystem {
         virtualisation.memorySize = 4096;
         virtualisation.cores = 4;
 
-        # The host /nix/store comes in over 9p (qemu's in-process `local`
-        # server). Its default transfer size is tiny, so the heavy parallel
-        # store reads of a graphical session (niri/regreet/pipewire faulting in
-        # pages) stall and the transport drops - the guest then sees
-        # "Transport endpoint is not connected" (errno 107). Bump `msize` on the
-        # store mount so each 9p request moves far more data and the link stays
-        # up. This merges with the qemu module's fixed option list for the same
-        # mount point.
-        fileSystems."/nix/.ro-store".options = [ "msize=262144" ];
+        # Share the host /nix/store over virtiofs, not 9p. QEMU's in-process 9p
+        # `local` server is single-threaded and collapses under the parallel
+        # store reads of a graphical session (niri/regreet/pipewire), dropping
+        # the transport - the guest then sees "Transport endpoint is not
+        # connected" (errno 107). virtiofsd is a multi-threaded host daemon over
+        # vhost-user, which holds up under that load. The finix qemu module
+        # hardcodes the 9p mount + `-virtfs` arg, so override both: force the
+        # store mount to virtiofs here and have ./finix-vm-run launch virtiofsd
+        # and pass the vhost-user device instead of `-virtfs`.
+        fileSystems."/nix/.ro-store" = lib.mkForce {
+          device = "nix-store";
+          fsType = "virtiofs";
+          neededForBoot = true;
+        };
 
         # Serial console so `finix-vm-run --nographic` shows kernel + finit logs.
         boot.kernelParams = [ "console=ttyS0" ];

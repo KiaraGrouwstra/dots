@@ -22,7 +22,11 @@ direct finit units. It pays off only for reusing nixpkgs portable-service defs.
 
 - `system.nix` - entry point. Calls `finix.lib.finixSystem { modules = [ ./system ]; }`.
 - `system-finix-vm.nix` - VM variant for the boot gate (kernel-direct boot, host
-  `/nix/store` over 9p, tmpfs root - does NOT exercise limine/LUKS).
+  `/nix/store` over virtiofs, tmpfs root - does NOT exercise limine/LUKS). The
+  store is shared via virtiofs, not qemu's in-process 9p server, which is
+  single-threaded and drops the transport (errno 107) under a graphical
+  session's parallel store reads. `finix-vm-run` launches a `virtiofsd` sidecar
+  and a shared `memfd` memory backend for it.
 - `finix-rebuild` - rebuild driver (`nixos-rebuild --file system.nix`).
 - `finix-vm-run` - launches the VM (`--nographic` for a serial smoke test).
 - `system/default.nix` - core wiring: laptop profile, `nixpkgs.pkgs`, identity,
