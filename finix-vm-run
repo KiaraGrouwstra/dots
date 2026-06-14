@@ -50,8 +50,13 @@ done
 # Start virtiofsd as a host daemon exporting /nix/store over a vhost-user
 # socket. --shared-dir is the store; the guest mounts mount_tag "nix-store".
 sock="$(mktemp -u /tmp/finix-vm-virtiofs.XXXXXX.sock)"
+# --inode-file-handles=never avoids the O_PATH file-handle path that fails
+# ("Operation not permitted") on the host store fs. Log to a file so a crash is
+# diagnosable (qemu only reports the socket closing as "Wrote -1 ... ring
+# restore -22"). Raise the fd limit; a graphical session opens many files.
 "$virtiofsd" --socket-path="$sock" --shared-dir=/nix/store \
-  --cache=auto --sandbox=none &
+  --cache=auto --inode-file-handles=never \
+  --sandbox=none --log-level=info 2>/tmp/finix-vm-virtiofsd.log &
 viofs_pid=$!
 trap 'kill "$viofs_pid" 2>/dev/null; rm -f "$sock"' EXIT
 # Wait for the socket to appear before qemu connects to it.
@@ -75,12 +80,24 @@ argv+=(
 # Split netdev/device form so `romfile=` can disable the NIC option ROM - its
 # iPXE stub otherwise grabs the boot order ahead of the direct `-kernel` boot.
 argv+=(-netdev user,id=net0 -device virtio-net-pci,netdev=net0,romfile=)
-# virtio-gpu + virtio-keyboard/tablet so the wayland greeter (regreet) has a
-# DRM device + input; without a GPU it crash-loops trying to open a display.
-argv+=(-device virtio-gpu-pci -device virtio-keyboard -device virtio-tablet)
 if [ "${1:-}" = "--nographic" ]; then
   # Headless smoke test: serial console only, no display device.
   argv+=(-nographic)
+else
+  # GPU + keyboard/tablet so the wayland greeter (regreet) has a DRM device +
+  # input; without a GPU it crash-loops trying to open a display. Use the GL
+  # variant (virtio-gpu-gl + `gtk,gl=on`): plain software virtio-gpu-pci shares
+  # a memory mapping with the vhost-user-fs store device and the two collide
+  # once the guest drives both (qemu reads -1 from virtiofsd, `ring restore
+  # -22`). The host-GL path maps differently and avoids the conflict.
+  # `-serial mon:stdio` keeps the ttyS0 boot/finit log on the terminal even
+  # though the guest's graphical output goes to the GTK window (otherwise the
+  # console follows the display and the terminal looks dead).
+  argv+=(
+    -device virtio-gpu-gl-pci -device virtio-keyboard -device virtio-tablet
+    -display "gtk,gl=on"
+    -serial mon:stdio
+  )
 fi
 
 "${argv[@]}"

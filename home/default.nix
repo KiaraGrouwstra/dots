@@ -129,7 +129,7 @@ in
         ./dictation.nix
         ./mpris-proxy.nix
       ];
-      home.stateVersion = "24.11";
+      home.stateVersion = "26.05";
       home.packages = [
         pkgs.claude-code-router
         exo-desktop

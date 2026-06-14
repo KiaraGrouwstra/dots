@@ -8,8 +8,17 @@
 # and rebuild with ./finix-rebuild (nixos-rebuild-ng via finix's nixos-compat).
 let
   sources = import ./npins;
-  finix = import "${sources.finix}";
-  lib = (import "${sources.nixpkgs}" { }).lib;
+  pkgs = import "${sources.nixpkgs}" { };
+  # The pinned finix source is read-only; apply our in-repo patch (loud
+  # finix-mount-all + switch-root gated on <task/mount-all/success>) before
+  # importing it. See ./finix.patch.
+  finixSrc = pkgs.applyPatches {
+    name = "finix-patched";
+    src = sources.finix;
+    patches = [ ./finix.patch ];
+  };
+  finix = import "${finixSrc}";
+  lib = pkgs.lib;
 in
 finix.lib.finixSystem {
   inherit lib;

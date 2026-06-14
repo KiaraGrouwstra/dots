@@ -12,7 +12,15 @@
 # (see ./finix-vm-run for a launcher)
 let
   sources = import ./npins;
-  finix = import "${sources.finix}";
+  pkgs = import "${sources.nixpkgs}" { };
+  # Same in-repo patch as system.nix; the VM forces tmpfs/luks-off so its
+  # mount-all differs, but build off the patched source so both stay in sync.
+  finixSrc = pkgs.applyPatches {
+    name = "finix-patched";
+    src = sources.finix;
+    patches = [ ./finix.patch ];
+  };
+  finix = import "${finixSrc}";
 in
 finix.lib.finixSystem {
   lib = (import "${sources.nixpkgs}" { }).lib;
@@ -46,7 +54,7 @@ finix.lib.finixSystem {
     (
       { lib, ... }:
       {
-        imports = [ "${sources.finix}/modules/virtualisation/qemu.nix" ];
+        imports = [ "${finixSrc}/modules/virtualisation/qemu.nix" ];
 
         # VM boots kernel-direct off the host store; the real LUKS/btrfs
         # fileSystems from ./disks.nix don't apply in the VM. Provide a tmpfs
@@ -71,7 +79,15 @@ finix.lib.finixSystem {
         };
 
         # Serial console so `finix-vm-run --nographic` shows kernel + finit logs.
-        boot.kernelParams = [ "console=ttyS0" ];
+        # ./disks.nix pins `console=tty1` for bare-metal LUKS at mkForce (prio
+        # 50); override at 49 (higher priority) so the VM's serial console wins
+        # without a same-priority conflict.
+        boot.kernelParams = lib.mkOverride 49 [ "console=ttyS0" ];
+
+        # disks.nix pins the stage-1 controlling terminal to tty1 for bare-metal
+        # LUKS; the VM has no LUKS and uses a serial console, so keep `@console`
+        # (-> ttyS0).
+        boot.initrd.consoleDevice = lib.mkOverride 49 "@console";
 
         # Replace the bare-metal LUKS/btrfs layout from ./disks.nix with a
         # tmpfs root. The qemu module's own `/nix/store` 9p bind is left intact
