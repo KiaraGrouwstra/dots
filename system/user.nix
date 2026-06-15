@@ -30,6 +30,7 @@ in
       "wheel"
       "networkmanager"
       "video"
+      "render"
       "input"
       config.services.seatd.group
       # "incus-admin"
