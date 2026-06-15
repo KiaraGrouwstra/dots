@@ -92,6 +92,9 @@ in
 
   # Also surface what regreet/cage themselves think went wrong.
   programs.regreet.debug = true;
+  programs.regreet.compositor.environment = {
+    WLR_BACKENDS = "drm,libinput";
+  };
 
   # --- restore a usable tty1 instead of a blank echoing console ---
   # With the greeter failing, tty1 is a bare kernel console. Put a getty back on

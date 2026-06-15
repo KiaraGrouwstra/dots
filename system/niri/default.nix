@@ -20,7 +20,7 @@
   #   NIXOS_OZONE_WL - wayland backend for electron/chromium apps
   #   EDITOR         - helix
   security.pam.environment = {
-    DISPLAY.override = ":0";
+    # DISPLAY.override = ":0";
     NIXOS_OZONE_WL.override = "1";
     EDITOR.override = "hx";
   };
