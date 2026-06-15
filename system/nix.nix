@@ -17,6 +17,7 @@
   config,
   lib,
   pkgs,
+  sources,
   ...
 }:
 {
@@ -90,6 +91,7 @@
     extra-sandbox-paths = [
       "/dev/net"
     ];
+    nix-path = lib.mapAttrsToList (k: v: k + "=" + v) sources;
   };
 
   # point the live nix.conf at the runtime-templated copy (with the real token)
