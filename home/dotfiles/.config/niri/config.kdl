@@ -201,8 +201,8 @@ layout {
 // which may be more convenient to use.
 // spawn-at-startup "alacritty -e fish"
 // screen sharing
-spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" {
-}
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" {
+// }
 spawn-at-startup "noctalia-shell" {
 }
 spawn-at-startup "kdeconnect-indicator" {
