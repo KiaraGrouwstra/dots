@@ -77,6 +77,17 @@ in
       # incus pulls in minio, currently flagged insecure upstream.
       # permittedInsecurePackages = [ "minio-2025-10-15T17-29-55Z" ];
     };
+    overlays = [
+      (final: prev: {
+        # libseat's systemd logind backend RPATHs a split-output systemd whose
+        # `lib` output lacks libsystemd.so.0 (it lives in systemd-minimal-libs),
+        # so cage -> wlroots -> libseat.so.1 fails to load libsystemd ->
+        # "cage: libsystemd.so.0: cannot open shared object file". Finix uses
+        # elogind + the seatd daemon (services.seatd in ./disks.nix) for seat
+        # management, so drop the logind backend entirely.
+        seatd = prev.seatd.override { systemdSupport = false; };
+      })
+    ];
   };
 
   profiles.laptop.enable = true;

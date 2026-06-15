@@ -39,6 +39,25 @@ in
     "loglevel=4"
   ];
 
+  # --- boot isolation: keep limine off the EFI fallback slot ---
+  # With `canTouchEfiVariables` unset, limine's installer sets
+  # `efiInstallAsRemovable=true` and writes the firmware fallback app
+  # `EFI/BOOT/BOOTX64.EFI` - the same slot systemd-boot (NixOS) uses, so the two
+  # bootloaders fight over it. Enabling EFI var writes makes limine install to
+  # `EFI/limine/BOOTX64.EFI` and register its own "Limine" efibootmgr entry,
+  # leaving the fallback slot + `EFI/systemd/` to NixOS's systemd-boot. The
+  # firmware BootOrder then cleanly selects between finix (Limine) and NixOS.
+  # Safe: the machine boots UEFI and systemd-boot already writes EFI vars.
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce true;
+
+  # libseat's seatd backend needs a running seatd daemon. Finix uses elogind +
+  # seatd for seat management (the systemd logind backend is dropped via overlay
+  # in ./default.nix because its RPATH points at a split-output systemd that
+  # lacks libsystemd.so.0, breaking cage). Enabling this also wires the `greeter`
+  # user into the seatd group (the finix regreet module gates that on
+  # `services.seatd.enable`).
+  services.seatd.enable = lib.mkForce true;
+
   # `@console` resolves to tty0 (the foreground-VT proxy), not tty1, so finit
   # binds tty0 as the fs-import task's controlling terminal and cryptsetup's
   # getpass() reads /dev/tty == tty0 while the kernel echoes keystrokes on the

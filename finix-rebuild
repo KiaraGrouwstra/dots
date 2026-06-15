@@ -21,4 +21,5 @@ shift || true
 
 exec nixos-rebuild "$action" \
   --file "$here/system.nix" \
+  --profile-name finix \
   "$@"

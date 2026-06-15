@@ -1,0 +1,90 @@
+diff --git a/modules/finit/initrd.nix b/modules/finit/initrd.nix
+index 92cd248..e5cc618 100644
+--- a/modules/finit/initrd.nix
++++ b/modules/finit/initrd.nix
+@@ -77,6 +77,20 @@ in
+     '';
+   };
+ 
++  options.boot.initrd.consoleDevice = lib.mkOption {
++    type = lib.types.str;
++    default = "@console";
++    description = ''
++      Device finit binds as the controlling terminal of the stage-1
++      `fs-import` task, and thus the terminal `cryptsetup`'s passphrase
++      prompt reads via `/dev/tty`. Defaults to finit's `@console`
++      wildcard, which resolves to the first entry of
++      `/sys/class/tty/console/active`. Set to a concrete VT such as
++      `/dev/tty1` when `@console` resolves to the non-interactive `tty0`
++      proxy and the typed passphrase never reaches `cryptsetup`.
++    '';
++  };
++
+   config = {
+     boot.initrd.contents = [
+       {
+@@ -139,6 +153,13 @@ in
+         target = "/usr/local/bin/finix-mount-all";
+         source = pkgs.writeScript "finix-mount-all" ''
+           #!/bin/sh
++          set -e
++
++          # Mirror all output to the console so a mount error or hang is visible
++          # at boot instead of stalling silently until finit's 120s bootstrap
++          # timeout prunes this task and switch-root runs on an empty /sysroot.
++          exec > /dev/console 2>&1
++          echo "finix-mount-all: starting"
+ 
+           targetRoot=/sysroot
+ 
+@@ -153,6 +174,23 @@ in
+               ) (lib.attrValues config.fileSystems)
+             )
+           )}
++
++          # Assert every neededForBoot mount actually mounted. With `set -e` the
++          # first miss exits non-zero -> <task/mount-all/failure> -> rescue with
++          # a visible reason, rather than a silent stall.
++          ${lib.concatMapStringsSep "\n" (mnt: ''
++            mountpoint -q "$targetRoot${mnt.mountPoint}" || { echo "finix-mount-all: MISSING MOUNT ${mnt.mountPoint}"; exit 1; }'') (
++            lib.filter (lib.getAttr "neededForBoot") (
++              lib.filter (
++                fs:
++                !lib.elem fs.fsType [
++                  "luks"
++                  "lvm"
++                ]
++              ) (lib.attrValues config.fileSystems)
++            )
++          )}
++          echo "finix-mount-all: all mounts present"
+         '';
+       }
+       {
+@@ -245,7 +283,7 @@ in
+             run [S] name:coldplug <service/mdevd/ready> mdevd-coldplug -O 2
+           ''}
+ 
+-          task [S] name:fs-import tty:@console \
++          task [S] name:fs-import tty:${cfg.consoleDevice} \
+             ${lib.optionalString config.services.mdevd.enable "<run/coldplug/success>"} \
+             ${lib.optionalString config.services.udev.enable "<run/udevadm:5/success>"} \
+             ${lib.optionalString config.services.keventd.enable "<service/keventd/ready>"} \
+@@ -265,7 +303,7 @@ in
+             service [S] name:keventd notify:pid <!> keventd -n -c
+           ''}
+ 
+-          run [1] name:switch-root finix-switch-root
++          run [1] name:switch-root <task/mount-all/success> finix-switch-root
+           tty [1] <run/switch-root/failure> @console rescue
+         '';
+       }
+@@ -288,7 +326,7 @@ in
+         target = "/etc/group";
+         source = pkgs.writeText "group" (
+           lib.concatStringsSep "\n" (
+-            lib.concatMap (g: lib.optionals (g.gid != null) [ "${g.name}:x:${toString g.gid}" ]) (
++            lib.concatMap (g: lib.optionals (g.gid != null) [ "${g.name}:x:${toString g.gid}:" ]) (
+               lib.attrValues config.users.groups
+             )
+           )
