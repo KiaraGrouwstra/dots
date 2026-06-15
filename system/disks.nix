@@ -56,7 +56,8 @@ in
   # lacks libsystemd.so.0, breaking cage). Enabling this also wires the `greeter`
   # user into the seatd group (the finix regreet module gates that on
   # `services.seatd.enable`).
-  services.seatd.enable = lib.mkForce true;
+  services.seatd.enable = lib.mkForce false;
+  services.elogind.enable = lib.mkForce true;
 
   # `@console` resolves to tty0 (the foreground-VT proxy), not tty1, so finit
   # binds tty0 as the fs-import task's controlling terminal and cryptsetup's
