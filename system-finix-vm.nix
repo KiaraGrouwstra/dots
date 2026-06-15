@@ -17,7 +17,7 @@ let
   # mount-all differs, but build off the patched source so both stay in sync.
   finixSrc = pkgs.applyPatches {
     name = "finix-patched";
-    src = sources.finix;
+    src = "${sources.finix}";
     patches = [ ./finix.patch ];
   };
   finix = import "${finixSrc}";

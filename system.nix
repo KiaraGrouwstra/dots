@@ -14,7 +14,7 @@ let
   # importing it. See ./finix.patch.
   finixSrc = pkgs.applyPatches {
     name = "finix-patched";
-    src = sources.finix;
+    src = "${sources.finix}";
     patches = [ ./finix.patch ];
   };
   finix = import "${finixSrc}";
