@@ -28,10 +28,12 @@ in
       "wheel"
       "networkmanager"
       "video"
+      "input"
+      config.services.seatd.group
       # "incus-admin"
       # "nitrokey"
     ];
-    shell = config.home-manager.users.kiara.programs.nushell.package;
+    # shell = config.home-manager.users.kiara.programs.nushell.package;
     packages =
       let
         unstable = import "${sources.nixpkgs-unstable}" { };
