@@ -8,13 +8,26 @@
     "xhci_pci"
     "thunderbolt"
     "usb_storage"
+    "usbhid"
     "sd_mod"
     "sdhci_pci"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [
+    "amdgpu"
+  ];
 
   boot.kernelModules = [
     "kvm-amd"
+    "amdgpu"
+    "mt7921e"
+    "snd_hda_intel"
+    "btusb"
+    "uvcvideo"
+    "snd_usb_audio"
+    "ccp"
+    "k10temp"
+    "i2c_piix4"
+    "piix4_smbus"
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
