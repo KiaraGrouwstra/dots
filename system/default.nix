@@ -13,6 +13,11 @@ let
   user = "kiara";
   sources = (import ../npins) { };
   system = "x86_64-linux";
+  NIX_PATH =
+    let
+      entries = lib.mapAttrsToList (k: v: k + "=" + v) sources;
+    in
+    "${lib.concatStringsSep ":" entries}";
 
   profiles = import "${sources.profiles}";
   community = import "${sources.community-modules}";
@@ -123,6 +128,7 @@ in
       home.username = user;
       home.homeDirectory = "/home/${user}";
       home.sessionVariables = {
+        inherit NIX_PATH;
         BROWSER = "firefox";
         XDG_CURRENT_DESKTOP = "X-Generic";
         NIX_AUTO_RUN = "1";
