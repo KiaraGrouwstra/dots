@@ -2,6 +2,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 {
@@ -17,7 +18,10 @@
   services.autologin = {
     enable = true;
     user = "kiara";
-    command = "dbus-run-session -- niri-session"; # not `niri --session`?
+    command = pkgs.writeShellScript "niri-autologin" ''
+      exec ${pkgs.dbus}/bin/dbus-run-session -- ${config.programs.niri.package}/bin/niri-session
+    '';
+      # exec ${pkgs.dbus}/bin/dbus-run-session -- ${lib.getExe config.programs.niri.package} --session
   };
 
   # --- incus (container/VM hypervisor) ---
