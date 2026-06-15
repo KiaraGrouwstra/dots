@@ -89,14 +89,10 @@ index 92cd248..e5cc618 100644
              )
            )
 diff --git a/modules/services/greetd/default.nix b/modules/services/greetd/default.nix
-index 1234567..abcdefg 100644
+index 4c55773..febe30c 100644
 --- a/modules/services/greetd/default.nix
 +++ b/modules/services/greetd/default.nix
-@@ -94,10 +94,12 @@ a/modules/services/greetd/default.nix
-         # Password management.
-         password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
- 
-         # Session management.
+@@ -93,9 +93,10 @@ in
          session required pam_env.so conffile=/etc/security/pam_env.conf readenv=0 # env (order 10100)
          session required pam_unix.so # unix (order 10200)
          session required pam_loginuid.so # loginuid (order 10300)
