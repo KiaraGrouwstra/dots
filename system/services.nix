@@ -12,6 +12,14 @@
     permit nopass keepenv :wheel
   '';
 
+  programs.shadow.enable = true;
+
+  services.autologin = {
+    enable = true;
+    user = "kiara";
+    command = "dbus-run-session -- niri-session"; # not `niri --session`?
+  };
+
   # --- incus (container/VM hypervisor) ---
   # services.incus.enable = true;
 

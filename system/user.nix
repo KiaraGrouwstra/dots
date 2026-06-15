@@ -22,6 +22,12 @@ let
   };
 in
 {
+  environment.systemPackages = with pkgs; [
+    xterm-256color
+    x-terminal-emulator
+    x-www-browser
+  ];
+
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [
@@ -97,7 +103,6 @@ in
         dconf
         stremio-service
         unar
-        xdg-terminal-exec
         xfce4-exo
       ]
       ++ cmdWrappers;
