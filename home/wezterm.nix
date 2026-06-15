@@ -53,7 +53,7 @@
              window_close_confirmation = "NeverPrompt",
              enable_kitty_keyboard = true,
              set_environment_variables = {
-                 TERM = "wezterm"
+                 -- TERM = "wezterm"
              },
              font_size = 10.0,
              -- color_scheme_dirs = {"/home/kiara/.config/wezterm"},
