@@ -67,9 +67,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f5fd2367b30b65a4cfa285f393f79024f0958ac9",
-      "url": "https://github.com/finix-community/finix/archive/f5fd2367b30b65a4cfa285f393f79024f0958ac9.tar.gz",
-      "hash": "sha256-tsRpewgY0W1YEEEbYxKvEPiKXNrdAxURHVqAKf5Z+F8="
+      "revision": "2e9b5822f0533a8b2f571226edda1837ff3a257a",
+      "url": "https://github.com/finix-community/finix/archive/2e9b5822f0533a8b2f571226edda1837ff3a257a.tar.gz",
+      "hash": "sha256-UjIgczSU3rB4XG9i+sB0hWvT3tnKGmfuxa+ER7V5rcA="
     },
     "flake-compat": {
       "type": "Git",

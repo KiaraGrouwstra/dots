@@ -22,11 +22,7 @@ let
   };
 in
 {
-  environment.systemPackages = with pkgs; [
-    xterm-256color
-    x-terminal-emulator
-    x-www-browser
-  ];
+  environment.systemPackages = cmdWrappers;
 
   users.users.${user} = {
     isNormalUser = true;
