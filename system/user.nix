@@ -27,7 +27,7 @@ in
   users.users.greeter.extraGroups = [
     "video"
     "render"
-    config.services.seatd.group
+    # config.services.seatd.group
   ];
   users.users.${user} = {
     isNormalUser = true;
@@ -37,7 +37,7 @@ in
       "video"
       "render"
       "input"
-      config.services.seatd.group
+      # config.services.seatd.group
       # "incus-admin"
       # "nitrokey"
     ];

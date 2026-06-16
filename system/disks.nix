@@ -56,7 +56,7 @@ in
   # lacks libsystemd.so.0, breaking cage). Enabling this also wires the `greeter`
   # user into the seatd group (the finix regreet module gates that on
   # `services.seatd.enable`).
-  services.seatd.enable = lib.mkForce true;
+  # services.seatd.enable = lib.mkForce true;
   services.elogind.enable = lib.mkForce true;
 
   # `@console` resolves to tty0 (the foreground-VT proxy), not tty1, so finit
@@ -96,10 +96,10 @@ in
     WLR_BACKENDS = "drm,libinput";
   };
   # disable the competing greeter (it's pulled in by the laptop profile / regreet)
-  # services.greetd.enable = lib.mkForce true;
-  # programs.regreet.enable = lib.mkForce true;
-  services.greetd.enable = lib.mkForce false;
-  programs.regreet.enable = lib.mkForce false;
+  services.greetd.enable = lib.mkForce true;
+  programs.regreet.enable = lib.mkForce true;
+  # services.greetd.enable = lib.mkForce false;
+  # programs.regreet.enable = lib.mkForce false;
 
   # --- restore a usable tty1 instead of a blank echoing console ---
   # With the greeter failing, tty1 is a bare kernel console. Put a getty back on
