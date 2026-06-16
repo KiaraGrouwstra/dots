@@ -2,7 +2,7 @@
 {
   lib,
   pkgs,
-  config,
+  # config,
   ...
 }:
 {
@@ -15,13 +15,13 @@
 
   programs.shadow.enable = true;
 
-  services.autologin = {
-    enable = true;
-    user = "kiara";
-    command = pkgs.writeShellScript "niri-autologin" ''
-      exec ${pkgs.dbus}/bin/dbus-run-session -- ${lib.getExe config.programs.niri.package} --session
-    '';
-  };
+  # services.autologin = {
+  #   enable = true;
+  #   user = "kiara";
+  #   command = pkgs.writeShellScript "niri-autologin" ''
+  #     exec ${pkgs.dbus}/bin/dbus-run-session -- ${lib.getExe config.programs.niri.package} --session
+  #   '';
+  # };
 
   # --- incus (container/VM hypervisor) ---
   # services.incus.enable = true;

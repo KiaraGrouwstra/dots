@@ -79,7 +79,7 @@ in
   # the kernel console (console=tty1) keeps the getty login in front -> apparent
   # hang. Pin greetd to vt 1 (the console the kernel shows) and vacate tty1 from
   # getty so the two don't contend. Keep tty2-6 as fallback console logins.
-  # services.greetd.settings.terminal.vt = lib.mkForce "1";
+  services.greetd.settings.terminal.vt = lib.mkForce "1";
 
   # --- capture greeter output (the missing diagnostic trail) ---
   # The generated greetd finit stanza has no `log` keyword, so cage/regreet
@@ -88,16 +88,16 @@ in
   # neededForBoot) so the next boot's failure is readable from tty1-6 or the
   # rollback generation. `finit.services.greetd.log` -> finit's `logit` wrapper
   # (<finix>/modules/finit/default.nix:272).
-  # finit.services.greetd.log = "/var/log/greetd.log";
+  finit.services.greetd.log = "/var/log/greetd.log";
 
   # Also surface what regreet/cage themselves think went wrong.
-  # programs.regreet.debug = true;
-  # programs.regreet.compositor.environment = {
-  #   WLR_BACKENDS = "drm,libinput";
-  # };
+  programs.regreet.debug = true;
+  programs.regreet.compositor.environment = {
+    WLR_BACKENDS = "drm,libinput";
+  };
   # disable the competing greeter (it's pulled in by the laptop profile / regreet)
-  services.greetd.enable = lib.mkForce false;
-  programs.regreet.enable = lib.mkForce false;
+  services.greetd.enable = lib.mkForce true;
+  programs.regreet.enable = lib.mkForce true;
 
   # --- restore a usable tty1 instead of a blank echoing console ---
   # With the greeter failing, tty1 is a bare kernel console. Put a getty back on
