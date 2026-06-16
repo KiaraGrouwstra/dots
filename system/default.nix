@@ -43,6 +43,7 @@ in
     profiles.nixosModules.laptop
     community.nixosModules.home-manager
     community.nixosModules.soteria
+    "${sources.finix}/modules/services/openssh"
     "${sources.vars}/options.nix"
     "${sources.vars}/backends/on-machine.nix"
     # noctalia's nixos-module is only a systemd *user* service launching the
