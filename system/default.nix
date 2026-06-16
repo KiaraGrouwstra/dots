@@ -23,8 +23,9 @@ let
   };
 in
 {
+  boot.loader.limine.enable = true;
   imports = with sources; [
-    "${lanzaboote}/nix/modules/lanzaboote.nix"
+    # "${lanzaboote}/nix/modules/lanzaboote.nix"
     "${nixos-facter-modules}/modules/nixos/facter.nix"
     "${home-manager}/nixos"
     # "${vars}/options.nix"
@@ -40,7 +41,7 @@ in
     ./niri
     ./tts.nix
     ./nitrokey.nix
-    ./secure-boot.nix
+    # ./secure-boot.nix
     ./opencode.nix
   ];
   _module.args = specialArgs;
@@ -96,7 +97,7 @@ in
   hardware.bluetooth.enable = true;
   facter.reportPath = ./facter.json;
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
   networking.nameservers = [
     # dns.sb
