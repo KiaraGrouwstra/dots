@@ -110,6 +110,14 @@ in
     servers=185.222.222.222,45.11.45.11
   '';
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      ListenAddress = [ "0.0.0.0" ];
+      PermitRootLogin = "yes";
+    };
+  };
+
   # community HM module specialArgs only pass pkgs/lib/osConfig; the home/
   # submodules also expect sources/user/sysConfig. The home bridge below injects
   # them per-user (see home-manager.users.${user}.imports).
