@@ -98,6 +98,8 @@ in
   # disable the competing greeter (it's pulled in by the laptop profile / regreet)
   # services.greetd.enable = lib.mkForce true;
   # programs.regreet.enable = lib.mkForce true;
+  services.greetd.enable = lib.mkForce false;
+  programs.regreet.enable = lib.mkForce false;
 
   # --- restore a usable tty1 instead of a blank echoing console ---
   # With the greeter failing, tty1 is a bare kernel console. Put a getty back on
