@@ -106,3 +106,16 @@ index 4c55773..febe30c 100644
      };
  
    };
+diff --git a/modules/services/mdevd/default.nix b/modules/services/mdevd/default.nix
+index fc6836d..c768586 100644
+--- a/modules/services/mdevd/default.nix
++++ b/modules/services/mdevd/default.nix
+@@ -39,6 +39,8 @@ let
+ 
+       snd/.*      0:${gidOf "audio"} 660
+ 
++      renderD[0-9]+   0:${gidOf "render"} 660
++      dri/renderD.*   0:${gidOf "render"} 660
+       dri/.*      0:${gidOf "video"} 660
+       video[0-9]+ 0:${gidOf "video"} 660
+     '';
