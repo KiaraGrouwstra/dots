@@ -7,18 +7,18 @@
 {
   _class = "nixos";
 
-  vars.generators = {
-    "prompted" = {
-      prompts = {
-        "kimi-key" = { };
-        "minimax-key" = { };
-      };
-      files = {
-        "kimi-key".secret = true;
-        "minimax-key".secret = true;
-      };
-    };
-  };
+  # vars.generators = {
+  #   "prompted" = {
+  #     prompts = {
+  #       "kimi-key" = { };
+  #       "minimax-key" = { };
+  #     };
+  #     files = {
+  #       "kimi-key".secret = true;
+  #       "minimax-key".secret = true;
+  #     };
+  #   };
+  # };
 
   home-manager.users.${user} =
     { ... }:
@@ -136,7 +136,7 @@
             };
             options = {
               baseURL = "https://api.minimax.io/anthropic/v1";
-              apiKey = "{file:${config.vars.generators."prompted".files."minimax-key".path}}";
+              # apiKey = "{file:${config.vars.generators."prompted".files."minimax-key".path}}";
               # baseURL = "https://api.kimi.com/coding/";
               # apiKey = "{file:${config.vars.generators."prompted".files."kimi-key".path}}";
             };

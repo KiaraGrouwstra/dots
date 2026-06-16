@@ -5,32 +5,32 @@
   ...
 }:
 {
-  vars.generators = {
-    # specify base secrets to prompt by `generate-vars`
-    "prompted" = {
-      # token from https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
-      prompts."github-pat" = { };
-      files."github-pat".secret = true;
-    };
-    # our templated secrets
-    "templates" = {
-      files."nix.conf" = {
-        # `secret` here refers to the substituted file, not to the (un-sensitive) template
-        secret = true;
-        mode = "0644";
-        # map `config.nix.settings` to `nix.conf`, stolen from <nixpkgs/nixos/modules/config/nix.nix>
-        template =
-          (pkgs.formats.nixConf {
-            package = config.nix.package;
-            version = config.nix.package.version;
-          }).generate
-            "nix.conf"
-            (
-              lib.mapAttrs (_: v: if builtins.isList v then lib.concatStringsSep " " v else v) config.nix.settings
-            );
-      };
-    };
-  };
+  # vars.generators = {
+  #   # specify base secrets to prompt by `generate-vars`
+  #   "prompted" = {
+  #     # token from https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+  #     prompts."github-pat" = { };
+  #     files."github-pat".secret = true;
+  #   };
+  #   # our templated secrets
+  #   "templates" = {
+  #     files."nix.conf" = {
+  #       # `secret` here refers to the substituted file, not to the (un-sensitive) template
+  #       secret = true;
+  #       mode = "0644";
+  #       # map `config.nix.settings` to `nix.conf`, stolen from <nixpkgs/nixos/modules/config/nix.nix>
+  #       template =
+  #         (pkgs.formats.nixConf {
+  #           package = config.nix.package;
+  #           version = config.nix.package.version;
+  #         }).generate
+  #           "nix.conf"
+  #           (
+  #             lib.mapAttrs (_: v: if builtins.isList v then lib.concatStringsSep " " v else v) config.nix.settings
+  #           );
+  #     };
+  #   };
+  # };
   nix = {
     # package = pkgs.lix;
     # required, otherwise remote buildMachines aren't used
@@ -105,9 +105,9 @@
         "kiara"
       ];
       # use a placeholder where we want our secret substituted in
-      access-tokens = ''
-        github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
-      '';
+      # access-tokens = ''
+      #   github.com=${config.vars.generators."prompted".files."github-pat".placeholder}
+      # '';
       # allow offline builds
       flake-registry = "";
       fallback = true;
@@ -130,9 +130,9 @@
     };
   };
   # make the final file use our substituted var
-  environment.etc."nix/nix.conf".source =
-    lib.mkForce
-      config.vars.generators."templates".files."nix.conf".path;
+  # environment.etc."nix/nix.conf".source =
+  #   lib.mkForce
+  #     config.vars.generators."templates".files."nix.conf".path;
 
   # Periodically reap empty `nix-build-uid-*` cgroups left behind by
   # `use-cgroups = true` builds whose payload spawned nested systemd

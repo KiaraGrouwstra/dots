@@ -27,16 +27,16 @@ in
     "${lanzaboote}/nix/modules/lanzaboote.nix"
     "${nixos-facter-modules}/modules/nixos/facter.nix"
     "${home-manager}/nixos"
-    "${vars}/options.nix"
-    "${vars}/backends/on-machine.nix"
+    # "${vars}/options.nix"
+    # "${vars}/backends/on-machine.nix"
     "${disko}/module.nix"
     "${noctalia-shell}/nix/nixos-module.nix"
     ./disks.nix
     ./greetd.nix
     ./user.nix
-    ./vars.nix
+    # ./vars.nix
     ./nix.nix
-    ./wireguard.nix
+    # ./wireguard.nix
     ./niri
     ./tts.nix
     ./nitrokey.nix
@@ -63,7 +63,7 @@ in
       NIX_AUTO_INSTALL = "1";
     };
   };
-  vars.settings.on-machine.enable = true;
+  # vars.settings.on-machine.enable = true;
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
