@@ -43,6 +43,7 @@ in
     profiles.nixosModules.laptop
     community.nixosModules.home-manager
     community.nixosModules.soteria
+    "${sources.finix}/modules/services/autologin"
     "${sources.finix}/modules/services/openssh"
     "${sources.vars}/options.nix"
     "${sources.vars}/backends/on-machine.nix"
